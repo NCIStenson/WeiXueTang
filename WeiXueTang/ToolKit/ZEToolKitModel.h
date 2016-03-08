@@ -26,6 +26,8 @@
 @property (nonatomic,copy) NSString * filetype;
 /*********  图片类型  *********/
 @property (nonatomic,copy) NSString * pngtype;
+/*********  图片数量  *********/
+@property (nonatomic,copy) NSString * pngnum;
 
 
 

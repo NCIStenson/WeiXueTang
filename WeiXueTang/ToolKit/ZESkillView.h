@@ -12,13 +12,23 @@
 @protocol ZESkillViewDelegate <NSObject>
 
 /**
- *  @author Stenson, 16-03-07 15:03:45
+ *  @author Stenson, 16-03-08 14:03:36
  *
- *  选中单元行时 进入下一界面
+ *  播放课件视频
  *
- *  @param skillID 技能ID
+ *  @param filepath 文件路径
  */
 -(void)playCourswareVideo:(NSString *)filepath;
+/**
+ *  @author Stenson, 16-03-08 14:03:24
+ *
+ *  展示课件图片
+ *
+ *  @param filepath 文件路径
+ *  @param pngType  文件图片类型（docx，pdf）
+ *  @param pageNum  图片数量（文件默认从1开始）
+ */
+-(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum;
 
 @end
 

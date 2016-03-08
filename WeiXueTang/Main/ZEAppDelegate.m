@@ -25,6 +25,9 @@
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:mainVC];
     self.window.rootViewController = nav;
     
+//    ZEImageViewController * mainVC = [[ZEImageViewController alloc]init];
+//    self.window.rootViewController = mainVC;
+    
     NSLog(@"%@",Zenith_Server);
     
     return YES;

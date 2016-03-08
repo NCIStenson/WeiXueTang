@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9821C7701C4E10FF00FE9080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9821C76F1C4E10FF00FE9080 /* Images.xcassets */; };
 		982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 982F0C691C4E2D4600593946 /* ZEServerEngine.m */; };
+		98949A941C8EA4970053139C /* ZEImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98949A931C8EA4970053139C /* ZEImageViewController.m */; };
+		98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98949A961C8EA4DA0053139C /* ZEImageView.m */; };
+		98949A991C8EB39E0053139C /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98949A981C8EB39E0053139C /* login.jpg */; };
 		989B2C481C4DE7AA00F14EFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B2C471C4DE7AA00F14EFA /* main.m */; };
 		989B2C531C4DE7AA00F14EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989B2C521C4DE7AA00F14EFA /* Assets.xcassets */; };
 		989B2C611C4DE7AA00F14EFA /* WeiXueTangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B2C601C4DE7AA00F14EFA /* WeiXueTangTests.m */; };
@@ -75,6 +78,11 @@
 		9821C76F1C4E10FF00FE9080 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		982F0C681C4E2D4600593946 /* ZEServerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEServerEngine.h; path = Service/ZEServerEngine.h; sourceTree = "<group>"; };
 		982F0C691C4E2D4600593946 /* ZEServerEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEServerEngine.m; path = Service/ZEServerEngine.m; sourceTree = "<group>"; };
+		98949A921C8EA4970053139C /* ZEImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEImageViewController.h; sourceTree = "<group>"; };
+		98949A931C8EA4970053139C /* ZEImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEImageViewController.m; sourceTree = "<group>"; };
+		98949A951C8EA4DA0053139C /* ZEImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEImageView.h; sourceTree = "<group>"; };
+		98949A961C8EA4DA0053139C /* ZEImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEImageView.m; sourceTree = "<group>"; };
+		98949A981C8EB39E0053139C /* login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = login.jpg; path = Image/login.jpg; sourceTree = "<group>"; };
 		989B2C431C4DE7AA00F14EFA /* WeiXueTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiXueTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		989B2C471C4DE7AA00F14EFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		989B2C521C4DE7AA00F14EFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -320,6 +328,10 @@
 				98BA5C6F1C8D6095005649AC /* ZESkillViewController.m */,
 				98BA5C711C8D60AB005649AC /* ZESkillView.h */,
 				98BA5C721C8D60AB005649AC /* ZESkillView.m */,
+				98949A921C8EA4970053139C /* ZEImageViewController.h */,
+				98949A931C8EA4970053139C /* ZEImageViewController.m */,
+				98949A951C8EA4DA0053139C /* ZEImageView.h */,
+				98949A961C8EA4DA0053139C /* ZEImageView.m */,
 				98BA5C6B1C8D4CA9005649AC /* ZEToolKitModel.h */,
 				98BA5C6C1C8D4CA9005649AC /* ZEToolKitModel.m */,
 			);
@@ -329,6 +341,7 @@
 		98BA5C661C8D2A26005649AC /* SourceImage */ = {
 			isa = PBXGroup;
 			children = (
+				98949A981C8EB39E0053139C /* login.jpg */,
 				98BA5C671C8D2A53005649AC /* icon_back@2x.png */,
 				98BA5C681C8D2A53005649AC /* icon_back@3x.png */,
 			);
@@ -492,6 +505,7 @@
 				98BA5C491C8D13AF005649AC /* play_nor@2x.png in Resources */,
 				989B2C531C4DE7AA00F14EFA /* Assets.xcassets in Resources */,
 				98BA5C3F1C8D13AF005649AC /* backward_nor@2x.png in Resources */,
+				98949A991C8EB39E0053139C /* login.jpg in Resources */,
 				98BA5C461C8D13AF005649AC /* pause_disable@2x.png in Resources */,
 				98BA5C441C8D13AF005649AC /* forward_disable@2x.png in Resources */,
 				98BA5C6A1C8D2A53005649AC /* icon_back@3x.png in Resources */,
@@ -573,10 +587,12 @@
 				98BA5C511C8D13AF005649AC /* JRPlayerViewController.m in Sources */,
 				989B2C481C4DE7AA00F14EFA /* main.m in Sources */,
 				98BA5C601C8D25DF005649AC /* ZEAppDelegate.m in Sources */,
+				98949A941C8EA4970053139C /* ZEImageViewController.m in Sources */,
 				98BA5C621C8D25DF005649AC /* ZEMainViewController.m in Sources */,
 				98BA5C611C8D25DF005649AC /* ZEMainView.m in Sources */,
 				982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */,
 				98BA5C561C8D15FF005649AC /* ZEToolKitViewController.m in Sources */,
+				98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */,
 				98BA5C651C8D25E7005649AC /* ZESettingRootVC.m in Sources */,
 				98BA5C501C8D13AF005649AC /* JRPlayerView.m in Sources */,
 				98DB7C621C4F56470046D405 /* ZEUserServer.m in Sources */,

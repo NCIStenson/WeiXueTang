@@ -10,6 +10,8 @@
 #import "JRPlayerViewController.h"
 #import "ZEUserServer.h"
 
+#import "ZEImageViewController.h"
+
 @interface ZESkillViewController ()
 {
     ZESkillView * _skillView;
@@ -58,21 +60,22 @@
 -(void)playCourswareVideo:(NSString *)filepath
 {
     NSLog(@"%@",filepath);
-//    NSString *str = [@"http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *str = [filepath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
     NSURL * urlStr = [NSURL URLWithString:str];
     JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithHTTPLiveStreamingMediaURL:urlStr];
     [self presentViewController:playView animated:YES completion:^{
                 [playView play:nil];
     }];
-    
-//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"test" withExtension:@"mp4"];
-//    JRPlayerViewController *playerVC = [[JRPlayerViewController alloc] initWithLocalMediaURL:url];
-//    playerVC.mediaTitle = @"老男孩";
-//    [self presentViewController:playerVC animated:YES completion:^{
-//        [playerVC play:nil];
-//    }];
+
+}
+
+-(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
+{
+    ZEImageViewController * imageVC = [ZEImageViewController new];
+    imageVC.pngPageNum = pageNum;
+    imageVC.filePath = filepath;
+    imageVC.pngType = pngType;
+    [self.navigationController pushViewController:imageVC animated:YES];
 }
 
 #pragma mark - SuperMethod

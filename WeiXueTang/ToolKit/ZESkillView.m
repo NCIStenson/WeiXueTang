@@ -85,9 +85,19 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
     ZEToolKitModel * toolKitM = [ZEToolKitModel getDetailWithDic:self.toolKitListArr[indexPath.row]];
-    if ([self.delegate respondsToSelector:@selector(playCourswareVideo:)]) {
-        NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,toolKitM.filepath];
-        [self.delegate playCourswareVideo:filePath];
+    if([ZEUtil isStrNotEmpty:toolKitM.pngtype]){
+        if ([self.delegate respondsToSelector:@selector(playCourswareImagePath:withType:withPageNum:)]) {
+            
+            NSArray * arr= [toolKitM.filepath componentsSeparatedByString:@"."];
+            
+            NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,arr[0]];
+            [self.delegate playCourswareImagePath:filePath withType:toolKitM.pngtype withPageNum:toolKitM.pngnum];
+        }
+    }else{
+        if ([self.delegate respondsToSelector:@selector(playCourswareVideo:)]) {
+            NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,toolKitM.filepath];
+            [self.delegate playCourswareVideo:filePath];
+        }
     }
 }
 

@@ -24,6 +24,7 @@ static ZEToolKitModel * toolKitM = nil;
     toolKitM.filesize = [dic objectForKey:@"filesize"];
     toolKitM.filetype = [dic objectForKey:@"filetype"];
     toolKitM.pngtype  = [dic objectForKey:@"pngtype"];
+    toolKitM.pngnum   = [dic objectForKey:@"pngnum"];
     
     return toolKitM;
 }
