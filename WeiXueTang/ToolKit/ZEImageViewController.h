@@ -7,8 +7,9 @@
 //
 
 #import "ZESettingRootVC.h"
+#import "ZEImageView.h"
 
-@interface ZEImageViewController : ZESettingRootVC
+@interface ZEImageViewController : ZESettingRootVC<ZEImageViewDelegate>
 
 /************  图片数量  ***************/
 @property (nonatomic,copy) NSString * pngPageNum;

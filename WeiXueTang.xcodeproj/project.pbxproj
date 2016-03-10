@@ -15,6 +15,12 @@
 		989B2C481C4DE7AA00F14EFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B2C471C4DE7AA00F14EFA /* main.m */; };
 		989B2C531C4DE7AA00F14EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989B2C521C4DE7AA00F14EFA /* Assets.xcassets */; };
 		989B2C611C4DE7AA00F14EFA /* WeiXueTangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B2C601C4DE7AA00F14EFA /* WeiXueTangTests.m */; };
+		98B2CC271C8FEEBF0015918B /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2CC211C8FEEBF0015918B /* SDBrowserImageView.m */; };
+		98B2CC281C8FEEBF0015918B /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2CC231C8FEEBF0015918B /* SDPhotoBrowser.m */; };
+		98B2CC291C8FEEBF0015918B /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2CC261C8FEEBF0015918B /* SDWaitingView.m */; };
+		98B2CC471C910CA60015918B /* timeline_image_loading@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98B2CC461C910CA60015918B /* timeline_image_loading@2x.png */; };
+		98B2CC4A1C9121390015918B /* icon_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98B2CC481C9121390015918B /* icon_search@2x.png */; };
+		98B2CC4B1C9121390015918B /* icon_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98B2CC491C9121390015918B /* icon_search@3x.png */; };
 		98BA5C3E1C8D13AF005649AC /* backward_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BA5C271C8D13AF005649AC /* backward_disable@2x.png */; };
 		98BA5C3F1C8D13AF005649AC /* backward_nor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BA5C281C8D13AF005649AC /* backward_nor@2x.png */; };
 		98BA5C401C8D13AF005649AC /* fast_backward_disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BA5C291C8D13AF005649AC /* fast_backward_disable@2x.png */; };
@@ -92,6 +98,16 @@
 		989B2C621C4DE7AA00F14EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989B2C671C4DE7AA00F14EFA /* WeiXueTang.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiXueTang.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		989B2C6D1C4DE7AA00F14EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98B2CC201C8FEEBF0015918B /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		98B2CC211C8FEEBF0015918B /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		98B2CC221C8FEEBF0015918B /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		98B2CC231C8FEEBF0015918B /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		98B2CC241C8FEEBF0015918B /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		98B2CC251C8FEEBF0015918B /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		98B2CC261C8FEEBF0015918B /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		98B2CC461C910CA60015918B /* timeline_image_loading@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "timeline_image_loading@2x.png"; sourceTree = "<group>"; };
+		98B2CC481C9121390015918B /* icon_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_search@2x.png"; path = "Image/icon_search@2x.png"; sourceTree = "<group>"; };
+		98B2CC491C9121390015918B /* icon_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_search@3x.png"; path = "Image/icon_search@3x.png"; sourceTree = "<group>"; };
 		98BA5C271C8D13AF005649AC /* backward_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backward_disable@2x.png"; sourceTree = "<group>"; };
 		98BA5C281C8D13AF005649AC /* backward_nor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backward_nor@2x.png"; sourceTree = "<group>"; };
 		98BA5C291C8D13AF005649AC /* fast_backward_disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fast_backward_disable@2x.png"; sourceTree = "<group>"; };
@@ -270,9 +286,26 @@
 			path = WeiXueTangUITests;
 			sourceTree = "<group>";
 		};
+		98B2CC1F1C8FEEBF0015918B /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				98B2CC461C910CA60015918B /* timeline_image_loading@2x.png */,
+				98B2CC201C8FEEBF0015918B /* SDBrowserImageView.h */,
+				98B2CC211C8FEEBF0015918B /* SDBrowserImageView.m */,
+				98B2CC221C8FEEBF0015918B /* SDPhotoBrowser.h */,
+				98B2CC231C8FEEBF0015918B /* SDPhotoBrowser.m */,
+				98B2CC241C8FEEBF0015918B /* SDPhotoBrowserConfig.h */,
+				98B2CC251C8FEEBF0015918B /* SDWaitingView.h */,
+				98B2CC261C8FEEBF0015918B /* SDWaitingView.m */,
+			);
+			name = SDPhotoBrowser;
+			path = ThirdLib/SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		98BA5BF61C8D136B005649AC /* ThirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				98B2CC1F1C8FEEBF0015918B /* SDPhotoBrowser */,
 				98BA5C251C8D13AF005649AC /* JRVideoPlayerViewController */,
 			);
 			name = ThirdLib;
@@ -341,6 +374,8 @@
 		98BA5C661C8D2A26005649AC /* SourceImage */ = {
 			isa = PBXGroup;
 			children = (
+				98B2CC481C9121390015918B /* icon_search@2x.png */,
+				98B2CC491C9121390015918B /* icon_search@3x.png */,
 				98949A981C8EB39E0053139C /* login.jpg */,
 				98BA5C671C8D2A53005649AC /* icon_back@2x.png */,
 				98BA5C681C8D2A53005649AC /* icon_back@3x.png */,
@@ -490,12 +525,14 @@
 				98BA5C4D1C8D13AF005649AC /* video_num_front@2x.png in Resources */,
 				98BA5C4E1C8D13AF005649AC /* video_tips@2x.png in Resources */,
 				98BA5C521C8D13AF005649AC /* JRPlayerViewController.xib in Resources */,
+				98B2CC471C910CA60015918B /* timeline_image_loading@2x.png in Resources */,
 				9821C7701C4E10FF00FE9080 /* Images.xcassets in Resources */,
 				98BA5C3E1C8D13AF005649AC /* backward_disable@2x.png in Resources */,
 				98BA5C481C8D13AF005649AC /* play_disable@2x.png in Resources */,
 				98BA5C4A1C8D13AF005649AC /* progressThumb@2x.png in Resources */,
 				98BA5C431C8D13AF005649AC /* fast_forward_nor@2x.png in Resources */,
 				98BA5C4B1C8D13AF005649AC /* video_brightness_bg@2x.png in Resources */,
+				98B2CC4A1C9121390015918B /* icon_search@2x.png in Resources */,
 				98BA5C451C8D13AF005649AC /* forward_nor@2x.png in Resources */,
 				98BA5C691C8D2A53005649AC /* icon_back@2x.png in Resources */,
 				98BA5C4F1C8D13AF005649AC /* video_volume_bg@2x.png in Resources */,
@@ -504,6 +541,7 @@
 				98BA5C4C1C8D13AF005649AC /* video_num_bg@2x.png in Resources */,
 				98BA5C491C8D13AF005649AC /* play_nor@2x.png in Resources */,
 				989B2C531C4DE7AA00F14EFA /* Assets.xcassets in Resources */,
+				98B2CC4B1C9121390015918B /* icon_search@3x.png in Resources */,
 				98BA5C3F1C8D13AF005649AC /* backward_nor@2x.png in Resources */,
 				98949A991C8EB39E0053139C /* login.jpg in Resources */,
 				98BA5C461C8D13AF005649AC /* pause_disable@2x.png in Resources */,
@@ -581,6 +619,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98B2CC281C8FEEBF0015918B /* SDPhotoBrowser.m in Sources */,
 				98BA5C701C8D6095005649AC /* ZESkillViewController.m in Sources */,
 				98BA5C731C8D60AB005649AC /* ZESkillView.m in Sources */,
 				98DB7C501C4F4FA70046D405 /* ZEUtil.m in Sources */,
@@ -591,7 +630,9 @@
 				98BA5C621C8D25DF005649AC /* ZEMainViewController.m in Sources */,
 				98BA5C611C8D25DF005649AC /* ZEMainView.m in Sources */,
 				982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */,
+				98B2CC291C8FEEBF0015918B /* SDWaitingView.m in Sources */,
 				98BA5C561C8D15FF005649AC /* ZEToolKitViewController.m in Sources */,
+				98B2CC271C8FEEBF0015918B /* SDBrowserImageView.m in Sources */,
 				98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */,
 				98BA5C651C8D25E7005649AC /* ZESettingRootVC.m in Sources */,
 				98BA5C501C8D13AF005649AC /* JRPlayerView.m in Sources */,
@@ -733,6 +774,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
@@ -742,6 +784,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.newCentury.NewCentury;
 				PRODUCT_NAME = WeiXueTang;
 				SHARED_PRECOMPS_DIR = "";
+				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = "";
 				ZENITH_BUNDLEID = "com.zenith.app-Debug";
 				ZENITH_SERVER = "http://117.149.2.229:8090/nbsj";
@@ -754,6 +797,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
@@ -763,6 +807,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.newCentury.NewCentury;
 				PRODUCT_NAME = WeiXueTang;
 				SHARED_PRECOMPS_DIR = "";
+				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = "";
 				ZENITH_BUNDLEID = "com.zenith.app-Release";
 				ZENITH_SERVER = "http://117.149.2.229:8090/nbsj";

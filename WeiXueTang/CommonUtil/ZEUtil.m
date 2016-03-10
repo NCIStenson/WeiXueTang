@@ -94,7 +94,7 @@
     char *machine = (char*)malloc(size);
     sysctlbyname("hw.machine", machine, &size, NULL, 0);
     NSString *deviceModel = [NSString stringWithCString:machine encoding:NSUTF8StringEncoding];
-    
+    free(machine);
     [infoDic setObject:country forKey:@"country"];
     [infoDic setObject:language forKey:@"language"];
     [infoDic setObject:systemName forKey:@"systemName"];
@@ -113,7 +113,7 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
     CGContextFillRect(context, rect);
-    UIImage * image = [[UIImage alloc] init];
+    UIImage * image = nil;
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;

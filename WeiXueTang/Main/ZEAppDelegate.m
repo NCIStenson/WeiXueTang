@@ -29,7 +29,8 @@
 //    self.window.rootViewController = mainVC;
     
     NSLog(@"%@",Zenith_Server);
-    
+    NSLog(@"%@",NSHomeDirectory());
+
     return YES;
 }
 

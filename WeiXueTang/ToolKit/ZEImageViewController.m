@@ -7,7 +7,6 @@
 //
 
 #import "ZEImageViewController.h"
-#import "ZEImageView.h"
 
 @interface ZEImageViewController ()
 
@@ -18,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"1/1";
+    self.title = [NSString stringWithFormat:@"1 / %@",_pngPageNum];
     
     [self initView];
 }
@@ -27,7 +26,13 @@
 {
     ZEImageView * imageView = [[ZEImageView alloc]initWithFrame:CGRectMake(0, 64.0f, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:imageView];
+    imageView.delegate = self;
     [imageView reloadView:self.pngPageNum pngFielPath:self.filePath pngType:self.pngType];
+}
+#pragma mark - ZEImageViewDelegate
+-(void)collectionViewDidEndDecelerating:(NSString *)currentPage
+{
+    self.title = [NSString stringWithFormat:@"%@ / %@",currentPage,_pngPageNum];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -25,12 +25,12 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self setTitle:@"工具包"];
     [self initView];
+    [self sendRequest];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self sendRequest];
 }
 
 -(void)initView

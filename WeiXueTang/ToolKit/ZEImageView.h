@@ -7,8 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ZEImageView;
+@protocol ZEImageViewDelegate <NSObject>
+
+-(void)collectionViewDidEndDecelerating:(NSString *)currentPage;
+
+@end
 
 @interface ZEImageView : UIView<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIScrollViewDelegate>
+
+@property (nonatomic,assign) id <ZEImageViewDelegate> delegate;
 
 -(id)initWithFrame:(CGRect)frame;
 

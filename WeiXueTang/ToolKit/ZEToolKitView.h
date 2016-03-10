@@ -22,7 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZEToolKitView : UIView<UITableViewDelegate,UITableViewDataSource >
+@interface ZEToolKitView : UIView<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate>
 
 @property (nonatomic,assign) id <ZEToolKitViewDelegate> delegate;
 

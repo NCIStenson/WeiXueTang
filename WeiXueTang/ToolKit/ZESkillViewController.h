@@ -8,8 +8,9 @@
 
 #import "ZESettingRootVC.h"
 #import "ZESkillView.h"
+#import "SDPhotoBrowser.h"
 
-@interface ZESkillViewController : ZESettingRootVC<ZESkillViewDelegate>
+@interface ZESkillViewController : ZESettingRootVC<ZESkillViewDelegate,SDPhotoBrowserDelegate>
 
 @property (nonatomic,copy) NSString * skillID;
 
