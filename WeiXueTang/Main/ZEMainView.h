@@ -16,6 +16,12 @@
  */
 -(void)goToolKitView;
 
+/**
+ *  进入点赞表页面
+ */
+-(void)goDianZanView;
+
+
 @end
 
 

@@ -14,4 +14,10 @@ typedef NS_ENUM (NSInteger,TEST_BODY_PART){
     TEST_BODY_PART_NOSE
 };
 
+typedef NS_ENUM (NSInteger,DIANZAN_TYPE){
+    DIANZAN_TYPE_DONE,//已点赞
+    DIANZAN_TYPE_DOING,//评估中
+    DIANZAN_TYPE_Master,//已掌握
+    DIANZAN_TYPE_NO//未点赞
+};
 #endif /* ZEEnumConstant_h */

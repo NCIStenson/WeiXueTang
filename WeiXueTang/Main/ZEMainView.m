@@ -34,6 +34,13 @@
     [self addSubview:toolKitBtn];
     [toolKitBtn addTarget:self action:@selector(goToolKitView) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton * dianZanBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    dianZanBtn.frame = CGRectMake(kToolKitBtnMarginLeft, kToolKitBtnMarginTop + kToolKitBtnHeight, kToolKitBtnWidth, kToolKitBtnHeight);
+    dianZanBtn.backgroundColor = [UIColor yellowColor];
+    [dianZanBtn setTitle:@"点赞表" forState:UIControlStateNormal];
+    [dianZanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self addSubview:dianZanBtn];
+    [dianZanBtn addTarget:self action:@selector(goDianZanView) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - SelfDelegate
@@ -42,6 +49,13 @@
 {
     if ([self.delegate respondsToSelector:@selector(goToolKitView) ]) {
         [self.delegate goToolKitView];
+    }
+}
+
+-(void)goDianZanView
+{
+    if ([self.delegate respondsToSelector:@selector(goDianZanView) ]) {
+        [self.delegate goDianZanView];
     }
 }
 

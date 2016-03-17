@@ -6,6 +6,7 @@
 //  Copyright © 2016年 Stenson. All rights reserved.
 //
 
+#import "ZEEnumConstant.h"
 
 @interface ZEUtil : NSObject
 // 检查对象是否为空
@@ -24,5 +25,15 @@
 
 //  时间格式化
 + (NSString *)formatDate:(NSDate *)date;
+
+/**
+ *     点赞表中文注释
+ */
++ (NSString *)getDianZanTypeChineseText:(DIANZAN_TYPE)type;
+/**
+ *     点赞表图片名
+ */
++ (NSString *)getDianZanTypeImageName:(DIANZAN_TYPE)type;
+
 
 @end

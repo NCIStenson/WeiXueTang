@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZEProgressView.h"
 
 @class ZESkillView;
 @protocol ZESkillViewDelegate <NSObject>
@@ -30,6 +31,24 @@
  */
 -(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum;
 
+/**
+ *  @author Stenson, 16-03-11 14:03:36
+ *
+ *  下载视频
+ *
+ *  @param videoPath 视频路径
+ */
+-(void)downloadVideosWithUrlPath:(NSString *)urlPath cachePath:(NSString *)cachePath fileName:(NSString *)fileName progressView:(ZEProgressView *)progressView;
+/**
+ *  @author Stenson, 16-03-11 14:03:36
+ *
+ *  下载图片
+ *
+ *  @param videoPath 图片路径
+ *  @param cachePath 沙盒路径
+ */
+-(void)downloadImagesWithUrlPath:(NSString *)urlPath cachePath:(NSString *)cachePath progressView:(ZEProgressView *)progressView;
+
 @end
 
 
@@ -41,5 +60,5 @@
 
 #pragma mark Public Method
 -(void)contentViewReloadData:(NSArray *)arr;
-
+-(void)contentViewReload;
 @end

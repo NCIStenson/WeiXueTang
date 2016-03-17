@@ -16,6 +16,8 @@
 
 #define SCREEN_HEIGHT   [[UIScreen mainScreen] bounds].size.height
 #define SCREEN_WIDTH     [[UIScreen mainScreen] bounds].size.width
+#define NAV_HEIGHT      64.0f
+#define kAspect         (750.0f / SCREEN_HEIGHT)
 #define FRAME_WIDTH     [[UIScreen mainScreen] applicationFrame].size.width
 #define FRAME_HEIGHT    [[UIScreen mainScreen] applicationFrame].size.height
 #define IPHONE5_MORE     ([[UIScreen mainScreen] bounds].size.height > 480)
@@ -28,6 +30,11 @@
 #define HTTPMETHOD_GET @"GET"
 #define HTTPMETHOD_POST @"POST"
 
+/************ 下载成功通知 **************/
+#define KDOWNLOADSUCCESS  @"keyDownloadSuccess"
+
 #define Zenith_Server [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ZenithServerAddress"]
+
+#define PRE_PHOTO [NSString stringWithFormat:@"%@/file/photo/",Zenith_Server]
 
 #endif /* ZEMarcoConstant_h */

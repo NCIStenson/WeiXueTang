@@ -124,10 +124,10 @@
         _zoomingImageView = zoomingImageView;
         [_zoomingScroolView addSubview:zoomingImageView];
         [self addSubview:_zoomingScroolView];
-        
         _zoomingScroolView.contentSize = CGSizeMake(zoomingImageView.bounds.size.width * 2, zoomingImageView.bounds.size.height * 1.5);
         _zoomingScroolView.contentInset = UIEdgeInsetsMake(zoomingImageView.bounds.size.height, zoomingImageView.bounds.size.width, 0, 0);
     }
+
     CGFloat scale = recognizer.scale;
     CGFloat temp = _totalScale + (scale - 1);
     [self setTotalScale:temp];

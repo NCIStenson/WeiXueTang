@@ -9,6 +9,8 @@
 #import "ZEAppDelegate.h"
 #import "ZEMainViewController.h"
 
+#import "AFNetworkReachabilityManager.h"
+
 @interface ZEAppDelegate ()
 
 @end
@@ -31,7 +33,27 @@
     NSLog(@"%@",Zenith_Server);
     NSLog(@"%@",NSHomeDirectory());
 
+    [self _checkNet];
+    
     return YES;
+}
+- (void) _checkNet{
+    //开启网络状态监控
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        if(status==AFNetworkReachabilityStatusReachableViaWiFi){
+            NSLog(@"当前是wifi");
+        }
+        if(status==AFNetworkReachabilityStatusReachableViaWWAN){
+            NSLog(@"当前是3G");
+        }
+        if(status==AFNetworkReachabilityStatusNotReachable){
+            NSLog(@"当前是没有网络");
+        }
+        if(status==AFNetworkReachabilityStatusUnknown){
+            NSLog(@"当前是未知网络");
+        }
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

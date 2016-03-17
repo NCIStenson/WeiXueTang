@@ -30,6 +30,15 @@
 + (void)getCoursewareList:(NSString *)skillID
                   success:(ServerResponseSuccessBlock)successBlock
                          fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  获取点赞表
+ *
+ *  @param pageNum      当前页面
+ */
+
++ (void)getSkillSelfViewWithPage:(NSString *)pageNum
+                         success:(ServerResponseSuccessBlock)successBlock
+                            fail:(ServerResponseFailBlock)failBlock;
 
 
 @end

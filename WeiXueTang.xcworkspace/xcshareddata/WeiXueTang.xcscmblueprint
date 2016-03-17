@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E683A2B7794305852DAF18E5FD4F184A98314689",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E683A2B7794305852DAF18E5FD4F184A98314689" : 0,
+    "9EB47C0CF6D1568C101F8676030FFB8BB68CB4C1" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8A95AA68-2AF5-4E06-AA19-62B4F8301D9F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E683A2B7794305852DAF18E5FD4F184A98314689" : "WeiXueTang\/",
+    "9EB47C0CF6D1568C101F8676030FFB8BB68CB4C1" : "WeiXueTang\/WeiXueTang\/ThirdLib\/ziparchive\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "WeiXueTang",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "WeiXueTang.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NCIStenson\/ziparchive.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9EB47C0CF6D1568C101F8676030FFB8BB68CB4C1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NCIStenson\/WeiXueTang.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E683A2B7794305852DAF18E5FD4F184A98314689"
+    }
+  ]
+}

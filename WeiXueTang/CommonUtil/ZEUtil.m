@@ -127,5 +127,47 @@
 }
 
 
+#pragma mark - 点赞表
+
++ (NSString *)getDianZanTypeChineseText:(DIANZAN_TYPE)type
+{
+    switch (type) {
+        case DIANZAN_TYPE_DONE:
+            return @"已点赞";
+            break;
+        case DIANZAN_TYPE_DOING:
+            return @"评估中";
+            break;
+        case DIANZAN_TYPE_Master:
+            return @"已掌握";
+            break;
+        case DIANZAN_TYPE_NO:
+            return @"未点赞";
+            break;
+        default:
+            return @"未点赞";
+            break;
+    }
+}
++ (NSString *)getDianZanTypeImageName:(DIANZAN_TYPE)type
+{
+    switch (type) {
+        case DIANZAN_TYPE_DONE:
+            return @"good_yet";
+            break;
+        case DIANZAN_TYPE_DOING:
+            return @"good_assess";
+            break;
+        case DIANZAN_TYPE_Master:
+            return @"good_grasp";
+            break;
+        case DIANZAN_TYPE_NO:
+            return @"good_not";
+            break;
+        default:
+            return @"good_not";
+            break;
+    }
+}
 
 @end

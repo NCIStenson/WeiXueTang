@@ -9,11 +9,18 @@
 #import "ZEMainViewController.h"
 
 #import "ZEToolKitViewController.h"
-
+#import "ZEDianZanViewController.h"
 #import "ZEUserServer.h"
 
-@interface ZEMainViewController ()
+#import "ZEProgressView.h"
 
+
+#import "ZipArchive.h"
+
+@interface ZEMainViewController ()
+{
+    ZEProgressView *waiting;
+}
 @end
 
 @implementation ZEMainViewController
@@ -39,6 +46,12 @@
 {
     ZEToolKitViewController * toolKitVC = [[ZEToolKitViewController alloc]init];
     [self.navigationController pushViewController:toolKitVC animated:YES];
+}
+
+-(void)goDianZanView
+{
+    ZEDianZanViewController * dianZanVC = [[ZEDianZanViewController alloc]init];
+    [self.navigationController pushViewController:dianZanVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

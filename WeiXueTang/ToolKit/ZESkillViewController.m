@@ -38,6 +38,13 @@
     _skillView          = [[ZESkillView alloc]initWithFrame:CGRectMake(0, 64.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f)];
     [self.view addSubview:_skillView];
     _skillView.delegate = self;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kUnzipSuccess) name:KDOWNLOADSUCCESS object:nil];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KDOWNLOADSUCCESS object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -57,7 +64,14 @@
     }];
 }
 
+#pragma mark - 解压成功
+-(void)kUnzipSuccess
+{
+    [_skillView contentViewReload];
+}
+
 #pragma mark - ZESkillViewDelegate
+
 -(void)playCourswareVideo:(NSString *)filepath
 {
     NSString *str = [filepath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -68,7 +82,6 @@
     }];
 
 }
-
 -(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
 {
     self.photosArr = [NSMutableArray array];
@@ -82,13 +95,53 @@
     browser.imageCount = self.photosArr.count;
     browser.delegate = self;
     [browser show];
-
-//    ZEImageViewController * imageVC = [ZEImageViewController new];
-//    imageVC.pngPageNum = pageNum;
-//    imageVC.filePath = filepath;
-//    imageVC.pngType = pngType;
-//    [self.navigationController pushViewController:imageVC animated:YES];
 }
+
+-(void)downloadImagesWithUrlPath:(NSString *)urlPath
+                       cachePath:(NSString *)cachePath
+                    progressView:(ZEProgressView *)progressView
+{
+    NSString *str = [[NSString stringWithFormat:@"%@.zip",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    [ZEServerEngine downloadImageZipFromURL:str
+                                  cachePath:cachePath
+                               withProgress:^(CGFloat progress) {
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       [progressView setProgress:progress];
+                                   });
+                               } completion:^(NSURL *filePath) {
+                               } onError:^(NSError *error) {
+                                   
+                               }];
+    
+}
+
+-(void)downloadVideosWithUrlPath:(NSString *)urlPath
+                       cachePath:(NSString *)cachePath
+                        fileName:(NSString *)fileName
+                    progressView:(ZEProgressView *)progressView
+{
+    NSString *str = [[NSString stringWithFormat:@"%@.mp4",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@" str   》》》   %@",str);
+    [ZEServerEngine downloadVideoFromURL:str
+                                fileName:fileName
+                               cachePath:cachePath
+                            withProgress:^(CGFloat progress) {
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    [progressView setProgress:progress];
+                                    if (progress == 1) {
+                                        [_skillView contentViewReload];
+                                    }
+                                });
+                            } completion:^(NSURL *filePath) {
+                                NSLog(@"下载完成");
+                            } onError:^(NSError *error) {
+                                NSLog(@"%@",error);
+                            }];
+}
+
+
+
 
 #pragma mark - SDPhotoBrowserDelegate
 
