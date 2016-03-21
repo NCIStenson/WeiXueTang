@@ -3,7 +3,7 @@
 //  NewCentury
 //
 //  Created by Stenson on 16/1/19.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import "ZEServerEngine.h"
@@ -89,42 +89,10 @@ static ZEServerEngine *serverEngine = nil;
     
 }
 
--(void)requestWParams:(NSDictionary *)params
-              httpMethod:(NSString *)httpMethod
-                 success:(ServerResponseSuccessBlock)successBlock
-                    fail:(ServerResponseFailBlock)failBlock
-{
-    NSString * serverAdress = @"http://117.149.2.229:8090/nbsj/file/study%5C%E5%8F%98%E7%94%B5%E8%BF%90%E7%BB%B4%5C05-%E8%A3%85%E6%8B%86%E6%8E%A5%E5%9C%B0%E7%BA%BF%E6%93%8D%E4%BD%9C%5C1%E4%B8%BB%E5%8F%98110kV%E4%BE%A7%E4%B8%AD%E6%80%A7%E7%82%B9%E6%8E%A5%E5%9C%B0%E9%97%B8%E5%88%80.mp4";
-    
-    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
-  
-   NSURLSessionDataTask * task =  [session GET:serverAdress parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        // 这里可以获取到目前的数据请求的进度
-       [session setTaskDidSendBodyDataBlock:^(NSURLSession * _Nonnull session, NSURLSessionTask * _Nonnull task, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
-           NSLog(@"setTaskDidSendBodyDataBlock >>>>>>>>>>>>>>> ");
-       }];
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        // 请求成功，解析数据
-        NSLog(@"%@", responseObject);
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves error:nil];
-        
-        NSLog(@"%@", dic);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        // 请求失败
-        NSLog(@"%@", error);
-    }];
-    
- 
-    
-    NSLog(@"%@",task);
-    
-}
-
 +(void)downloadImageZipFromURL:(NSString *) URL
                      cachePath:(NSString *) cachePath
                   withProgress:(void (^)(CGFloat progress))progressBlock
-                    completion:(void (^)(NSURL *filePath))completionBlock
+                    completion:(void (^)(NSString *filePath))completionBlock
                        onError:(void (^)(NSError *error))errorBlock
 {
     
@@ -133,8 +101,7 @@ static ZEServerEngine *serverEngine = nil;
 //    解压zip压缩包时  系统会默认创建一个 同名文件夹 所以移除路径中最后的文件夹路径
     NSArray * pathNameArr = [newCachesPath componentsSeparatedByString:@"/"];
     NSString * finalCachesPath = [newCachesPath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"//%@",[pathNameArr lastObject]] withString:@""];
-    NSLog(@"%@",finalCachesPath);
-    
+
     NSString * serverAdress = URL;
     //Configuring the session manager
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -150,7 +117,6 @@ static ZEServerEngine *serverEngine = nil;
         CGFloat written = totalBytesWritten;
         CGFloat total = totalBytesExpectedToWrite;
         CGFloat percentageCompleted = written/total;
-        NSLog(@">>>   >>.  %@",cachePath);
         //Return the completed progress so we can display it somewhere else in app
         progressBlock(percentageCompleted);
     }];
@@ -167,8 +133,8 @@ static ZEServerEngine *serverEngine = nil;
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         if (!error) {
             //If there's no error, return the completion block
-            NSLog(@"下载完成 >>>>>  %@",cachePath);
-            completionBlock(filePath);
+            NSLog(@">>>  %@",cachePath);
+            completionBlock(cachePath);
         } else {
             //Otherwise return the error block
             errorBlock(error);
@@ -201,7 +167,6 @@ static ZEServerEngine *serverEngine = nil;
                 [za UnzipCloseFile];
             });
         }else{
-            NSLog(@"》》》》》重新解压");
             [self unZipFileOrgPath:orgPath desPath:desPath];
         }
     });

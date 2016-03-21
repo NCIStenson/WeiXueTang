@@ -3,7 +3,7 @@
 //  NewCentury
 //
 //  Created by Stenson on 16/1/19.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -3,7 +3,7 @@
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/17.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #define kTipsLabelHeight 30.0f
@@ -208,7 +208,7 @@
     for (UIView * view in cell.contentView.subviews) {
         [view removeFromSuperview];
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     [self initCellView:cell AtIndexPath:indexPath];
     return cell;
 }

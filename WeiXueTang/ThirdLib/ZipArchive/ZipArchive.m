@@ -212,7 +212,6 @@
 //		NSString * strPath = [NSString  stringWithCString:filename];
         NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
         NSString * strPath = [NSString  stringWithCString:filename encoding:enc]; //正确！ 这个地方应该是跟压缩时的编码对应上才对。
-        NSLog(@">>  %@",strPath);
 		BOOL isDirectory = NO;
 		if( filename[fileInfo.size_filename-1]=='/' || filename[fileInfo.size_filename-1]=='\\')
 			isDirectory = YES;

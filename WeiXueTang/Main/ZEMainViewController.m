@@ -3,23 +3,17 @@
 //  NewCentury
 //
 //  Created by Stenson on 16/1/20.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import "ZEMainViewController.h"
 
 #import "ZEToolKitViewController.h"
 #import "ZEDianZanViewController.h"
-#import "ZEUserServer.h"
-
-#import "ZEProgressView.h"
-
-
-#import "ZipArchive.h"
-
+#import "ZEExpertAssessmentVC.h"
 @interface ZEMainViewController ()
 {
-    ZEProgressView *waiting;
+
 }
 @end
 
@@ -54,6 +48,11 @@
     [self.navigationController pushViewController:dianZanVC animated:YES];
 }
 
+-(void)gozhuanjiaAssessmentView
+{
+    ZEExpertAssessmentVC * expertAssVC = [[ZEExpertAssessmentVC alloc]init];
+    [self.navigationController pushViewController:expertAssVC animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

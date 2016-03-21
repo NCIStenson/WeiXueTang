@@ -3,7 +3,7 @@
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/14.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import "ZEDownloadCaches.h"
@@ -11,6 +11,7 @@
 @interface ZEDownloadCaches ()
 
 @property (nonatomic,retain) NSMutableArray * downloadTask;
+@property (nonatomic,retain) NSMutableArray * progressViewAArr;
 
 @end
 
@@ -22,7 +23,7 @@ static ZEDownloadCaches * downloadCaches = nil;
 {
     self = [super init];
     if (self) {
-        //        self.optionDic = [NSMutableDictionary dictionary];
+        self.downloadTask = [NSMutableArray array];
     }
     return self;
 }
@@ -44,6 +45,10 @@ static ZEDownloadCaches * downloadCaches = nil;
 
 #pragma mark - 添加下载任务
 
-
+-(void)setCurrentDownloadTasks:(NSString *)filePath loadView:(ZEProgressView *)progressView
+{
+    NSDictionary * dic = @{@"filePath":filePath,@"progress":progressView};
+    [self.downloadTask addObject:dic];
+}
 
 @end

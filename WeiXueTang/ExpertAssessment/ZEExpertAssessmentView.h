@@ -1,15 +1,13 @@
 //
-//  ZEProgressView.h
+//  ZEExpertAssessmentView.h
 //  WeiXueTang
 //
-//  Created by Stenson on 16/3/10.
+//  Created by Stenson on 16/3/21.
 //  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ZEProgressView : UIView
-
-@property (nonatomic, assign) CGFloat progress;
+@interface ZEExpertAssessmentView : UIView
 
 @end

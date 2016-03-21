@@ -3,7 +3,7 @@
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/3.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #define kToolKitBtnMarginLeft   0.0f
@@ -41,6 +41,14 @@
     [dianZanBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self addSubview:dianZanBtn];
     [dianZanBtn addTarget:self action:@selector(goDianZanView) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton * zhuanjiaAssessment = [UIButton buttonWithType:UIButtonTypeCustom];
+    zhuanjiaAssessment.frame = CGRectMake(kToolKitBtnMarginLeft, kToolKitBtnMarginTop + kToolKitBtnHeight * 2, kToolKitBtnWidth, kToolKitBtnHeight);
+    zhuanjiaAssessment.backgroundColor = [UIColor purpleColor];
+    [zhuanjiaAssessment setTitle:@"专家评估" forState:UIControlStateNormal];
+    [zhuanjiaAssessment setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self addSubview:zhuanjiaAssessment];
+    [zhuanjiaAssessment addTarget:self action:@selector(gozhuanjiaAssessmentView) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - SelfDelegate
@@ -56,6 +64,13 @@
 {
     if ([self.delegate respondsToSelector:@selector(goDianZanView) ]) {
         [self.delegate goDianZanView];
+    }
+}
+
+-(void)gozhuanjiaAssessmentView
+{
+    if ([self.delegate respondsToSelector:@selector(gozhuanjiaAssessmentView) ]) {
+        [self.delegate gozhuanjiaAssessmentView];
     }
 }
 

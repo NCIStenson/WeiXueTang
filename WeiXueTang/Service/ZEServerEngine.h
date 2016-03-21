@@ -3,7 +3,7 @@
 //  NewCentury
 //
 //  Created by Stenson on 16/1/19.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -36,7 +36,7 @@ typedef void (^ServerErrorRecordBlock) (void);  // 记录服务器错误block
 +(void)downloadImageZipFromURL:(NSString *) URL
                      cachePath:(NSString *) cachePath
                   withProgress:(void (^)(CGFloat progress))progressBlock
-                    completion:(void (^)(NSURL *filePath))completionBlock
+                    completion:(void (^)(NSString *filePath))completionBlock
                        onError:(void (^)(NSError *error))errorBlock;
 
 /**

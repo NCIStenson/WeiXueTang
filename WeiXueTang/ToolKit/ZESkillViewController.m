@@ -3,7 +3,7 @@
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/7.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import "ZESkillViewController.h"
@@ -109,7 +109,8 @@
                                    dispatch_async(dispatch_get_main_queue(), ^{
                                        [progressView setProgress:progress];
                                    });
-                               } completion:^(NSURL *filePath) {
+                               } completion:^(NSString *filePath) {
+                                   NSLog(@">>>  %@",filePath);
                                } onError:^(NSError *error) {
                                    
                                }];

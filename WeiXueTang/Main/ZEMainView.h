@@ -3,7 +3,7 @@
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/3.
-//  Copyright © 2016年 Stenson. All rights reserved.
+//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 @class ZEMainView;
@@ -21,6 +21,10 @@
  */
 -(void)goDianZanView;
 
+/**
+ *  进入专家评估页面
+ */
+-(void)gozhuanjiaAssessmentView;
 
 @end
 
