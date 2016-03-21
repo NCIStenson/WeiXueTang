@@ -1,14 +1,14 @@
 //
-//  ZEPendingAssView.m
+//  ZEExpertAssDetailView.m
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/21.
 //  Copyright © 2016年 Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZEPendingAssView.h"
+#import "ZEExpertAssDetailView.h"
 
-@implementation ZEPendingAssView
+@implementation ZEExpertAssDetailView
 
 /*
 // Only override drawRect: if you perform custom drawing.

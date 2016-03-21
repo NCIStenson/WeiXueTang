@@ -2,7 +2,7 @@
 //  DPSettingRootVC.m
 //
 //  Created by Stenson on 15/9/8.
-//  Copyright (c) 2015年 Zenith Electronic Co., Ltd. http://www.molijing.com. All rights reserved.
+//  Copyright (c) 2015年 Zenith Electronic Co., Ltd. All rights reserved.
 //
 
 #import "ZESettingRootVC.h"
@@ -108,7 +108,8 @@
     [_rightBtn setTitle:_rightBtnTitleStr forState:UIControlStateNormal];
     [_rightBtn.titleLabel setFont:[UIFont systemFontOfSize:19.0f]];
     [_rightBtn.titleLabel setTextColor:[UIColor blackColor]];
-    [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_rightBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
     [_rightBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
     [_rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];

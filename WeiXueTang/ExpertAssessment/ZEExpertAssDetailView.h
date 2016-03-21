@@ -1,5 +1,5 @@
 //
-//  ZEPendingAssView.h
+//  ZEExpertAssDetailView.h
 //  WeiXueTang
 //
 //  Created by Stenson on 16/3/21.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZEPendingAssView : UIView
+@interface ZEExpertAssDetailView : UIView
 
 @end

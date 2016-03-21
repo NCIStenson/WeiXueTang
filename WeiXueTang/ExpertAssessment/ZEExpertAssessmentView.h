@@ -8,6 +8,22 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZEExpertAssessmentView : UIView
+@class ZEExpertAssessmentView;
+@protocol ZEExpertAssessmentViewDelegate <NSObject>
+
+/**
+ * 进入详情界面
+ */
+-(void)didSelectRow:(NSInteger)row;
+
+@end
+
+@interface ZEExpertAssessmentView : UIView<UITableViewDataSource,UITableViewDelegate>
+
+#pragma mark - Public Method
+
+@property (nonatomic,weak) id <ZEExpertAssessmentViewDelegate> delegate;
+
+-(void)expertAssessmentReloadView:(NSArray *)arr;
 
 @end

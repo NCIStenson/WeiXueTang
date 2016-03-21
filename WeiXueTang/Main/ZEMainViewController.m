@@ -11,6 +11,10 @@
 #import "ZEToolKitViewController.h"
 #import "ZEDianZanViewController.h"
 #import "ZEExpertAssessmentVC.h"
+
+#include <ifaddrs.h>
+#include <arpa/inet.h>
+
 @interface ZEMainViewController ()
 {
 
@@ -26,7 +30,6 @@
     self.navigationController.navigationBarHidden = YES;
     [self initView];
 }
-
 -(void)initView
 {
     ZEMainView * mainView = [[ZEMainView alloc]initWithFrame:self.view.frame];

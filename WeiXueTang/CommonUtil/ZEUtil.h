@@ -20,6 +20,8 @@
 
 + (double)widthForString:(NSString *)str font:(UIFont *)font maxSize:(CGSize)maxSize;
 
+// MD5算法
++ (NSString*)getmd5WithString:(NSString *)string;
 // 根据颜色生成图片
 + (UIImage *)imageFromColor:(UIColor *)color;
 

@@ -37,6 +37,7 @@
     
     return YES;
 }
+
 - (void) _checkNet{
     //开启网络状态监控
     [[AFNetworkReachabilityManager sharedManager] startMonitoring];

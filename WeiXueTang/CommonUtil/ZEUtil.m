@@ -9,6 +9,7 @@
 #import "ZEUtil.h"
 #include <sys/types.h>
 #include <sys/sysctl.h>
+#import <CommonCrypto/CommonDigest.h>
 
 @implementation ZEUtil
 
@@ -64,6 +65,23 @@
 //    }
     return width;
 }
+
++ (NSString*)getmd5WithString:(NSString *)string
+{
+    const char* original_str=[string UTF8String];
+    unsigned char digist[CC_MD5_DIGEST_LENGTH]; //CC_MD5_DIGEST_LENGTH = 16
+    CC_MD5(original_str, strlen(original_str), digist);
+
+    NSMutableString* outPutStr = [NSMutableString stringWithCapacity:10];
+    for(int  i =0; i<CC_MD5_DIGEST_LENGTH;i++){
+        [outPutStr appendFormat:@"%02x", digist[i]];// 小写 x 表示输出的是小写 MD5 ，大写 X 表示输出的是大写 MD5
+    }
+    return [outPutStr uppercaseString];
+}
+
+
+
+
 + (NSDictionary *)getSystemInfo
 {
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];

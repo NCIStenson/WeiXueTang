@@ -18,10 +18,22 @@ typedef void (^ServerErrorRecordBlock) (void);  // 记录服务器错误block
 
 + (ZEServerEngine *)sharedInstance;
 
--(void)requestWithParams:(NSDictionary *)params
-              httpMethod:(NSString *)httpMethod
-                 success:(ServerResponseSuccessBlock)successBlock
-                    fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-03-21 17:03:12
+ *
+ *  基层网络请求
+ *
+ *  @param serverMethod 服务器接口方法名
+ *  @param params       请求参数
+ *  @param httpMethod   请求方式
+ *  @param successBlock 成功返回
+ *  @param failBlock    失败返回
+ */
+-(void)requestWithServerMethod:(NSString *)serverMethod
+                        params:(NSDictionary *)params
+                    httpMethod:(NSString *)httpMethod
+                       success:(ServerResponseSuccessBlock)successBlock
+                          fail:(ServerResponseFailBlock)failBlock;
 /**
  *  @author Stenson, 16-03-11 16:03:55
  *

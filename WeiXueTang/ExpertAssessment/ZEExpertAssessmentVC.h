@@ -9,6 +9,7 @@
 #import "ZESettingRootVC.h"
 #import "ZEExpertAssessmentView.h"
 
-@interface ZEExpertAssessmentVC : ZESettingRootVC
+
+@interface ZEExpertAssessmentVC : ZESettingRootVC<ZEExpertAssessmentViewDelegate>
 
 @end

@@ -2,7 +2,7 @@
 //  DPSettingRootVC.h
 //
 //  Created by Stensonon 15/9/8.
-//  Copyright (c) 2015年 Zenith Electronic Technology Co., Ltd. http://www.molijing.com. All rights reserved.
+//  Copyright (c) 2015年 Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

@@ -20,43 +20,63 @@
 + (void)getToolKitListSuccess:(ServerResponseSuccessBlock)successBlock
                          fail:(ServerResponseFailBlock)failBlock
 {
-    [[ZEServerEngine sharedInstance]requestWithParams:@{@"type":kGetToolKitList,
-                                                        @"data":orgCode}
-                                           httpMethod:HTTPMETHOD_POST
-                                              success:^(id data) {
-                                                  successBlock(data);
-                                              } fail:^(NSError * error) {
-                                                  failBlock(error);
-     }];
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kGetToolKitList,
+                                                              @"data":orgCode}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError * error) {
+                                                        failBlock(error);
+                                                    }];
 }
 
 + (void)getCoursewareList:(NSString *)skillID
                   success:(ServerResponseSuccessBlock)successBlock
                      fail:(ServerResponseFailBlock)failBlock
 {
-    [[ZEServerEngine sharedInstance]requestWithParams:@{@"type":kGetteamfile,
-                                                        @"data":skillID}
-                                           httpMethod:HTTPMETHOD_POST
-                                              success:^(id data) {
-                                                  successBlock(data);
-                                              } fail:^(NSError * error) {
-                                                  failBlock(error);
-                                              }];
-
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kGetteamfile,
+                                                              @"data":skillID}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError * error) {
+                                                        failBlock(error);
+                                                    }];
+    
 }
 
 + (void)getSkillSelfViewWithPage:(NSString *)pageNum
                          success:(ServerResponseSuccessBlock)successBlock
+                            fail:(ServerResponseFailBlock)failBlock
+{
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kSkillSelfView,
+                                                              @"data":[NSString stringWithFormat:@"%@#%@",orgCode,pageNum]}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError * error) {
+                                                        failBlock(error);
+                                                    }];
+}
+
++ (void)getExpertAssessmentList:(NSString *)username
+                       password:(NSString *)password
+                        success:(ServerResponseSuccessBlock)successBlock
                            fail:(ServerResponseFailBlock)failBlock
 {
-    [[ZEServerEngine sharedInstance]requestWithParams:@{@"type":kSkillSelfView,
-                                                        @"data":[NSString stringWithFormat:@"%@#%@",orgCode,pageNum]}
-                                           httpMethod:HTTPMETHOD_POST
-                                              success:^(id data) {
-                                                  successBlock(data);
-                                              } fail:^(NSError * error) {
-                                                  failBlock(error);
-                                              }];
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:@"ExpertLogin"
+                                                     params:@{@"username":username,
+                                                              @"password":password}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError * error) {
+                                                        failBlock(error);
+                                                    }];
+
 }
 
 

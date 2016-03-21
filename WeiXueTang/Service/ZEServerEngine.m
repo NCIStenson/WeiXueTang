@@ -37,12 +37,16 @@ static ZEServerEngine *serverEngine = nil;
     return self;
 }
 
--(void)requestWithParams:(NSDictionary *)params
-              httpMethod:(NSString *)httpMethod
-                 success:(ServerResponseSuccessBlock)successBlock
-                    fail:(ServerResponseFailBlock)failBlock
+-(void)requestWithServerMethod:(NSString *)serverMethod
+                        params:(NSDictionary *)params
+                    httpMethod:(NSString *)httpMethod
+                       success:(ServerResponseSuccessBlock)successBlock
+                          fail:(ServerResponseFailBlock)failBlock
 {
     NSString * serverAdress = [NSString stringWithFormat:@"%@/GetDataServlet",Zenith_Server];
+    if ([ZEUtil isStrNotEmpty:serverMethod]) {
+        serverAdress = [NSString stringWithFormat:@"%@/%@",Zenith_Server,serverMethod];
+    }
     
     AFHTTPSessionManager *sessionManager = [AFHTTPSessionManager manager];
     sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];

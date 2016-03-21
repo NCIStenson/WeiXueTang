@@ -39,6 +39,18 @@
 + (void)getSkillSelfViewWithPage:(NSString *)pageNum
                          success:(ServerResponseSuccessBlock)successBlock
                             fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-03-21 17:03:58
+ *
+ *  登陆获取
+ *
+ *  @param username     用户名
+ *  @param password     用户密码
+ */
++ (void)getExpertAssessmentList:(NSString *)username
+                       password:(NSString *)password
+                        success:(ServerResponseSuccessBlock)successBlock
+                           fail:(ServerResponseFailBlock)failBlock;
 
 
 @end

@@ -17,8 +17,9 @@
 		984BFDFB1C969C3100A117FD /* ZEDownloadCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDFA1C969C3100A117FD /* ZEDownloadCaches.m */; };
 		984C1C971C9F912F00EB153B /* ZEExpertAssessmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C1C961C9F912F00EB153B /* ZEExpertAssessmentVC.m */; };
 		984C1C9A1C9F914D00EB153B /* ZEExpertAssessmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C1C991C9F914D00EB153B /* ZEExpertAssessmentView.m */; };
-		984C1C9D1C9F931C00EB153B /* ZEPendingAssView.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C1C9C1C9F931C00EB153B /* ZEPendingAssView.m */; };
-		984C1CA01C9F935500EB153B /* ZEEvaluatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C1C9F1C9F935500EB153B /* ZEEvaluatedView.m */; };
+		987C88911CA01DD100A29CB9 /* ZEExpertAssDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 987C88901CA01DD100A29CB9 /* ZEExpertAssDetailVC.m */; };
+		987C88941CA01DF000A29CB9 /* ZEExpertAssDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 987C88931CA01DF000A29CB9 /* ZEExpertAssDetailView.m */; };
+		9883A1C81CA012FA00083756 /* ZEExpertAssModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9883A1C71CA012FA00083756 /* ZEExpertAssModel.m */; };
 		98949A941C8EA4970053139C /* ZEImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98949A931C8EA4970053139C /* ZEImageViewController.m */; };
 		98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98949A961C8EA4DA0053139C /* ZEImageView.m */; };
 		98949A991C8EB39E0053139C /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98949A981C8EB39E0053139C /* login.jpg */; };
@@ -124,10 +125,12 @@
 		984C1C961C9F912F00EB153B /* ZEExpertAssessmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentVC.m; path = ExpertAssessment/ZEExpertAssessmentVC.m; sourceTree = "<group>"; };
 		984C1C981C9F914D00EB153B /* ZEExpertAssessmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssessmentView.h; path = ExpertAssessment/ZEExpertAssessmentView.h; sourceTree = "<group>"; };
 		984C1C991C9F914D00EB153B /* ZEExpertAssessmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentView.m; path = ExpertAssessment/ZEExpertAssessmentView.m; sourceTree = "<group>"; };
-		984C1C9B1C9F931C00EB153B /* ZEPendingAssView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEPendingAssView.h; path = ExpertAssessment/ZEPendingAssView.h; sourceTree = "<group>"; };
-		984C1C9C1C9F931C00EB153B /* ZEPendingAssView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEPendingAssView.m; path = ExpertAssessment/ZEPendingAssView.m; sourceTree = "<group>"; };
-		984C1C9E1C9F935500EB153B /* ZEEvaluatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEEvaluatedView.h; path = ExpertAssessment/ZEEvaluatedView.h; sourceTree = "<group>"; };
-		984C1C9F1C9F935500EB153B /* ZEEvaluatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEEvaluatedView.m; path = ExpertAssessment/ZEEvaluatedView.m; sourceTree = "<group>"; };
+		987C888F1CA01DD100A29CB9 /* ZEExpertAssDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssDetailVC.h; path = ExpertAssessment/ZEExpertAssDetailVC.h; sourceTree = "<group>"; };
+		987C88901CA01DD100A29CB9 /* ZEExpertAssDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssDetailVC.m; path = ExpertAssessment/ZEExpertAssDetailVC.m; sourceTree = "<group>"; };
+		987C88921CA01DF000A29CB9 /* ZEExpertAssDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssDetailView.h; path = ExpertAssessment/ZEExpertAssDetailView.h; sourceTree = "<group>"; };
+		987C88931CA01DF000A29CB9 /* ZEExpertAssDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssDetailView.m; path = ExpertAssessment/ZEExpertAssDetailView.m; sourceTree = "<group>"; };
+		9883A1C61CA012FA00083756 /* ZEExpertAssModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssModel.h; path = ExpertAssessment/ZEExpertAssModel.h; sourceTree = "<group>"; };
+		9883A1C71CA012FA00083756 /* ZEExpertAssModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssModel.m; path = ExpertAssessment/ZEExpertAssModel.m; sourceTree = "<group>"; };
 		98949A921C8EA4970053139C /* ZEImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEImageViewController.h; sourceTree = "<group>"; };
 		98949A931C8EA4970053139C /* ZEImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEImageViewController.m; sourceTree = "<group>"; };
 		98949A951C8EA4DA0053139C /* ZEImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEImageView.h; sourceTree = "<group>"; };
@@ -308,10 +311,12 @@
 				984C1C961C9F912F00EB153B /* ZEExpertAssessmentVC.m */,
 				984C1C981C9F914D00EB153B /* ZEExpertAssessmentView.h */,
 				984C1C991C9F914D00EB153B /* ZEExpertAssessmentView.m */,
-				984C1C9B1C9F931C00EB153B /* ZEPendingAssView.h */,
-				984C1C9C1C9F931C00EB153B /* ZEPendingAssView.m */,
-				984C1C9E1C9F935500EB153B /* ZEEvaluatedView.h */,
-				984C1C9F1C9F935500EB153B /* ZEEvaluatedView.m */,
+				9883A1C61CA012FA00083756 /* ZEExpertAssModel.h */,
+				9883A1C71CA012FA00083756 /* ZEExpertAssModel.m */,
+				987C888F1CA01DD100A29CB9 /* ZEExpertAssDetailVC.h */,
+				987C88901CA01DD100A29CB9 /* ZEExpertAssDetailVC.m */,
+				987C88921CA01DF000A29CB9 /* ZEExpertAssDetailView.h */,
+				987C88931CA01DF000A29CB9 /* ZEExpertAssDetailView.m */,
 			);
 			name = "ExpertAssessment ";
 			sourceTree = "<group>";
@@ -779,8 +784,8 @@
 				98F4A5381C918978002EB56F /* ZEProgressView.m in Sources */,
 				984C1C971C9F912F00EB153B /* ZEExpertAssessmentVC.m in Sources */,
 				98BA5C601C8D25DF005649AC /* ZEAppDelegate.m in Sources */,
-				984C1C9D1C9F931C00EB153B /* ZEPendingAssView.m in Sources */,
 				98949A941C8EA4970053139C /* ZEImageViewController.m in Sources */,
+				987C88941CA01DF000A29CB9 /* ZEExpertAssDetailView.m in Sources */,
 				989F2AEC1C9A549E0015D35D /* ZEDianZanViewController.m in Sources */,
 				989F2B051C9AA7FB0015D35D /* ZEDianZanModel.m in Sources */,
 				98BA5C621C8D25DF005649AC /* ZEMainViewController.m in Sources */,
@@ -789,6 +794,7 @@
 				982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */,
 				98B2CC291C8FEEBF0015918B /* SDWaitingView.m in Sources */,
 				98BA5C561C8D15FF005649AC /* ZEToolKitViewController.m in Sources */,
+				987C88911CA01DD100A29CB9 /* ZEExpertAssDetailVC.m in Sources */,
 				98B2CC271C8FEEBF0015918B /* SDBrowserImageView.m in Sources */,
 				98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */,
 				984BFDF51C9274AA00A117FD /* mztools.c in Sources */,
@@ -797,9 +803,9 @@
 				98BA5C651C8D25E7005649AC /* ZESettingRootVC.m in Sources */,
 				984BFDFB1C969C3100A117FD /* ZEDownloadCaches.m in Sources */,
 				98BA5C501C8D13AF005649AC /* JRPlayerView.m in Sources */,
+				9883A1C81CA012FA00083756 /* ZEExpertAssModel.m in Sources */,
 				98DB7C621C4F56470046D405 /* ZEUserServer.m in Sources */,
 				984BFDF61C9274AA00A117FD /* unzip.c in Sources */,
-				984C1CA01C9F935500EB153B /* ZEEvaluatedView.m in Sources */,
 				984BFDF71C9274AA00A117FD /* zip.c in Sources */,
 				98BA5C591C8D1614005649AC /* ZEToolKitView.m in Sources */,
 				984BFDF41C9274AA00A117FD /* ioapi.c in Sources */,
