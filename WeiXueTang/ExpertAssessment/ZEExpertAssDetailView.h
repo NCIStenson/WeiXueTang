@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZEExpertAssModel.h"
 
-@interface ZEExpertAssDetailView : UIView
+@class ZEExpertAssDetailView;
+@protocol ZEExpertAssDetailViewDelegate  <NSObject>
+
+/**
+ *  进入评分标准页面
+ */
+-(void)enterDetailProject:(ZEExpertAssModel * )expertAssM;
+
+@end
+
+@interface ZEExpertAssDetailView : UIView<UITableViewDelegate,UITableViewDataSource>
+
+@property (nonatomic,weak) id <ZEExpertAssDetailViewDelegate> delegate;
+
+-(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)model;
 
 @end

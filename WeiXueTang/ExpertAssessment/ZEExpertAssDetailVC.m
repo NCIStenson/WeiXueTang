@@ -7,9 +7,11 @@
 //
 
 #import "ZEExpertAssDetailVC.h"
-
+#import "ZEDetailProjectVC.h"
 @interface ZEExpertAssDetailVC ()
-
+{
+    ZEExpertAssDetailView * _detailView;
+}
 @end
 
 @implementation ZEExpertAssDetailVC
@@ -24,13 +26,31 @@
     
     if (self.showSubmitBtn) {
         [self setRightBtnTitle:@"评估"];
+        [self.rightBtn setImage:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"] forState:UIControlStateNormal];
     }
-    
+ 
+    [self initView];
+}
+
+-(void)initView
+{
+    _detailView = [[ZEExpertAssDetailView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) withModel:_expertAssM];
+    _detailView.delegate = self;
+    [self.view addSubview:_detailView];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - ZEExpertAssDetailViewDelegate
+
+-(void)enterDetailProject:(ZEExpertAssModel *)expertAssM
+{
+    ZEDetailProjectVC * projectVC = [[ZEDetailProjectVC alloc]init];
+    projectVC.expertAssM = expertAssM;
+    [self.navigationController pushViewController:projectVC animated:YES];
 }
 
 /*

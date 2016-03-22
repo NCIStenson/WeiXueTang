@@ -25,6 +25,17 @@ static ZEExpertAssModel * expertAssM = nil;
     expertAssM.SKILL_NAME = [dic objectForKey:@"SKILL_NAME"];
     expertAssM.STATE      = [dic objectForKey:@"STATE"];
     
+    expertAssM.detailarray = [[dic objectForKey:@"detailarray"] objectForKey:@"data"];
+    
+    expertAssM.detail_ITEMS       = [dic objectForKey:@"ITEMS"];
+    expertAssM.detail_MARKS       = [dic objectForKey:@"MARKS"];
+    expertAssM.detail_EXPERTSCORE = [dic objectForKey:@"EXPERTSCORE"];
+    expertAssM.detail_QUALITY     = [dic objectForKey:@"QUALITY"];
+    expertAssM.detail_PROJECTNAME = [dic objectForKey:@"PROJECTNAME"];
+    expertAssM.detail_ITEMS       = [dic objectForKey:@"ITEMS"];
+    expertAssM.detail_BENCHMARK   = [dic objectForKey:@"BENCHMARK"];
+
+    
     return expertAssM;
 }
 

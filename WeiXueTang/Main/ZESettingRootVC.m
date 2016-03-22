@@ -23,7 +23,7 @@
 #define kRightButtonMarginLeft kNavBarWidth - kRightButtonWidth
 #define kRightButtonMarginTop kLeftButtonMarginTop + 1.0f
 // 导航栏标题
-#define kNavTitleLabelWidth 260.0f
+#define kNavTitleLabelWidth (SCREEN_WIDTH - 110.0f)
 #define kNavTitleLabelHeight 44.0f
 #define kNavTitleLabelMarginLeft (kNavBarWidth - kNavTitleLabelWidth) / 2.0f
 #define kNavTitleLabelMarginTop 20.0f

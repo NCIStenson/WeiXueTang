@@ -8,7 +8,9 @@
 
 #import "ZESettingRootVC.h"
 #import "ZEExpertAssModel.h"
-@interface ZEExpertAssDetailVC : ZESettingRootVC
+#import "ZEExpertAssDetailView.h"
+
+@interface ZEExpertAssDetailVC : ZESettingRootVC<ZEExpertAssDetailViewDelegate>
 
 @property (nonatomic,assign) BOOL showSubmitBtn;
 @property (nonatomic,retain) ZEExpertAssModel * expertAssM;
