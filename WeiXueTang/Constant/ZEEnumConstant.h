@@ -20,4 +20,10 @@ typedef NS_ENUM (NSInteger,DIANZAN_TYPE){
     DIANZAN_TYPE_Master,//已掌握
     DIANZAN_TYPE_NO//未点赞
 };
+
+typedef NS_ENUM (NSInteger,EXPERTASSESSMENT_TYPE){
+    EXPERTASSESSMENT_TYPE_DONE,//已评估
+    EXPERTASSESSMENT_TYPE_NO//未评估
+};
+
 #endif /* ZEEnumConstant_h */

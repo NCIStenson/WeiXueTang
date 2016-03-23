@@ -8,11 +8,11 @@
 
 #import "ZEExpertAssDetailView.h"
 
-@interface ZEExpertAssDetailView (){
+@interface ZEExpertAssDetailView ()<UITextFieldDelegate>{
     CGRect _viewFrame;
     UITableView * _contentTableView;
     ZEExpertAssModel * _expertAssM;
-    
+    EXPERTASSESSMENT_TYPE _enterType;
     NSString * _currentStr;
 }
 
@@ -20,12 +20,13 @@
 
 @implementation ZEExpertAssDetailView
 
--(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)model;
+-(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)model withType:(EXPERTASSESSMENT_TYPE)enterType;
 {
     self = [super initWithFrame:frame];
     if (self) {
         _viewFrame = frame;
         _expertAssM = model;
+        _enterType = enterType;
         [self initView];
     }
     return self;
@@ -38,7 +39,7 @@
     _contentTableView.delegate       = self;
     _contentTableView.dataSource     = self;
     [self addSubview:_contentTableView];
-//    _contentTableView.bounces = NO;
+    _contentTableView.bounces = NO;
     _contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
@@ -198,18 +199,68 @@
                 break;
             case 2:
             {
-                if([expertM.detail_EXPERTSCORE integerValue] == 0){
-                    listLabel.text = @"";
+                if (_enterType == EXPERTASSESSMENT_TYPE_DONE) {
+                    if([expertM.detail_EXPERTSCORE floatValue] == 0){
+                        listLabel.text = @"";
+                    }else{
+                        listLabel.text = [NSString stringWithFormat:@"%@", expertM.detail_EXPERTSCORE];
+                    }
+                    listLabel.frame = CGRectMake(SCREEN_WIDTH * 0.75, 0, SCREEN_WIDTH / 4 - 10, 30.0f);
                 }else{
-                    listLabel.text = [NSString stringWithFormat:@"%@", expertM.detail_EXPERTSCORE];
+                    UITextField *contentField                    = [[UITextField alloc]init];
+                    contentField.keyboardType       = UIKeyboardTypePhonePad;
+                    contentField.backgroundColor = [UIColor redColor];
+                    contentField.delegate           = self;
+                    contentField.placeholder        = @"0";
+                    contentField.tag                = indexPath.row;
+                    contentField.font               = [UIFont systemFontOfSize:13];
+                    contentField.textColor          = [UIColor blackColor];
+                    [cell.contentView addSubview:contentField];
+                    contentField.clipsToBounds      = YES;
+                    contentField.layer.cornerRadius = 5;
+                    contentField.textAlignment = NSTextAlignmentCenter;
+                    contentField.frame = CGRectMake(SCREEN_WIDTH * 0.75, 0, SCREEN_WIDTH / 4 - 10, 30.0f);
+                    
+                    [contentField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
                 }
-                listLabel.frame = CGRectMake(SCREEN_WIDTH * 0.75, 0, SCREEN_WIDTH / 4 - 10, 30.0f);
             }
                 break;
             default:
                 break;
         }
     }
+}
+
+
+- (BOOL)textFieldDidChange:(UITextField *)textField
+{
+    ZEExpertAssModel * expertM = [ZEExpertAssModel getDetailModelWithDic:_expertAssM.detailarray[textField.tag]];
+
+    if ([textField.text floatValue] > [expertM.detail_MARKS floatValue]) {
+        
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"输入分数不能大于分值" message:nil delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+        textField.text = [textField.text substringToIndex:textField.text.length - 1];
+    }
+    
+    return YES;
+}
+
+#pragma mark - UITextFieldDelegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.29 animations:^{
+        _contentTableView.frame = CGRectMake(0, -216, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+    }];
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.29 animations:^{
+        _contentTableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+    }];
 }
 
 #pragma mark - UITableViewDelegate

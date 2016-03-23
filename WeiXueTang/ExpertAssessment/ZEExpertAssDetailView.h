@@ -23,6 +23,6 @@
 
 @property (nonatomic,weak) id <ZEExpertAssDetailViewDelegate> delegate;
 
--(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)model;
+-(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)model withType:(EXPERTASSESSMENT_TYPE)enterType;
 
 @end

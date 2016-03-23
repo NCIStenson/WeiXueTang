@@ -8,7 +8,7 @@
 
 #import "ZEAppDelegate.h"
 #import "ZEMainViewController.h"
-
+//#import ""
 #import "AFNetworkReachabilityManager.h"
 
 @interface ZEAppDelegate ()
@@ -23,12 +23,33 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     application.applicationSupportsShakeToEdit = YES;
 
-    ZEMainViewController * mainVC = [[ZEMainViewController alloc]init];
-    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:mainVC];
-    self.window.rootViewController = nav;
     
-//    ZEImageViewController * mainVC = [[ZEImageViewController alloc]init];
-//    self.window.rootViewController = mainVC;
+    ZEMainViewController * mainVC = [[ZEMainViewController alloc]init];
+    mainVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
+    mainVC.tabBarItem.title = @"首页";
+    UINavigationController * mainNav = [[UINavigationController alloc]initWithRootViewController:mainVC];
+    
+    ZEMainViewController * downloadVC = [[ZEMainViewController alloc]init];
+    downloadVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
+    downloadVC.tabBarItem.title = @"下载";
+    UINavigationController * downloadNav = [[UINavigationController alloc]initWithRootViewController:downloadVC];
+    
+    ZEMainViewController * settingVC = [[ZEMainViewController alloc]init];
+    settingVC.tabBarItem.image = [UIImage imageNamed:@"tab_setting_normal"];
+    settingVC.tabBarItem.title = @"设置";
+    UINavigationController * settingNav = [[UINavigationController alloc]initWithRootViewController:settingVC];
+    
+    UITabBarController * tabBarVC = [[UITabBarController alloc]init];
+    tabBarVC.viewControllers = @[mainNav,downloadNav,settingNav];
+    
+//    NSDictionary * userDataDic = [ZESetLocalData getUserData];
+//    if (userDataDic.allKeys > 0) {
+        self.window.rootViewController = tabBarVC;
+//        return YES;
+//    }
+//    ZELoginViewController * loginVC = [[ZELoginViewController alloc]init];
+//    self.window.rootViewController = tabBarVC;
+//    self.window.rootViewController = loginVC;
     
     NSLog(@"%@",Zenith_Server);
     NSLog(@"%@",NSHomeDirectory());

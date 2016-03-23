@@ -23,8 +23,9 @@
     self.title = _expertAssM.SKILL_NAME;
     self.titleLabel.font = [UIFont systemFontOfSize:13];
     self.titleLabel.numberOfLines = 0;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
-    if (self.showSubmitBtn) {
+    if (_experAssType == EXPERTASSESSMENT_TYPE_NO) {
         [self setRightBtnTitle:@"评估"];
         [self.rightBtn setImage:[UIImage imageNamed:@"NotificationBackgroundSuccessIcon"] forState:UIControlStateNormal];
     }
@@ -32,11 +33,18 @@
     [self initView];
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@">>>>>>>>>>>>>>>>>>>");
+    [self.view endEditing:YES];
+}
+
 -(void)initView
 {
-    _detailView = [[ZEExpertAssDetailView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) withModel:_expertAssM];
+    _detailView = [[ZEExpertAssDetailView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64) withModel:_expertAssM withType:_experAssType];
     _detailView.delegate = self;
     [self.view addSubview:_detailView];
+    [self.view sendSubviewToBack:_detailView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +58,7 @@
 {
     ZEDetailProjectVC * projectVC = [[ZEDetailProjectVC alloc]init];
     projectVC.expertAssM = expertAssM;
+    projectVC.experAssType = _experAssType;
     [self.navigationController pushViewController:projectVC animated:YES];
 }
 

@@ -190,9 +190,10 @@
     ZEExpertAssDetailVC * detailVC = [[ZEExpertAssDetailVC alloc]init];
     if ([_currentBtn isEqual:evaluatedBtn]) {
         NSLog(@"已审核列表");
-        detailVC.showSubmitBtn = YES;
+        detailVC.experAssType = EXPERTASSESSMENT_TYPE_DONE;
         detailVC.expertAssM = self.evaluatedArr[row];
     }else{
+        detailVC.experAssType = EXPERTASSESSMENT_TYPE_NO;
         detailVC.expertAssM = self.pendingAssArr[row];
     }
     [self.navigationController pushViewController:detailVC animated:YES];

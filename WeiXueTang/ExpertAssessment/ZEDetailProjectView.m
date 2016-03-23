@@ -20,18 +20,25 @@
 #import "ZEDetailProjectView.h"
 #import "Masonry.h"
 
-@interface ZEDetailProjectView ()
+@interface ZEDetailProjectView ()<UITextViewDelegate,UITextFieldDelegate,UIScrollViewDelegate>
 {
     ZEExpertAssModel * _detailExpertAssM;
+    UIScrollView * _scrollView;
+    
+    EXPERTASSESSMENT_TYPE _expertAssType;//是否评估过状态
+    
+    UITextField * contentField;
+    UITextView * textView;
 }
 @end
 
 @implementation ZEDetailProjectView
 
--(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)expert;
+-(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)expert withType:(EXPERTASSESSMENT_TYPE)type;
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _expertAssType = type;
         _detailExpertAssM = expert;
         [self initProjectNameView];
     }
@@ -40,8 +47,21 @@
 
 -(void)initProjectNameView
 {
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectZero];
+    [self addSubview:_scrollView];
+    [_scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.top.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, self.frame.size.height));
+    }];
+    UITapGestureRecognizer * sigleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTapGesture)];
+    sigleTap.numberOfTapsRequired = 1;
+    
+    [_scrollView addGestureRecognizer:sigleTap];
+
+    
     UIView * projectNameView        = [[UIView alloc]initWithFrame:CGRectZero];
-    [self addSubview:projectNameView];
+    [_scrollView addSubview:projectNameView];
     [projectNameView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(0);
@@ -77,7 +97,7 @@
     NSString * quarlity          = [_detailExpertAssM.detail_QUALITY stringByReplacingOccurrencesOfString:@";" withString:@";\n"];
     float quarlityHeight         = [ZEUtil heightForString:quarlity font:[UIFont systemFontOfSize:13] andWidth:kContentLabelWidth];
     UIView * quarlityView        = [[UIView alloc]initWithFrame:CGRectZero];
-    [self addSubview:quarlityView];
+    [_scrollView addSubview:quarlityView];
     [quarlityView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(Yoffset);
@@ -112,7 +132,7 @@
 -(void)initScoreView:(float)Yoffset
 {
     UIView * scoreView        = [[UIView alloc]initWithFrame:CGRectMake(0, Yoffset, SCREEN_WIDTH, 40)];
-    [self addSubview:scoreView];
+    [_scrollView addSubview:scoreView];
     [scoreView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(Yoffset);
@@ -148,7 +168,7 @@
     NSString * scoreCriteriaStr        = [_detailExpertAssM.detail_BENCHMARK stringByReplacingOccurrencesOfString:@"；" withString:@"；\n"];
     float scoreCirteriaHeight          = [ZEUtil heightForString:scoreCriteriaStr font:[UIFont systemFontOfSize:13] andWidth:kContentLabelWidth];
     UIView * scoreCiriteriaView        = [[UIView alloc]initWithFrame:CGRectZero];
-    [self addSubview:scoreCiriteriaView];
+    [_scrollView addSubview:scoreCiriteriaView];
     [scoreCiriteriaView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(Yoffset);
@@ -184,7 +204,7 @@
 {
     UIView * expertScoreView        = [[UIView alloc]initWithFrame:CGRectZero];
     expertScoreView.backgroundColor = [UIColor whiteColor];
-    [self addSubview:expertScoreView];
+    [_scrollView addSubview:expertScoreView];
     [expertScoreView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(YOffset);
@@ -201,30 +221,37 @@
         make.size.mas_equalTo(CGSizeMake(kContentNameLabelWidth, kContentNameLabelHeight));
     }];
     
-    UITextField * contentField = [[UITextField alloc]init];
-    contentField.text = @"0";
-    contentField.font = [UIFont systemFontOfSize:13];
-    contentField.textColor = [UIColor blackColor];
+    contentField                    = [[UITextField alloc]init];
+    contentField.keyboardType       = UIKeyboardTypePhonePad;
+    contentField.delegate           = self;
+    contentField.placeholder        = _detailExpertAssM.detail_EXPERTSCORE;
+    contentField.font               = [UIFont systemFontOfSize:13];
+    contentField.textColor          = [UIColor blackColor];
     [expertScoreView addSubview:contentField];
-    contentField.clipsToBounds = YES;
+    contentField.clipsToBounds      = YES;
     contentField.layer.cornerRadius = 5;
-    contentField.backgroundColor = MAIN_LINE_COLOR;
-    contentField.leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)];
-    contentField.leftViewMode = UITextFieldViewModeAlways;
+    contentField.backgroundColor    = MAIN_LINE_COLOR;
+    contentField.leftView           = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)];
+    contentField.leftViewMode       = UITextFieldViewModeAlways;
     [contentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kContentLabelMarginLeft);
         make.top.mas_equalTo(2);
         make.size.mas_equalTo(CGSizeMake(kContentLabelWidth, 36));
     }];
-
+    [contentField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    
+    if (_expertAssType == EXPERTASSESSMENT_TYPE_DONE) {
+        contentField.enabled = NO;
+    }
     
     [self initExpertRemark:YOffset + 40];
 }
 -(void)initExpertRemark:(CGFloat)YOffset
 {
-    UIView * expertScoreView        = [[UIView alloc]initWithFrame:CGRectZero];
-    [self addSubview:expertScoreView];
-    [expertScoreView mas_makeConstraints:^(MASConstraintMaker *make) {
+    UIView * expertRemarkView        = [[UIView alloc]initWithFrame:CGRectZero];
+    [_scrollView addSubview:expertRemarkView];
+
+    [expertRemarkView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(YOffset);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH, 100));
@@ -233,11 +260,92 @@
     UILabel * contentNameLable = [[UILabel alloc]init];
     contentNameLable.text = @"基层专家评分说明：";
     contentNameLable.font = [UIFont systemFontOfSize:13];
-    [expertScoreView addSubview:contentNameLable];
+    [expertRemarkView addSubview:contentNameLable];
     [contentNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kContentNameLableMarginLeft);
         make.top.mas_equalTo(kContentNameLabelMarginTop);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 20, kContentNameLabelHeight));
     }];
+    
+    textView = [[UITextView alloc]init];
+    textView.backgroundColor = MAIN_LINE_COLOR;
+    [expertRemarkView addSubview:textView];
+    textView.textContainerInset = UIEdgeInsetsMake(10, 10, 0, 10);//设置页边距
+    textView.clipsToBounds = YES;
+    textView.delegate = self;
+    textView.layer.cornerRadius = 5;
+    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(kContentNameLableMarginLeft);
+        make.top.mas_equalTo(30);
+        make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 20, 70));
+
+    }];
+    if (_expertAssType == EXPERTASSESSMENT_TYPE_DONE) {
+        textView.editable = NO;
+    }
+    
+    _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, YOffset + 100);
 }
+
+#pragma mark - UITextFieldDelegate
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.29 animations:^{
+        if (_scrollView.contentSize.height > SCREEN_HEIGHT - NAV_HEIGHT) {
+            _scrollView.frame = CGRectMake(0, -252, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+        }else{
+            if (_scrollView.contentSize.height  + 280 + 36 > SCREEN_HEIGHT) {
+                _scrollView.frame = CGRectMake(0,  ((SCREEN_HEIGHT - 64 )- (_scrollView.contentSize.height + 252)) , SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+            }
+        }
+    }];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textFieldDidChange:(UITextField *)textField
+{
+    if ([textField.text floatValue] > [_detailExpertAssM.detail_MARKS floatValue]) {
+        
+        UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"输入分数不能大于分值" message:nil delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+        textField.text = [textField.text substringToIndex:textField.text.length - 1];
+    }
+    
+    return YES;
+}
+
+#pragma mark - UITextViewDelegate
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [UIView animateWithDuration:0.29 animations:^{
+        if (_scrollView.contentSize.height > SCREEN_HEIGHT - NAV_HEIGHT) {
+            _scrollView.frame = CGRectMake(0, -252, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+        }else{
+            if (_scrollView.contentSize.height  + 252 > SCREEN_HEIGHT - NAV_HEIGHT) {
+                _scrollView.frame = CGRectMake(0,  ((SCREEN_HEIGHT - 64 )- (_scrollView.contentSize.height + 252)) , SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+            }
+        }
+    }];
+}
+
+
+
+
+#pragma mark - downTheKeyBoard
+
+-(void)handleTapGesture
+{
+    [UIView animateWithDuration:0.29 animations:^{
+        _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
+    }];
+    [self endEditing:YES];
+}
+
+
 @end

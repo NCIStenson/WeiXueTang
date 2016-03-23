@@ -12,7 +12,7 @@
 
 @interface ZEExpertAssDetailVC : ZESettingRootVC<ZEExpertAssDetailViewDelegate>
 
-@property (nonatomic,assign) BOOL showSubmitBtn;
+@property (nonatomic,assign) EXPERTASSESSMENT_TYPE experAssType;
 @property (nonatomic,retain) ZEExpertAssModel * expertAssM;
 
 @end

@@ -18,15 +18,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    if (_experAssType == EXPERTASSESSMENT_TYPE_NO) {
+        [self.rightBtn setTitle:@"保存" forState:UIControlStateNormal];
+        [self.rightBtn addTarget:self action:@selector(saveBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     self.title = self.expertAssM.detail_PROJECTNAME;
     [self.titleLabel setAdjustsFontSizeToFitWidth:YES];
     [self initView];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
+
+-(void)saveBtnClick
+{
+    NSLog(@"保存");
+}
+
 
 -(void)initView
 {
-    ZEDetailProjectView * projectView = [[ZEDetailProjectView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT) withModel:_expertAssM];
+    ZEDetailProjectView * projectView = [[ZEDetailProjectView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT) withModel:_expertAssM withType:_experAssType];
     [self.view addSubview:projectView];
+    
+    [self.view sendSubviewToBack:projectView];
 }
 
 - (void)didReceiveMemoryWarning {
