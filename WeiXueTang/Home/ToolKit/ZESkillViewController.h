@@ -12,6 +12,8 @@
 
 @interface ZESkillViewController : ZESettingRootVC<ZESkillViewDelegate,SDPhotoBrowserDelegate>
 
-@property (nonatomic,copy) NSString * skillID;
+@property (nonatomic,assign) ENTER_FILELIST_TYPE enterType;
+@property (nonatomic,strong) NSString * filePath;
+@property (nonatomic,strong) NSString * skillID;
 
 @end

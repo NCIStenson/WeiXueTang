@@ -29,7 +29,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.title = @"课件";
-    [self sendRequest];
+    if(_enterType == ENTER_FILELIST_TYPE_TOOLKIT){
+        [self sendToolKitRequest];
+    }else{
+        [self sendSelfSkillRequest];
+    }
     [self initView];
 }
 
@@ -51,7 +55,7 @@
 {
     [super viewWillAppear:YES];
 }
--(void)sendRequest
+-(void)sendToolKitRequest
 {
     [self progressBegin:nil];
     [ZEUserServer getCoursewareList:_skillID success:^(id data) {
@@ -63,7 +67,18 @@
         [self progressEnd:nil];
     }];
 }
-
+-(void)sendSelfSkillRequest
+{
+    [self progressBegin:nil];
+    [ZEUserServer getteamfilechild:_filePath success:^(id data) {
+        if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
+            [_skillView contentViewReloadData:[data objectForKey:@"data"]];
+        }
+        [self progressEnd:nil];
+    } fail:^(NSError *errorCode) {
+        [self progressEnd:nil];
+    }];
+}
 #pragma mark - 解压成功
 -(void)kUnzipSuccess
 {
@@ -97,13 +112,15 @@
     [browser show];
 }
 
--(void)downloadImagesWithUrlPath:(NSString *)urlPath
-                       cachePath:(NSString *)cachePath
-                    progressView:(ZEProgressView *)progressView
+-(void)downloadImagesWithFileName:(NSString *)fileName
+                          urlPath:(NSString *)urlPath
+                        cachePath:(NSString *)cachePath
+                     progressView:(ZEProgressView *)progressView
 {
     NSString *str = [[NSString stringWithFormat:@"%@.zip",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
     [ZEServerEngine downloadImageZipFromURL:str
+                           noSuffixFileName:fileName
                                   cachePath:cachePath
                                withProgress:^(CGFloat progress) {
                                    dispatch_async(dispatch_get_main_queue(), ^{

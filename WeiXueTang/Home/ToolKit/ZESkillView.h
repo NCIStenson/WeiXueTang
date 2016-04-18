@@ -44,10 +44,11 @@
  *
  *  下载图片
  *
+ *  @param fileName  图片路径
  *  @param videoPath 图片路径
  *  @param cachePath 沙盒路径
  */
--(void)downloadImagesWithUrlPath:(NSString *)urlPath cachePath:(NSString *)cachePath progressView:(ZEProgressView *)progressView;
+-(void)downloadImagesWithFileName:(NSString*)fileName urlPath:(NSString *)urlPath cachePath:(NSString *)cachePath progressView:(ZEProgressView *)progressView;
 
 @end
 

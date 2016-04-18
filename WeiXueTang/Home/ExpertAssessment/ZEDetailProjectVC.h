@@ -14,5 +14,5 @@
 
 @property (nonatomic,assign) EXPERTASSESSMENT_TYPE experAssType;
 @property (nonatomic,strong) ZEExpertAssModel * expertAssM;
-
+@property (nonatomic,assign) NSInteger indexRow;
 @end

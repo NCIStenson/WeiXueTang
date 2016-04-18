@@ -46,11 +46,11 @@ typedef void (^ServerErrorRecordBlock) (void);  // 记录服务器错误block
  *  @param errorBlock      <#errorBlock description#>
  */
 +(void)downloadImageZipFromURL:(NSString *) URL
+              noSuffixFileName:(NSString *)noSuffixFileName
                      cachePath:(NSString *) cachePath
                   withProgress:(void (^)(CGFloat progress))progressBlock
                     completion:(void (^)(NSString *filePath))completionBlock
                        onError:(void (^)(NSError *error))errorBlock;
-
 /**
  *  @author Stenson, 16-03-11 16:03:33
  *

@@ -8,9 +8,12 @@
 //
 
 #import "ZEDetailProjectVC.h"
+#import "ZEExpertAssessmentCache.h"
 
 @interface ZEDetailProjectVC ()
-
+{
+    ZEDetailProjectView * _projectView;
+}
 @end
 
 @implementation ZEDetailProjectVC
@@ -32,16 +35,21 @@
 
 -(void)saveBtnClick
 {
-    NSLog(@"保存");
+    [self.navigationController popViewControllerAnimated:YES];
+    [self.view endEditing:YES];
+
+    [[ZEExpertAssessmentCache instance] setExpertAssessmentRemark:_projectView.remarkTextView.text index:_indexRow];
+    [[ZEExpertAssessmentCache instance] setExpertAssessmentScore:_projectView.contentField.text index:_indexRow];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KCHANGEEXPERTASSESSMENTSCORESUCCESS object:[NSString stringWithFormat:@"%d",_indexRow]];
+
 }
 
 
 -(void)initView
 {
-    ZEDetailProjectView * projectView = [[ZEDetailProjectView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT) withModel:_expertAssM withType:_experAssType];
-    [self.view addSubview:projectView];
-    
-    [self.view sendSubviewToBack:projectView];
+    _projectView = [[ZEDetailProjectView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT) withModel:_expertAssM withType:_experAssType withIndex:_indexRow];
+    [self.view addSubview:_projectView];
+    [self.view sendSubviewToBack:_projectView];
 }
 
 - (void)didReceiveMemoryWarning {

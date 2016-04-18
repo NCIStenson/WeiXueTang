@@ -32,9 +32,26 @@
 
 /************ 下载成功通知 **************/
 #define KDOWNLOADSUCCESS  @"keyDownloadSuccess"
+/************ 修改专家评估分数成功通知 **************/
+#define KCHANGEEXPERTASSESSMENTSCORESUCCESS  @"keyChangeScore"
+/************ 缓存数组最大容量 **************/
+#define kCACHESARRMAXCOUNT 100
 
 #define Zenith_Server [[[NSBundle mainBundle] infoDictionary] objectForKey:@"ZenithServerAddress"]
+#define CACHEPATH [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(), [ZEUtil getmd5WithString:[ZEUtil getUsername]]]
 
+//文件下载缓存在存放的plist文件中
+#define DOWNLOADFILEPATH [NSString stringWithFormat:@"%@/downloadFile.plist",CACHEPATH]
+//  服务器图片地址
 #define PRE_PHOTO [NSString stringWithFormat:@"%@/file/photo/",Zenith_Server]
+
+//  下载到本地的文件缓存 key 值
+
+#define kImageCachePath @"imageCachePath"
+#define kImageCacheName @"imageCacheName"
+#define kImageCacheArr  @"imageCacheArr"
+
+#define kVideoCachePath @"videoCachePath"
+#define kVideoCacheName @"videoCacheName"
 
 #endif /* ZEMarcoConstant_h */

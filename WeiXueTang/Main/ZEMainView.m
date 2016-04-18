@@ -114,6 +114,7 @@
             case 2:
                 [enterBtn setImage:[UIImage imageNamed:@"home_personalskills"] forState:UIControlStateNormal];
                 tipsLabel.text  = @"个人技能库";
+                [enterBtn addTarget:self action:@selector(goPersonalSkillView) forControlEvents:UIControlEventTouchUpInside];
 
                 break;
             case 3:
@@ -153,6 +154,12 @@
 {
     if ([self.delegate respondsToSelector:@selector(gozhuanjiaAssessmentView) ]) {
         [self.delegate gozhuanjiaAssessmentView];
+    }
+}
+-(void)goPersonalSkillView
+{
+    if ([self.delegate respondsToSelector:@selector(goPersonalSkillView)]) {
+        [self.delegate goPersonalSkillView];
     }
 }
 

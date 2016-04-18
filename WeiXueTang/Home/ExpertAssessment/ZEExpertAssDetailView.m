@@ -8,12 +8,16 @@
 
 #import "ZEExpertAssDetailView.h"
 
+#import "ZEExpertAssessmentCache.h"
+
 @interface ZEExpertAssDetailView ()<UITextFieldDelegate>{
     CGRect _viewFrame;
     UITableView * _contentTableView;
     ZEExpertAssModel * _expertAssM;
     EXPERTASSESSMENT_TYPE _enterType;
     NSString * _currentStr;
+    
+    UILabel * _allScoreLabel;
 }
 
 @end
@@ -43,6 +47,11 @@
     _contentTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
+-(void)reloadView
+{
+    [_contentTableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -64,11 +73,15 @@
 {
     UIView * headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH,150)];
     headerView.backgroundColor = [UIColor whiteColor];
+    NSInteger allScore = 0;
+    for (int i = 0; i < kCACHESARRMAXCOUNT ; i ++) {
+        NSInteger score = [[[ZEExpertAssessmentCache instance]getScoreWithIndex:i] integerValue];
+        allScore += score;
+    }
     
     UIView * grayView = [[UIView alloc]initWithFrame:CGRectMake(0,90, SCREEN_WIDTH, 60.0f)];
     [headerView addSubview:grayView];
     grayView.backgroundColor = MAIN_LINE_COLOR;
-
     
     for (int i = 0 ; i < 5; i ++) {
         UILabel * listLabel = nil;
@@ -93,8 +106,16 @@
             case 2:
                 listLabel.text = [NSString stringWithFormat:@"姓名：%@",_expertAssM.PSNNAME];
                 break;
-            case 3:
+            case 3:{
                 listLabel.text = @"技能掌握专家评分";
+                    _allScoreLabel = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - 110, 0 + 30 * i, 100, 30)];
+                    _allScoreLabel.font = [UIFont systemFontOfSize:14];
+                    _allScoreLabel.textAlignment = NSTextAlignmentRight;
+                    [headerView addSubview:_allScoreLabel];
+                if (allScore > 0) {
+                    _allScoreLabel.text = [NSString stringWithFormat:@"得分：%d",allScore];
+                }
+            }
                 break;
             default:
                 break;
@@ -209,9 +230,7 @@
                 }else{
                     UITextField *contentField                    = [[UITextField alloc]init];
                     contentField.keyboardType       = UIKeyboardTypePhonePad;
-                    contentField.backgroundColor = [UIColor redColor];
                     contentField.delegate           = self;
-                    contentField.placeholder        = @"0";
                     contentField.tag                = indexPath.row;
                     contentField.font               = [UIFont systemFontOfSize:13];
                     contentField.textColor          = [UIColor blackColor];
@@ -220,6 +239,9 @@
                     contentField.layer.cornerRadius = 5;
                     contentField.textAlignment = NSTextAlignmentCenter;
                     contentField.frame = CGRectMake(SCREEN_WIDTH * 0.75, 0, SCREEN_WIDTH / 4 - 10, 30.0f);
+                    if ([[[ZEExpertAssessmentCache instance]getScoreWithIndex:indexPath.row] integerValue] != 0) {
+                        contentField.text = [[ZEExpertAssessmentCache instance]getScoreWithIndex:indexPath.row];
+                    }
                     
                     [contentField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
                 }
@@ -258,18 +280,26 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
+    [[ZEExpertAssessmentCache instance] setExpertAssessmentScore:textField.text index:textField.tag];
+    NSInteger allScore = 0;
+    for (int i = 0; i < kCACHESARRMAXCOUNT ; i ++) {
+        NSInteger score = [[[ZEExpertAssessmentCache instance]getScoreWithIndex:i] integerValue];
+        allScore += score;
+    }
+    _allScoreLabel.text = [NSString stringWithFormat:@"得分：%d",allScore];
+
     [UIView animateWithDuration:0.29 animations:^{
         _contentTableView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT);
     }];
 }
-
 #pragma mark - UITableViewDelegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self endEditing:YES];
     ZEExpertAssModel * expertM = [ZEExpertAssModel getDetailModelWithDic:_expertAssM.detailarray[indexPath.row]];
-    if ([self.delegate respondsToSelector:@selector(enterDetailProject:)]) {
-        [self.delegate enterDetailProject:expertM];
+    if ([self.delegate respondsToSelector:@selector(enterDetailProject:index:)]) {
+        [self.delegate enterDetailProject:expertM index:indexPath.row];
     }
 }
 

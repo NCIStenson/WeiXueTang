@@ -75,6 +75,7 @@ static ZEServerEngine *serverEngine = nil;
                   parameters:params
                     progress:nil
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+
                          if (![ZEUtil isNotNull:responseObject]) {
                              [self showNetErrorAlertView];
                          }
@@ -94,6 +95,7 @@ static ZEServerEngine *serverEngine = nil;
 }
 
 +(void)downloadImageZipFromURL:(NSString *) URL
+              noSuffixFileName:(NSString *)noSuffixFileName
                      cachePath:(NSString *) cachePath
                   withProgress:(void (^)(CGFloat progress))progressBlock
                     completion:(void (^)(NSString *filePath))completionBlock
@@ -131,7 +133,7 @@ static ZEServerEngine *serverEngine = nil;
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
         NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.zip",[pathNameArr lastObject]]];
 
-        [self unZipFileOrgPath:fullURL.path desPath:finalCachesPath];
+        [self unZipFileOrgPath:fullURL.path desPath:finalCachesPath withFileName:noSuffixFileName];
         //If we already have a video file saved, remove it from the phone
         return fullURL;
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -150,12 +152,13 @@ static ZEServerEngine *serverEngine = nil;
 }
 
 
-+(void)unZipFileOrgPath:(NSString *)orgPath desPath:(NSString *)desPath
++(void)unZipFileOrgPath:(NSString *)orgPath desPath:(NSString *)desPath withFileName:(NSString *)noSuffixFileName
 {
+    NSLog(@" desPath   >>>   %@",desPath);
     dispatch_queue_t concurrentQueue = dispatch_queue_create("my.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(concurrentQueue, ^{
-        NSString * finaPath = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),desPath];
-        
+        NSString * finaPath = [NSString stringWithFormat:@"%@/%@",CACHEPATH,desPath];
+        NSLog(@" finaPath >>>  %@",finaPath);
         ZipArchive *za = [[ZipArchive alloc] init];
         // 1. 在内存中解压缩文件
         if ([za UnzipOpenFile: orgPath]) {
@@ -164,6 +167,18 @@ static ZEServerEngine *serverEngine = nil;
             if (NO == ret){
                 NSLog(@"失败了");
             }else{
+                NSString * imageCachePath = [NSString stringWithFormat:@"%@/%@",finaPath,noSuffixFileName];
+                NSFileManager * fileManager = [NSFileManager defaultManager];
+                NSArray * allFileNameArr = [fileManager contentsOfDirectoryAtPath:imageCachePath error:nil];
+
+                NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+                
+                [dic setObject:allFileNameArr forKey:kImageCacheArr];
+                [dic setObject:noSuffixFileName forKey:kImageCacheName];
+                [dic setObject:imageCachePath forKey:kImageCachePath];
+                
+                [ZEUtil writeImageMessageToFile:dic];
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:KDOWNLOADSUCCESS object:nil];
                 [self removeVideoAtPath:orgPath];
             }
@@ -171,7 +186,7 @@ static ZEServerEngine *serverEngine = nil;
                 [za UnzipCloseFile];
             });
         }else{
-            [self unZipFileOrgPath:orgPath desPath:desPath];
+            [self unZipFileOrgPath:orgPath desPath:desPath withFileName:noSuffixFileName];
         }
     });
     
@@ -187,6 +202,7 @@ static ZEServerEngine *serverEngine = nil;
 }
 
 #pragma mark - 下载视频
+
 +(void)downloadVideoFromURL:(NSString *) URL
                    fileName:(NSString *)fileName
                   cachePath:(NSString *) cachePath
@@ -194,6 +210,7 @@ static ZEServerEngine *serverEngine = nil;
                  completion:(void (^)(NSURL *filePath))completionBlock
                     onError:(void (^)(NSError *error))errorBlock;
 {
+    NSString * plistPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/downloadFile.plist"];
     
     //  @"Documents\e.g.\e.g." 目标路径转换成 @"/Documents/e.g./e.g."格式
     NSString * newCachesPath = [cachePath stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
@@ -223,21 +240,38 @@ static ZEServerEngine *serverEngine = nil;
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
         //Getting the path of the document directory
         
+        NSLog(@">>  %@",[ZEUtil getDownloadFileMessage]);
+        
 //        判断文件夹路径是否存在 不存在就创建文件夹路径
-        NSString * filePath = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),newCachesPath];
+        NSString * filePath = [NSString stringWithFormat:@"%@/%@",CACHEPATH,newCachesPath];
         NSFileManager * fileManager = [[NSFileManager alloc]init];
         if (![fileManager fileExistsAtPath:filePath]) {
             [fileManager createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
         }
 //        获取文件缓存路径目标文件夹 同时把视频文件命名为filename
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
-        NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@",newCachesPath,fileName]];
+        NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",[ZEUtil getUsername],newCachesPath,fileName]];
+        
+        
+        NSString * videoCachePath = fullURL.path;
+        
+        NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+        
+        [dic setObject:fileName forKey:kVideoCacheName];
+//        [dic setObject:noSuffixFileName forKey:kImageCacheName];
+        [dic setObject:videoCachePath forKey:kVideoCachePath];
+        
+        [ZEUtil writeVideoMessageToFile:dic];
+
 
         return fullURL;
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         if (!error) {
             //If there's no error, return the completion block
             [[NSNotificationCenter defaultCenter] postNotificationName:KDOWNLOADSUCCESS object:nil];
+            
+//            NSMutableDictionary * dic = [];
+            
             completionBlock(filePath);
         } else {
             //Otherwise return the error block

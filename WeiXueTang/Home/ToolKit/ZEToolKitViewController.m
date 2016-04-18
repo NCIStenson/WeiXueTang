@@ -67,6 +67,7 @@
 {
     ZESkillViewController * skillVC = [[ZESkillViewController alloc]init];
     skillVC.skillID = skillID;
+    skillVC.enterType = ENTER_FILELIST_TYPE_TOOLKIT;
     [self.navigationController pushViewController:skillVC animated:YES];
 }
 

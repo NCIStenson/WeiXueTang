@@ -9,27 +9,42 @@
 /* Begin PBXBuildFile section */
 		9821C7701C4E10FF00FE9080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9821C76F1C4E10FF00FE9080 /* Images.xcassets */; };
 		982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 982F0C691C4E2D4600593946 /* ZEServerEngine.m */; };
-		9842A0061CA155CC0058EFFC /* ZEDetailProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9842A0051CA155CC0058EFFC /* ZEDetailProjectVC.m */; };
-		9842A00C1CA156000058EFFC /* ZEDetailProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9842A00B1CA156000058EFFC /* ZEDetailProjectView.m */; };
 		984BFDF41C9274AA00A117FD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDEA1C9274AA00A117FD /* ioapi.c */; };
 		984BFDF51C9274AA00A117FD /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDEC1C9274AA00A117FD /* mztools.c */; };
 		984BFDF61C9274AA00A117FD /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDEE1C9274AA00A117FD /* unzip.c */; };
 		984BFDF71C9274AA00A117FD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDF01C9274AA00A117FD /* zip.c */; };
 		984BFDF81C9274AA00A117FD /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDF31C9274AA00A117FD /* ZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		984BFDFB1C969C3100A117FD /* ZEDownloadCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDFA1C969C3100A117FD /* ZEDownloadCaches.m */; };
-		984C1C971C9F912F00EB153B /* ZEExpertAssessmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C1C961C9F912F00EB153B /* ZEExpertAssessmentVC.m */; };
-		984C1C9A1C9F914D00EB153B /* ZEExpertAssessmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 984C1C991C9F914D00EB153B /* ZEExpertAssessmentView.m */; };
-		987C88911CA01DD100A29CB9 /* ZEExpertAssDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 987C88901CA01DD100A29CB9 /* ZEExpertAssDetailVC.m */; };
-		987C88941CA01DF000A29CB9 /* ZEExpertAssDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 987C88931CA01DF000A29CB9 /* ZEExpertAssDetailView.m */; };
-		9883A1C81CA012FA00083756 /* ZEExpertAssModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9883A1C71CA012FA00083756 /* ZEExpertAssModel.m */; };
-		98949A941C8EA4970053139C /* ZEImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98949A931C8EA4970053139C /* ZEImageViewController.m */; };
-		98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98949A961C8EA4DA0053139C /* ZEImageView.m */; };
+		985EF3D91CB3CC3C000929CD /* ZEDownloadCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3C81CB3CC3C000929CD /* ZEDownloadCaches.m */; };
+		985EF3DA1CB3CC3C000929CD /* ZEImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3CA1CB3CC3C000929CD /* ZEImageView.m */; };
+		985EF3DB1CB3CC3C000929CD /* ZEImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3CC1CB3CC3C000929CD /* ZEImageViewController.m */; };
+		985EF3DC1CB3CC3C000929CD /* ZEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3CE1CB3CC3C000929CD /* ZEProgressView.m */; };
+		985EF3DD1CB3CC3C000929CD /* ZESkillView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D01CB3CC3C000929CD /* ZESkillView.m */; };
+		985EF3DE1CB3CC3C000929CD /* ZESkillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D21CB3CC3C000929CD /* ZESkillViewController.m */; };
+		985EF3DF1CB3CC3C000929CD /* ZEToolKitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D41CB3CC3C000929CD /* ZEToolKitModel.m */; };
+		985EF3E01CB3CC3C000929CD /* ZEToolKitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D61CB3CC3C000929CD /* ZEToolKitView.m */; };
+		985EF3E11CB3CC3C000929CD /* ZEToolKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D81CB3CC3C000929CD /* ZEToolKitViewController.m */; };
+		985EF3E81CB3CC4D000929CD /* ZEPersonalSkillModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3E31CB3CC4D000929CD /* ZEPersonalSkillModel.m */; };
+		985EF3E91CB3CC4D000929CD /* ZEPersonalSkillVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3E51CB3CC4D000929CD /* ZEPersonalSkillVC.m */; };
+		985EF3EA1CB3CC4D000929CD /* ZEPersonalSkillView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3E71CB3CC4D000929CD /* ZEPersonalSkillView.m */; };
+		985EF3FB1CB3CC60000929CD /* ZEDetailProjectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3EC1CB3CC60000929CD /* ZEDetailProjectVC.m */; };
+		985EF3FC1CB3CC60000929CD /* ZEDetailProjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3EE1CB3CC60000929CD /* ZEDetailProjectView.m */; };
+		985EF3FD1CB3CC60000929CD /* ZEExpertAssDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3F01CB3CC60000929CD /* ZEExpertAssDetailVC.m */; };
+		985EF3FE1CB3CC60000929CD /* ZEExpertAssDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3F21CB3CC60000929CD /* ZEExpertAssDetailView.m */; };
+		985EF3FF1CB3CC60000929CD /* ZEExpertAssessmentCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3F41CB3CC60000929CD /* ZEExpertAssessmentCache.m */; };
+		985EF4001CB3CC60000929CD /* ZEExpertAssessmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3F61CB3CC60000929CD /* ZEExpertAssessmentVC.m */; };
+		985EF4011CB3CC60000929CD /* ZEExpertAssessmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3F81CB3CC60000929CD /* ZEExpertAssessmentView.m */; };
+		985EF4021CB3CC60000929CD /* ZEExpertAssModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3FA1CB3CC60000929CD /* ZEExpertAssModel.m */; };
+		985EF4091CB3CC72000929CD /* ZEDianZanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF4041CB3CC72000929CD /* ZEDianZanModel.m */; };
+		985EF40A1CB3CC72000929CD /* ZEDianZanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF4061CB3CC72000929CD /* ZEDianZanView.m */; };
+		985EF40B1CB3CC72000929CD /* ZEDianZanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF4081CB3CC72000929CD /* ZEDianZanViewController.m */; };
+		985EF40F1CB3CCC2000929CD /* ZEDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF40E1CB3CCC2000929CD /* ZEDownloadVC.m */; };
+		985EF4121CB3CCDF000929CD /* ZEDownloadSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF4111CB3CCDF000929CD /* ZEDownloadSearchView.m */; };
+		985EF4181CB64030000929CD /* ZELocalFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF4171CB64030000929CD /* ZELocalFileView.m */; };
+		985EF41B1CB64061000929CD /* ZEDownloadSearchVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF41A1CB64061000929CD /* ZEDownloadSearchVC.m */; };
 		98949A991C8EB39E0053139C /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 98949A981C8EB39E0053139C /* login.jpg */; };
 		989B2C481C4DE7AA00F14EFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B2C471C4DE7AA00F14EFA /* main.m */; };
 		989B2C531C4DE7AA00F14EFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 989B2C521C4DE7AA00F14EFA /* Assets.xcassets */; };
 		989B2C611C4DE7AA00F14EFA /* WeiXueTangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 989B2C601C4DE7AA00F14EFA /* WeiXueTangTests.m */; };
-		989F2AEC1C9A549E0015D35D /* ZEDianZanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 989F2AEB1C9A549E0015D35D /* ZEDianZanViewController.m */; };
-		989F2AEF1C9A54BE0015D35D /* ZEDianZanView.m in Sources */ = {isa = PBXBuildFile; fileRef = 989F2AEE1C9A54BE0015D35D /* ZEDianZanView.m */; };
 		989F2AF91C9A5F7A0015D35D /* good_assess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 989F2AF11C9A5F7A0015D35D /* good_assess@2x.png */; };
 		989F2AFA1C9A5F7A0015D35D /* good_assess@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 989F2AF21C9A5F7A0015D35D /* good_assess@3x.png */; };
 		989F2AFB1C9A5F7A0015D35D /* good_grasp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 989F2AF31C9A5F7A0015D35D /* good_grasp@2x.png */; };
@@ -38,7 +53,7 @@
 		989F2AFE1C9A5F7A0015D35D /* good_not@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 989F2AF61C9A5F7A0015D35D /* good_not@3x.png */; };
 		989F2AFF1C9A5F7A0015D35D /* good_yet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 989F2AF71C9A5F7A0015D35D /* good_yet@2x.png */; };
 		989F2B001C9A5F7A0015D35D /* good_yet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 989F2AF81C9A5F7A0015D35D /* good_yet@3x.png */; };
-		989F2B051C9AA7FB0015D35D /* ZEDianZanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 989F2B041C9AA7FB0015D35D /* ZEDianZanModel.m */; };
+		989FC4101CB641B300576567 /* ZELocalFileVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 989FC40F1CB641B300576567 /* ZELocalFileVC.m */; };
 		98B2CC271C8FEEBF0015918B /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2CC211C8FEEBF0015918B /* SDBrowserImageView.m */; };
 		98B2CC281C8FEEBF0015918B /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2CC231C8FEEBF0015918B /* SDPhotoBrowser.m */; };
 		98B2CC291C8FEEBF0015918B /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98B2CC261C8FEEBF0015918B /* SDWaitingView.m */; };
@@ -66,17 +81,12 @@
 		98BA5C501C8D13AF005649AC /* JRPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C3A1C8D13AF005649AC /* JRPlayerView.m */; };
 		98BA5C511C8D13AF005649AC /* JRPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C3C1C8D13AF005649AC /* JRPlayerViewController.m */; settings = {COMPILER_FLAGS = "-Wno-deprecated-declarations"; }; };
 		98BA5C521C8D13AF005649AC /* JRPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 98BA5C3D1C8D13AF005649AC /* JRPlayerViewController.xib */; };
-		98BA5C561C8D15FF005649AC /* ZEToolKitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C551C8D15FF005649AC /* ZEToolKitViewController.m */; };
-		98BA5C591C8D1614005649AC /* ZEToolKitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C581C8D1614005649AC /* ZEToolKitView.m */; };
 		98BA5C601C8D25DF005649AC /* ZEAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C5B1C8D25DF005649AC /* ZEAppDelegate.m */; };
 		98BA5C611C8D25DF005649AC /* ZEMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C5D1C8D25DF005649AC /* ZEMainView.m */; };
 		98BA5C621C8D25DF005649AC /* ZEMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C5F1C8D25DF005649AC /* ZEMainViewController.m */; };
 		98BA5C651C8D25E7005649AC /* ZESettingRootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C641C8D25E7005649AC /* ZESettingRootVC.m */; };
 		98BA5C691C8D2A53005649AC /* icon_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BA5C671C8D2A53005649AC /* icon_back@2x.png */; };
 		98BA5C6A1C8D2A53005649AC /* icon_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98BA5C681C8D2A53005649AC /* icon_back@3x.png */; };
-		98BA5C6D1C8D4CA9005649AC /* ZEToolKitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C6C1C8D4CA9005649AC /* ZEToolKitModel.m */; };
-		98BA5C701C8D6095005649AC /* ZESkillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C6F1C8D6095005649AC /* ZESkillViewController.m */; };
-		98BA5C731C8D60AB005649AC /* ZESkillView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98BA5C721C8D60AB005649AC /* ZESkillView.m */; };
 		98DB7C501C4F4FA70046D405 /* ZEUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DB7C4F1C4F4FA70046D405 /* ZEUtil.m */; };
 		98DB7C531C4F52050046D405 /* UIImage+ZEImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 98DB7C521C4F52050046D405 /* UIImage+ZEImage.m */; };
 		98DB7C591C4F554E0046D405 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98DB7C571C4F554E0046D405 /* Main.storyboard */; };
@@ -96,7 +106,6 @@
 		98E5213C1CA2803100C531D0 /* tab_homepage_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98E521361CA2803100C531D0 /* tab_homepage_normal@3x.png */; };
 		98E5213D1CA2803100C531D0 /* tab_setting_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98E521371CA2803100C531D0 /* tab_setting_normal@2x.png */; };
 		98E5213E1CA2803100C531D0 /* tab_setting_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 98E521381CA2803100C531D0 /* tab_setting_normal@3x.png */; };
-		98F4A5381C918978002EB56F /* ZEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F4A5371C918978002EB56F /* ZEProgressView.m */; };
 		98F4A5A41C9196A2002EB56F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 98F4A5A31C9196A2002EB56F /* libz.tbd */; };
 		98F85A7F1C87D5D40016892F /* WeiXueTangUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 98F85A7E1C87D5D40016892F /* WeiXueTangUITests.m */; };
 		A828955B7420714F2D89D798 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E105A2397763081EFD8784C9 /* libPods.a */; };
@@ -125,10 +134,6 @@
 		9821C76F1C4E10FF00FE9080 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		982F0C681C4E2D4600593946 /* ZEServerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEServerEngine.h; path = Service/ZEServerEngine.h; sourceTree = "<group>"; };
 		982F0C691C4E2D4600593946 /* ZEServerEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEServerEngine.m; path = Service/ZEServerEngine.m; sourceTree = "<group>"; };
-		9842A0041CA155CC0058EFFC /* ZEDetailProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDetailProjectVC.h; path = ExpertAssessment/ZEDetailProjectVC.h; sourceTree = "<group>"; };
-		9842A0051CA155CC0058EFFC /* ZEDetailProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDetailProjectVC.m; path = ExpertAssessment/ZEDetailProjectVC.m; sourceTree = "<group>"; };
-		9842A00A1CA156000058EFFC /* ZEDetailProjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDetailProjectView.h; path = ExpertAssessment/ZEDetailProjectView.h; sourceTree = "<group>"; };
-		9842A00B1CA156000058EFFC /* ZEDetailProjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDetailProjectView.m; path = ExpertAssessment/ZEDetailProjectView.m; sourceTree = "<group>"; };
 		984BFDE91C9274AA00A117FD /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
 		984BFDEA1C9274AA00A117FD /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
 		984BFDEB1C9274AA00A117FD /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
@@ -140,22 +145,60 @@
 		984BFDF11C9274AA00A117FD /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		984BFDF21C9274AA00A117FD /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		984BFDF31C9274AA00A117FD /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
-		984BFDF91C969C3100A117FD /* ZEDownloadCaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEDownloadCaches.h; sourceTree = "<group>"; };
-		984BFDFA1C969C3100A117FD /* ZEDownloadCaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEDownloadCaches.m; sourceTree = "<group>"; };
-		984C1C951C9F912F00EB153B /* ZEExpertAssessmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssessmentVC.h; path = ExpertAssessment/ZEExpertAssessmentVC.h; sourceTree = "<group>"; };
-		984C1C961C9F912F00EB153B /* ZEExpertAssessmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentVC.m; path = ExpertAssessment/ZEExpertAssessmentVC.m; sourceTree = "<group>"; };
-		984C1C981C9F914D00EB153B /* ZEExpertAssessmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssessmentView.h; path = ExpertAssessment/ZEExpertAssessmentView.h; sourceTree = "<group>"; };
-		984C1C991C9F914D00EB153B /* ZEExpertAssessmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentView.m; path = ExpertAssessment/ZEExpertAssessmentView.m; sourceTree = "<group>"; };
-		987C888F1CA01DD100A29CB9 /* ZEExpertAssDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssDetailVC.h; path = ExpertAssessment/ZEExpertAssDetailVC.h; sourceTree = "<group>"; };
-		987C88901CA01DD100A29CB9 /* ZEExpertAssDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssDetailVC.m; path = ExpertAssessment/ZEExpertAssDetailVC.m; sourceTree = "<group>"; };
-		987C88921CA01DF000A29CB9 /* ZEExpertAssDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssDetailView.h; path = ExpertAssessment/ZEExpertAssDetailView.h; sourceTree = "<group>"; };
-		987C88931CA01DF000A29CB9 /* ZEExpertAssDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssDetailView.m; path = ExpertAssessment/ZEExpertAssDetailView.m; sourceTree = "<group>"; };
-		9883A1C61CA012FA00083756 /* ZEExpertAssModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssModel.h; path = ExpertAssessment/ZEExpertAssModel.h; sourceTree = "<group>"; };
-		9883A1C71CA012FA00083756 /* ZEExpertAssModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssModel.m; path = ExpertAssessment/ZEExpertAssModel.m; sourceTree = "<group>"; };
-		98949A921C8EA4970053139C /* ZEImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEImageViewController.h; sourceTree = "<group>"; };
-		98949A931C8EA4970053139C /* ZEImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEImageViewController.m; sourceTree = "<group>"; };
-		98949A951C8EA4DA0053139C /* ZEImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEImageView.h; sourceTree = "<group>"; };
-		98949A961C8EA4DA0053139C /* ZEImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEImageView.m; sourceTree = "<group>"; };
+		985EF3C71CB3CC3C000929CD /* ZEDownloadCaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDownloadCaches.h; path = WeiXueTang/Home/ToolKit/ZEDownloadCaches.h; sourceTree = SOURCE_ROOT; };
+		985EF3C81CB3CC3C000929CD /* ZEDownloadCaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDownloadCaches.m; path = WeiXueTang/Home/ToolKit/ZEDownloadCaches.m; sourceTree = SOURCE_ROOT; };
+		985EF3C91CB3CC3C000929CD /* ZEImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEImageView.h; path = WeiXueTang/Home/ToolKit/ZEImageView.h; sourceTree = SOURCE_ROOT; };
+		985EF3CA1CB3CC3C000929CD /* ZEImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEImageView.m; path = WeiXueTang/Home/ToolKit/ZEImageView.m; sourceTree = SOURCE_ROOT; };
+		985EF3CB1CB3CC3C000929CD /* ZEImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEImageViewController.h; path = WeiXueTang/Home/ToolKit/ZEImageViewController.h; sourceTree = SOURCE_ROOT; };
+		985EF3CC1CB3CC3C000929CD /* ZEImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEImageViewController.m; path = WeiXueTang/Home/ToolKit/ZEImageViewController.m; sourceTree = SOURCE_ROOT; };
+		985EF3CD1CB3CC3C000929CD /* ZEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEProgressView.h; path = WeiXueTang/Home/ToolKit/ZEProgressView.h; sourceTree = SOURCE_ROOT; };
+		985EF3CE1CB3CC3C000929CD /* ZEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEProgressView.m; path = WeiXueTang/Home/ToolKit/ZEProgressView.m; sourceTree = SOURCE_ROOT; };
+		985EF3CF1CB3CC3C000929CD /* ZESkillView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZESkillView.h; path = WeiXueTang/Home/ToolKit/ZESkillView.h; sourceTree = SOURCE_ROOT; };
+		985EF3D01CB3CC3C000929CD /* ZESkillView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZESkillView.m; path = WeiXueTang/Home/ToolKit/ZESkillView.m; sourceTree = SOURCE_ROOT; };
+		985EF3D11CB3CC3C000929CD /* ZESkillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZESkillViewController.h; path = WeiXueTang/Home/ToolKit/ZESkillViewController.h; sourceTree = SOURCE_ROOT; };
+		985EF3D21CB3CC3C000929CD /* ZESkillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZESkillViewController.m; path = WeiXueTang/Home/ToolKit/ZESkillViewController.m; sourceTree = SOURCE_ROOT; };
+		985EF3D31CB3CC3C000929CD /* ZEToolKitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEToolKitModel.h; path = WeiXueTang/Home/ToolKit/ZEToolKitModel.h; sourceTree = SOURCE_ROOT; };
+		985EF3D41CB3CC3C000929CD /* ZEToolKitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEToolKitModel.m; path = WeiXueTang/Home/ToolKit/ZEToolKitModel.m; sourceTree = SOURCE_ROOT; };
+		985EF3D51CB3CC3C000929CD /* ZEToolKitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEToolKitView.h; path = WeiXueTang/Home/ToolKit/ZEToolKitView.h; sourceTree = SOURCE_ROOT; };
+		985EF3D61CB3CC3C000929CD /* ZEToolKitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEToolKitView.m; path = WeiXueTang/Home/ToolKit/ZEToolKitView.m; sourceTree = SOURCE_ROOT; };
+		985EF3D71CB3CC3C000929CD /* ZEToolKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEToolKitViewController.h; path = WeiXueTang/Home/ToolKit/ZEToolKitViewController.h; sourceTree = SOURCE_ROOT; };
+		985EF3D81CB3CC3C000929CD /* ZEToolKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEToolKitViewController.m; path = WeiXueTang/Home/ToolKit/ZEToolKitViewController.m; sourceTree = SOURCE_ROOT; };
+		985EF3E21CB3CC4D000929CD /* ZEPersonalSkillModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEPersonalSkillModel.h; path = Home/PersonalSkill/ZEPersonalSkillModel.h; sourceTree = "<group>"; };
+		985EF3E31CB3CC4D000929CD /* ZEPersonalSkillModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEPersonalSkillModel.m; path = Home/PersonalSkill/ZEPersonalSkillModel.m; sourceTree = "<group>"; };
+		985EF3E41CB3CC4D000929CD /* ZEPersonalSkillVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEPersonalSkillVC.h; path = Home/PersonalSkill/ZEPersonalSkillVC.h; sourceTree = "<group>"; };
+		985EF3E51CB3CC4D000929CD /* ZEPersonalSkillVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEPersonalSkillVC.m; path = Home/PersonalSkill/ZEPersonalSkillVC.m; sourceTree = "<group>"; };
+		985EF3E61CB3CC4D000929CD /* ZEPersonalSkillView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEPersonalSkillView.h; path = Home/PersonalSkill/ZEPersonalSkillView.h; sourceTree = "<group>"; };
+		985EF3E71CB3CC4D000929CD /* ZEPersonalSkillView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEPersonalSkillView.m; path = Home/PersonalSkill/ZEPersonalSkillView.m; sourceTree = "<group>"; };
+		985EF3EB1CB3CC60000929CD /* ZEDetailProjectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDetailProjectVC.h; path = Home/ExpertAssessment/ZEDetailProjectVC.h; sourceTree = "<group>"; };
+		985EF3EC1CB3CC60000929CD /* ZEDetailProjectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDetailProjectVC.m; path = Home/ExpertAssessment/ZEDetailProjectVC.m; sourceTree = "<group>"; };
+		985EF3ED1CB3CC60000929CD /* ZEDetailProjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDetailProjectView.h; path = Home/ExpertAssessment/ZEDetailProjectView.h; sourceTree = "<group>"; };
+		985EF3EE1CB3CC60000929CD /* ZEDetailProjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDetailProjectView.m; path = Home/ExpertAssessment/ZEDetailProjectView.m; sourceTree = "<group>"; };
+		985EF3EF1CB3CC60000929CD /* ZEExpertAssDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssDetailVC.h; path = Home/ExpertAssessment/ZEExpertAssDetailVC.h; sourceTree = "<group>"; };
+		985EF3F01CB3CC60000929CD /* ZEExpertAssDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssDetailVC.m; path = Home/ExpertAssessment/ZEExpertAssDetailVC.m; sourceTree = "<group>"; };
+		985EF3F11CB3CC60000929CD /* ZEExpertAssDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssDetailView.h; path = Home/ExpertAssessment/ZEExpertAssDetailView.h; sourceTree = "<group>"; };
+		985EF3F21CB3CC60000929CD /* ZEExpertAssDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssDetailView.m; path = Home/ExpertAssessment/ZEExpertAssDetailView.m; sourceTree = "<group>"; };
+		985EF3F31CB3CC60000929CD /* ZEExpertAssessmentCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssessmentCache.h; path = Home/ExpertAssessment/ZEExpertAssessmentCache.h; sourceTree = "<group>"; };
+		985EF3F41CB3CC60000929CD /* ZEExpertAssessmentCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentCache.m; path = Home/ExpertAssessment/ZEExpertAssessmentCache.m; sourceTree = "<group>"; };
+		985EF3F51CB3CC60000929CD /* ZEExpertAssessmentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssessmentVC.h; path = Home/ExpertAssessment/ZEExpertAssessmentVC.h; sourceTree = "<group>"; };
+		985EF3F61CB3CC60000929CD /* ZEExpertAssessmentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentVC.m; path = Home/ExpertAssessment/ZEExpertAssessmentVC.m; sourceTree = "<group>"; };
+		985EF3F71CB3CC60000929CD /* ZEExpertAssessmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssessmentView.h; path = Home/ExpertAssessment/ZEExpertAssessmentView.h; sourceTree = "<group>"; };
+		985EF3F81CB3CC60000929CD /* ZEExpertAssessmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssessmentView.m; path = Home/ExpertAssessment/ZEExpertAssessmentView.m; sourceTree = "<group>"; };
+		985EF3F91CB3CC60000929CD /* ZEExpertAssModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEExpertAssModel.h; path = Home/ExpertAssessment/ZEExpertAssModel.h; sourceTree = "<group>"; };
+		985EF3FA1CB3CC60000929CD /* ZEExpertAssModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEExpertAssModel.m; path = Home/ExpertAssessment/ZEExpertAssModel.m; sourceTree = "<group>"; };
+		985EF4031CB3CC72000929CD /* ZEDianZanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDianZanModel.h; path = WeiXueTang/Home/DianZanBiao/ZEDianZanModel.h; sourceTree = SOURCE_ROOT; };
+		985EF4041CB3CC72000929CD /* ZEDianZanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDianZanModel.m; path = WeiXueTang/Home/DianZanBiao/ZEDianZanModel.m; sourceTree = SOURCE_ROOT; };
+		985EF4051CB3CC72000929CD /* ZEDianZanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDianZanView.h; path = WeiXueTang/Home/DianZanBiao/ZEDianZanView.h; sourceTree = SOURCE_ROOT; };
+		985EF4061CB3CC72000929CD /* ZEDianZanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDianZanView.m; path = WeiXueTang/Home/DianZanBiao/ZEDianZanView.m; sourceTree = SOURCE_ROOT; };
+		985EF4071CB3CC72000929CD /* ZEDianZanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDianZanViewController.h; path = WeiXueTang/Home/DianZanBiao/ZEDianZanViewController.h; sourceTree = SOURCE_ROOT; };
+		985EF4081CB3CC72000929CD /* ZEDianZanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDianZanViewController.m; path = WeiXueTang/Home/DianZanBiao/ZEDianZanViewController.m; sourceTree = SOURCE_ROOT; };
+		985EF40D1CB3CCC2000929CD /* ZEDownloadVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDownloadVC.h; path = Download/ZEDownloadVC.h; sourceTree = "<group>"; };
+		985EF40E1CB3CCC2000929CD /* ZEDownloadVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDownloadVC.m; path = Download/ZEDownloadVC.m; sourceTree = "<group>"; };
+		985EF4101CB3CCDF000929CD /* ZEDownloadSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDownloadSearchView.h; path = Download/ZEDownloadSearchView.h; sourceTree = "<group>"; };
+		985EF4111CB3CCDF000929CD /* ZEDownloadSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDownloadSearchView.m; path = Download/ZEDownloadSearchView.m; sourceTree = "<group>"; };
+		985EF4161CB64030000929CD /* ZELocalFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZELocalFileView.h; path = Download/ZELocalFileView.h; sourceTree = "<group>"; };
+		985EF4171CB64030000929CD /* ZELocalFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZELocalFileView.m; path = Download/ZELocalFileView.m; sourceTree = "<group>"; };
+		985EF4191CB64061000929CD /* ZEDownloadSearchVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDownloadSearchVC.h; path = Download/ZEDownloadSearchVC.h; sourceTree = "<group>"; };
+		985EF41A1CB64061000929CD /* ZEDownloadSearchVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDownloadSearchVC.m; path = Download/ZEDownloadSearchVC.m; sourceTree = "<group>"; };
 		98949A981C8EB39E0053139C /* login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = login.jpg; path = Image/login.jpg; sourceTree = "<group>"; };
 		989B2C431C4DE7AA00F14EFA /* WeiXueTang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiXueTang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		989B2C471C4DE7AA00F14EFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -166,10 +209,6 @@
 		989B2C621C4DE7AA00F14EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		989B2C671C4DE7AA00F14EFA /* WeiXueTang.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiXueTang.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		989B2C6D1C4DE7AA00F14EFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		989F2AEA1C9A549E0015D35D /* ZEDianZanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDianZanViewController.h; path = WeiXueTang/DianZanBiao/ZEDianZanViewController.h; sourceTree = SOURCE_ROOT; };
-		989F2AEB1C9A549E0015D35D /* ZEDianZanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDianZanViewController.m; path = WeiXueTang/DianZanBiao/ZEDianZanViewController.m; sourceTree = SOURCE_ROOT; };
-		989F2AED1C9A54BE0015D35D /* ZEDianZanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDianZanView.h; path = WeiXueTang/DianZanBiao/ZEDianZanView.h; sourceTree = SOURCE_ROOT; };
-		989F2AEE1C9A54BE0015D35D /* ZEDianZanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDianZanView.m; path = WeiXueTang/DianZanBiao/ZEDianZanView.m; sourceTree = SOURCE_ROOT; };
 		989F2AF11C9A5F7A0015D35D /* good_assess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "good_assess@2x.png"; path = "Image/DianZanBiao/good_assess@2x.png"; sourceTree = "<group>"; };
 		989F2AF21C9A5F7A0015D35D /* good_assess@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "good_assess@3x.png"; path = "Image/DianZanBiao/good_assess@3x.png"; sourceTree = "<group>"; };
 		989F2AF31C9A5F7A0015D35D /* good_grasp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "good_grasp@2x.png"; path = "Image/DianZanBiao/good_grasp@2x.png"; sourceTree = "<group>"; };
@@ -178,8 +217,8 @@
 		989F2AF61C9A5F7A0015D35D /* good_not@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "good_not@3x.png"; path = "Image/DianZanBiao/good_not@3x.png"; sourceTree = "<group>"; };
 		989F2AF71C9A5F7A0015D35D /* good_yet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "good_yet@2x.png"; path = "Image/DianZanBiao/good_yet@2x.png"; sourceTree = "<group>"; };
 		989F2AF81C9A5F7A0015D35D /* good_yet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "good_yet@3x.png"; path = "Image/DianZanBiao/good_yet@3x.png"; sourceTree = "<group>"; };
-		989F2B031C9AA7FB0015D35D /* ZEDianZanModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDianZanModel.h; path = WeiXueTang/DianZanBiao/ZEDianZanModel.h; sourceTree = SOURCE_ROOT; };
-		989F2B041C9AA7FB0015D35D /* ZEDianZanModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDianZanModel.m; path = WeiXueTang/DianZanBiao/ZEDianZanModel.m; sourceTree = SOURCE_ROOT; };
+		989FC40E1CB641B300576567 /* ZELocalFileVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZELocalFileVC.h; path = Download/ZELocalFileVC.h; sourceTree = "<group>"; };
+		989FC40F1CB641B300576567 /* ZELocalFileVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZELocalFileVC.m; path = Download/ZELocalFileVC.m; sourceTree = "<group>"; };
 		98B2CC201C8FEEBF0015918B /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
 		98B2CC211C8FEEBF0015918B /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
 		98B2CC221C8FEEBF0015918B /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
@@ -213,10 +252,6 @@
 		98BA5C3B1C8D13AF005649AC /* JRPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRPlayerViewController.h; sourceTree = "<group>"; };
 		98BA5C3C1C8D13AF005649AC /* JRPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRPlayerViewController.m; sourceTree = "<group>"; };
 		98BA5C3D1C8D13AF005649AC /* JRPlayerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JRPlayerViewController.xib; sourceTree = "<group>"; };
-		98BA5C541C8D15FF005649AC /* ZEToolKitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEToolKitViewController.h; sourceTree = "<group>"; };
-		98BA5C551C8D15FF005649AC /* ZEToolKitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEToolKitViewController.m; sourceTree = "<group>"; };
-		98BA5C571C8D1614005649AC /* ZEToolKitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEToolKitView.h; sourceTree = "<group>"; };
-		98BA5C581C8D1614005649AC /* ZEToolKitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEToolKitView.m; sourceTree = "<group>"; };
 		98BA5C5A1C8D25DF005649AC /* ZEAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEAppDelegate.h; path = Main/ZEAppDelegate.h; sourceTree = "<group>"; };
 		98BA5C5B1C8D25DF005649AC /* ZEAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEAppDelegate.m; path = Main/ZEAppDelegate.m; sourceTree = "<group>"; };
 		98BA5C5C1C8D25DF005649AC /* ZEMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEMainView.h; path = Main/ZEMainView.h; sourceTree = "<group>"; };
@@ -227,12 +262,6 @@
 		98BA5C641C8D25E7005649AC /* ZESettingRootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZESettingRootVC.m; path = Main/ZESettingRootVC.m; sourceTree = "<group>"; };
 		98BA5C671C8D2A53005649AC /* icon_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_back@2x.png"; path = "Image/icon_back@2x.png"; sourceTree = "<group>"; };
 		98BA5C681C8D2A53005649AC /* icon_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_back@3x.png"; path = "Image/icon_back@3x.png"; sourceTree = "<group>"; };
-		98BA5C6B1C8D4CA9005649AC /* ZEToolKitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEToolKitModel.h; sourceTree = "<group>"; };
-		98BA5C6C1C8D4CA9005649AC /* ZEToolKitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEToolKitModel.m; sourceTree = "<group>"; };
-		98BA5C6E1C8D6095005649AC /* ZESkillViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZESkillViewController.h; sourceTree = "<group>"; };
-		98BA5C6F1C8D6095005649AC /* ZESkillViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZESkillViewController.m; sourceTree = "<group>"; };
-		98BA5C711C8D60AB005649AC /* ZESkillView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZESkillView.h; sourceTree = "<group>"; };
-		98BA5C721C8D60AB005649AC /* ZESkillView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZESkillView.m; sourceTree = "<group>"; };
 		98DB7C451C4F323A0046D405 /* ZEColorConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEColorConstant.h; path = Constant/ZEColorConstant.h; sourceTree = "<group>"; };
 		98DB7C461C4F323A0046D405 /* ZEEnumConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEEnumConstant.h; path = Constant/ZEEnumConstant.h; sourceTree = "<group>"; };
 		98DB7C471C4F323A0046D405 /* ZEMarcoConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEMarcoConstant.h; path = Constant/ZEMarcoConstant.h; sourceTree = "<group>"; };
@@ -259,8 +288,6 @@
 		98E521361CA2803100C531D0 /* tab_homepage_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab_homepage_normal@3x.png"; path = "Image/tab_homepage_normal@3x.png"; sourceTree = "<group>"; };
 		98E521371CA2803100C531D0 /* tab_setting_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab_setting_normal@2x.png"; path = "Image/tab_setting_normal@2x.png"; sourceTree = "<group>"; };
 		98E521381CA2803100C531D0 /* tab_setting_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tab_setting_normal@3x.png"; path = "Image/tab_setting_normal@3x.png"; sourceTree = "<group>"; };
-		98F4A5361C918978002EB56F /* ZEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZEProgressView.h; sourceTree = "<group>"; };
-		98F4A5371C918978002EB56F /* ZEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZEProgressView.m; sourceTree = "<group>"; };
 		98F4A5A31C9196A2002EB56F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		98F85A7E1C87D5D40016892F /* WeiXueTangUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiXueTangUITests.m; sourceTree = "<group>"; };
 		E105A2397763081EFD8784C9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -343,22 +370,65 @@
 		984C1C941C9F90AB00EB153B /* ExpertAssessment  */ = {
 			isa = PBXGroup;
 			children = (
-				984C1C951C9F912F00EB153B /* ZEExpertAssessmentVC.h */,
-				984C1C961C9F912F00EB153B /* ZEExpertAssessmentVC.m */,
-				984C1C981C9F914D00EB153B /* ZEExpertAssessmentView.h */,
-				984C1C991C9F914D00EB153B /* ZEExpertAssessmentView.m */,
-				9883A1C61CA012FA00083756 /* ZEExpertAssModel.h */,
-				9883A1C71CA012FA00083756 /* ZEExpertAssModel.m */,
-				987C888F1CA01DD100A29CB9 /* ZEExpertAssDetailVC.h */,
-				987C88901CA01DD100A29CB9 /* ZEExpertAssDetailVC.m */,
-				987C88921CA01DF000A29CB9 /* ZEExpertAssDetailView.h */,
-				987C88931CA01DF000A29CB9 /* ZEExpertAssDetailView.m */,
-				9842A0041CA155CC0058EFFC /* ZEDetailProjectVC.h */,
-				9842A0051CA155CC0058EFFC /* ZEDetailProjectVC.m */,
-				9842A00A1CA156000058EFFC /* ZEDetailProjectView.h */,
-				9842A00B1CA156000058EFFC /* ZEDetailProjectView.m */,
+				985EF3EB1CB3CC60000929CD /* ZEDetailProjectVC.h */,
+				985EF3EC1CB3CC60000929CD /* ZEDetailProjectVC.m */,
+				985EF3ED1CB3CC60000929CD /* ZEDetailProjectView.h */,
+				985EF3EE1CB3CC60000929CD /* ZEDetailProjectView.m */,
+				985EF3EF1CB3CC60000929CD /* ZEExpertAssDetailVC.h */,
+				985EF3F01CB3CC60000929CD /* ZEExpertAssDetailVC.m */,
+				985EF3F11CB3CC60000929CD /* ZEExpertAssDetailView.h */,
+				985EF3F21CB3CC60000929CD /* ZEExpertAssDetailView.m */,
+				985EF3F31CB3CC60000929CD /* ZEExpertAssessmentCache.h */,
+				985EF3F41CB3CC60000929CD /* ZEExpertAssessmentCache.m */,
+				985EF3F51CB3CC60000929CD /* ZEExpertAssessmentVC.h */,
+				985EF3F61CB3CC60000929CD /* ZEExpertAssessmentVC.m */,
+				985EF3F71CB3CC60000929CD /* ZEExpertAssessmentView.h */,
+				985EF3F81CB3CC60000929CD /* ZEExpertAssessmentView.m */,
+				985EF3F91CB3CC60000929CD /* ZEExpertAssModel.h */,
+				985EF3FA1CB3CC60000929CD /* ZEExpertAssModel.m */,
 			);
 			name = "ExpertAssessment ";
+			sourceTree = "<group>";
+		};
+		985EF3C61CB3CC1B000929CD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				98BA5C531C8D15D2005649AC /* ToolKit */,
+				9880F7971CAA639D0086CED5 /* PersonalSkill */,
+				984C1C941C9F90AB00EB153B /* ExpertAssessment  */,
+				989F2AE91C9A49D20015D35D /* DianZanBiao */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		985EF40C1CB3CC7D000929CD /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				985EF40D1CB3CCC2000929CD /* ZEDownloadVC.h */,
+				985EF40E1CB3CCC2000929CD /* ZEDownloadVC.m */,
+				985EF4191CB64061000929CD /* ZEDownloadSearchVC.h */,
+				985EF41A1CB64061000929CD /* ZEDownloadSearchVC.m */,
+				985EF4101CB3CCDF000929CD /* ZEDownloadSearchView.h */,
+				985EF4111CB3CCDF000929CD /* ZEDownloadSearchView.m */,
+				989FC40E1CB641B300576567 /* ZELocalFileVC.h */,
+				989FC40F1CB641B300576567 /* ZELocalFileVC.m */,
+				985EF4161CB64030000929CD /* ZELocalFileView.h */,
+				985EF4171CB64030000929CD /* ZELocalFileView.m */,
+			);
+			name = Download;
+			sourceTree = "<group>";
+		};
+		9880F7971CAA639D0086CED5 /* PersonalSkill */ = {
+			isa = PBXGroup;
+			children = (
+				985EF3E21CB3CC4D000929CD /* ZEPersonalSkillModel.h */,
+				985EF3E31CB3CC4D000929CD /* ZEPersonalSkillModel.m */,
+				985EF3E41CB3CC4D000929CD /* ZEPersonalSkillVC.h */,
+				985EF3E51CB3CC4D000929CD /* ZEPersonalSkillVC.m */,
+				985EF3E61CB3CC4D000929CD /* ZEPersonalSkillView.h */,
+				985EF3E71CB3CC4D000929CD /* ZEPersonalSkillView.m */,
+			);
+			name = PersonalSkill;
 			sourceTree = "<group>";
 		};
 		989B2C3A1C4DE7A900F14EFA = {
@@ -394,9 +464,8 @@
 				98BA5C5F1C8D25DF005649AC /* ZEMainViewController.m */,
 				98BA5C631C8D25E7005649AC /* ZESettingRootVC.h */,
 				98BA5C641C8D25E7005649AC /* ZESettingRootVC.m */,
-				98BA5C531C8D15D2005649AC /* ToolKit */,
-				984C1C941C9F90AB00EB153B /* ExpertAssessment  */,
-				989F2AE91C9A49D20015D35D /* DianZanBiao */,
+				985EF3C61CB3CC1B000929CD /* Home */,
+				985EF40C1CB3CC7D000929CD /* Download */,
 				98DB7C4A1C4F4F360046D405 /* CommonUtil */,
 				98DB7C3D1C4F2F490046D405 /* Constant */,
 				98BA5BF61C8D136B005649AC /* ThirdLib */,
@@ -441,12 +510,12 @@
 		989F2AE91C9A49D20015D35D /* DianZanBiao */ = {
 			isa = PBXGroup;
 			children = (
-				989F2AEA1C9A549E0015D35D /* ZEDianZanViewController.h */,
-				989F2AEB1C9A549E0015D35D /* ZEDianZanViewController.m */,
-				989F2AED1C9A54BE0015D35D /* ZEDianZanView.h */,
-				989F2AEE1C9A54BE0015D35D /* ZEDianZanView.m */,
-				989F2B031C9AA7FB0015D35D /* ZEDianZanModel.h */,
-				989F2B041C9AA7FB0015D35D /* ZEDianZanModel.m */,
+				985EF4031CB3CC72000929CD /* ZEDianZanModel.h */,
+				985EF4041CB3CC72000929CD /* ZEDianZanModel.m */,
+				985EF4051CB3CC72000929CD /* ZEDianZanView.h */,
+				985EF4061CB3CC72000929CD /* ZEDianZanView.m */,
+				985EF4071CB3CC72000929CD /* ZEDianZanViewController.h */,
+				985EF4081CB3CC72000929CD /* ZEDianZanViewController.m */,
 			);
 			name = DianZanBiao;
 			path = ToolKit;
@@ -535,24 +604,24 @@
 		98BA5C531C8D15D2005649AC /* ToolKit */ = {
 			isa = PBXGroup;
 			children = (
-				98BA5C541C8D15FF005649AC /* ZEToolKitViewController.h */,
-				98BA5C551C8D15FF005649AC /* ZEToolKitViewController.m */,
-				98BA5C571C8D1614005649AC /* ZEToolKitView.h */,
-				98BA5C581C8D1614005649AC /* ZEToolKitView.m */,
-				98BA5C6E1C8D6095005649AC /* ZESkillViewController.h */,
-				98BA5C6F1C8D6095005649AC /* ZESkillViewController.m */,
-				98BA5C711C8D60AB005649AC /* ZESkillView.h */,
-				98BA5C721C8D60AB005649AC /* ZESkillView.m */,
-				98949A921C8EA4970053139C /* ZEImageViewController.h */,
-				98949A931C8EA4970053139C /* ZEImageViewController.m */,
-				98949A951C8EA4DA0053139C /* ZEImageView.h */,
-				98949A961C8EA4DA0053139C /* ZEImageView.m */,
-				98BA5C6B1C8D4CA9005649AC /* ZEToolKitModel.h */,
-				98BA5C6C1C8D4CA9005649AC /* ZEToolKitModel.m */,
-				98F4A5361C918978002EB56F /* ZEProgressView.h */,
-				98F4A5371C918978002EB56F /* ZEProgressView.m */,
-				984BFDF91C969C3100A117FD /* ZEDownloadCaches.h */,
-				984BFDFA1C969C3100A117FD /* ZEDownloadCaches.m */,
+				985EF3C71CB3CC3C000929CD /* ZEDownloadCaches.h */,
+				985EF3C81CB3CC3C000929CD /* ZEDownloadCaches.m */,
+				985EF3C91CB3CC3C000929CD /* ZEImageView.h */,
+				985EF3CA1CB3CC3C000929CD /* ZEImageView.m */,
+				985EF3CB1CB3CC3C000929CD /* ZEImageViewController.h */,
+				985EF3CC1CB3CC3C000929CD /* ZEImageViewController.m */,
+				985EF3CD1CB3CC3C000929CD /* ZEProgressView.h */,
+				985EF3CE1CB3CC3C000929CD /* ZEProgressView.m */,
+				985EF3CF1CB3CC3C000929CD /* ZESkillView.h */,
+				985EF3D01CB3CC3C000929CD /* ZESkillView.m */,
+				985EF3D11CB3CC3C000929CD /* ZESkillViewController.h */,
+				985EF3D21CB3CC3C000929CD /* ZESkillViewController.m */,
+				985EF3D31CB3CC3C000929CD /* ZEToolKitModel.h */,
+				985EF3D41CB3CC3C000929CD /* ZEToolKitModel.m */,
+				985EF3D51CB3CC3C000929CD /* ZEToolKitView.h */,
+				985EF3D61CB3CC3C000929CD /* ZEToolKitView.m */,
+				985EF3D71CB3CC3C000929CD /* ZEToolKitViewController.h */,
+				985EF3D81CB3CC3C000929CD /* ZEToolKitViewController.m */,
 			);
 			path = ToolKit;
 			sourceTree = "<group>";
@@ -686,6 +755,7 @@
 				TargetAttributes = {
 					989B2C421C4DE7AA00F14EFA = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = S2548HAYNX;
 					};
 					989B2C5B1C4DE7AA00F14EFA = {
 						CreatedOnToolsVersion = 7.2;
@@ -846,43 +916,52 @@
 			buildActionMask = 2147483647;
 			files = (
 				98B2CC281C8FEEBF0015918B /* SDPhotoBrowser.m in Sources */,
-				98BA5C701C8D6095005649AC /* ZESkillViewController.m in Sources */,
-				98BA5C731C8D60AB005649AC /* ZESkillView.m in Sources */,
-				9842A0061CA155CC0058EFFC /* ZEDetailProjectVC.m in Sources */,
 				98DB7C501C4F4FA70046D405 /* ZEUtil.m in Sources */,
 				98BA5C511C8D13AF005649AC /* JRPlayerViewController.m in Sources */,
+				985EF3FB1CB3CC60000929CD /* ZEDetailProjectVC.m in Sources */,
+				985EF40F1CB3CCC2000929CD /* ZEDownloadVC.m in Sources */,
+				985EF4011CB3CC60000929CD /* ZEExpertAssessmentView.m in Sources */,
 				989B2C481C4DE7AA00F14EFA /* main.m in Sources */,
-				98F4A5381C918978002EB56F /* ZEProgressView.m in Sources */,
-				984C1C971C9F912F00EB153B /* ZEExpertAssessmentVC.m in Sources */,
+				985EF41B1CB64061000929CD /* ZEDownloadSearchVC.m in Sources */,
+				985EF3DA1CB3CC3C000929CD /* ZEImageView.m in Sources */,
+				985EF4021CB3CC60000929CD /* ZEExpertAssModel.m in Sources */,
 				98BA5C601C8D25DF005649AC /* ZEAppDelegate.m in Sources */,
-				98949A941C8EA4970053139C /* ZEImageViewController.m in Sources */,
-				987C88941CA01DF000A29CB9 /* ZEExpertAssDetailView.m in Sources */,
-				989F2AEC1C9A549E0015D35D /* ZEDianZanViewController.m in Sources */,
-				989F2B051C9AA7FB0015D35D /* ZEDianZanModel.m in Sources */,
+				985EF3DE1CB3CC3C000929CD /* ZESkillViewController.m in Sources */,
+				985EF3FD1CB3CC60000929CD /* ZEExpertAssDetailVC.m in Sources */,
+				985EF3FE1CB3CC60000929CD /* ZEExpertAssDetailView.m in Sources */,
+				985EF4121CB3CCDF000929CD /* ZEDownloadSearchView.m in Sources */,
+				985EF4181CB64030000929CD /* ZELocalFileView.m in Sources */,
+				985EF3DC1CB3CC3C000929CD /* ZEProgressView.m in Sources */,
 				98BA5C621C8D25DF005649AC /* ZEMainViewController.m in Sources */,
-				9842A00C1CA156000058EFFC /* ZEDetailProjectView.m in Sources */,
 				98BA5C611C8D25DF005649AC /* ZEMainView.m in Sources */,
 				984BFDF81C9274AA00A117FD /* ZipArchive.m in Sources */,
+				985EF40A1CB3CC72000929CD /* ZEDianZanView.m in Sources */,
+				985EF4091CB3CC72000929CD /* ZEDianZanModel.m in Sources */,
+				985EF3DD1CB3CC3C000929CD /* ZESkillView.m in Sources */,
+				985EF3D91CB3CC3C000929CD /* ZEDownloadCaches.m in Sources */,
 				982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */,
+				985EF4001CB3CC60000929CD /* ZEExpertAssessmentVC.m in Sources */,
 				98B2CC291C8FEEBF0015918B /* SDWaitingView.m in Sources */,
-				98BA5C561C8D15FF005649AC /* ZEToolKitViewController.m in Sources */,
-				987C88911CA01DD100A29CB9 /* ZEExpertAssDetailVC.m in Sources */,
+				985EF3E11CB3CC3C000929CD /* ZEToolKitViewController.m in Sources */,
 				98B2CC271C8FEEBF0015918B /* SDBrowserImageView.m in Sources */,
-				98949A971C8EA4DA0053139C /* ZEImageView.m in Sources */,
+				985EF3FF1CB3CC60000929CD /* ZEExpertAssessmentCache.m in Sources */,
+				985EF3E91CB3CC4D000929CD /* ZEPersonalSkillVC.m in Sources */,
+				985EF40B1CB3CC72000929CD /* ZEDianZanViewController.m in Sources */,
 				984BFDF51C9274AA00A117FD /* mztools.c in Sources */,
-				984C1C9A1C9F914D00EB153B /* ZEExpertAssessmentView.m in Sources */,
-				989F2AEF1C9A54BE0015D35D /* ZEDianZanView.m in Sources */,
+				985EF3E01CB3CC3C000929CD /* ZEToolKitView.m in Sources */,
+				985EF3FC1CB3CC60000929CD /* ZEDetailProjectView.m in Sources */,
+				985EF3EA1CB3CC4D000929CD /* ZEPersonalSkillView.m in Sources */,
 				98BA5C651C8D25E7005649AC /* ZESettingRootVC.m in Sources */,
-				984BFDFB1C969C3100A117FD /* ZEDownloadCaches.m in Sources */,
 				98BA5C501C8D13AF005649AC /* JRPlayerView.m in Sources */,
-				9883A1C81CA012FA00083756 /* ZEExpertAssModel.m in Sources */,
+				985EF3E81CB3CC4D000929CD /* ZEPersonalSkillModel.m in Sources */,
+				985EF3DB1CB3CC3C000929CD /* ZEImageViewController.m in Sources */,
 				98DB7C621C4F56470046D405 /* ZEUserServer.m in Sources */,
+				989FC4101CB641B300576567 /* ZELocalFileVC.m in Sources */,
 				984BFDF61C9274AA00A117FD /* unzip.c in Sources */,
 				984BFDF71C9274AA00A117FD /* zip.c in Sources */,
-				98BA5C591C8D1614005649AC /* ZEToolKitView.m in Sources */,
 				984BFDF41C9274AA00A117FD /* ioapi.c in Sources */,
 				98DB7C531C4F52050046D405 /* UIImage+ZEImage.m in Sources */,
-				98BA5C6D1C8D4CA9005649AC /* ZEToolKitModel.m in Sources */,
+				985EF3DF1CB3CC3C000929CD /* ZEToolKitModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1017,15 +1096,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhong Shu (G3V7YPDLXV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhong Shu (G3V7YPDLXV)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/WeiXueTang/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.newCentury.NewCentury;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wuxin.ladengTest;
 				PRODUCT_NAME = WeiXueTang;
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = (
@@ -1044,15 +1125,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuhong Shu (G3V7YPDLXV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yuhong Shu (G3V7YPDLXV)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/WeiXueTang/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.newCentury.NewCentury;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wuxin.ladengTest;
 				PRODUCT_NAME = WeiXueTang;
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				USER_HEADER_SEARCH_PATHS = "";
 				WARNING_CFLAGS = (

@@ -273,7 +273,7 @@
         }
     }
 
-    UIView * cellLineLayer        = [[UIView alloc]init];
+    UIView * cellLineLayer        = [UIView new];
     cellLineLayer.frame           = CGRectMake(0.0f, cellH - 0.5, SCREEN_WIDTH, 0.5);
     cellLineLayer.backgroundColor = MAIN_COLOR;
     [cell.contentView addSubview:cellLineLayer];

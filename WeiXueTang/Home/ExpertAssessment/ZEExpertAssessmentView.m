@@ -63,7 +63,7 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static    NSString * cellIdenetifer = @"cell";
+    static NSString * cellIdenetifer = @"cell";
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdenetifer];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdenetifer];

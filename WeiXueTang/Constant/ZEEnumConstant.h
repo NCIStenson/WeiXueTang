@@ -26,4 +26,10 @@ typedef NS_ENUM (NSInteger,EXPERTASSESSMENT_TYPE){
     EXPERTASSESSMENT_TYPE_NO//未评估
 };
 
+//进入课件列表 入口
+typedef NS_ENUM (NSInteger,ENTER_FILELIST_TYPE){
+    ENTER_FILELIST_TYPE_TOOLKIT,//工具包进入
+    ENTER_FILELIST_TYPE_SELFSKILL//个人技能库进入
+};
+
 #endif /* ZEEnumConstant_h */

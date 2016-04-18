@@ -79,9 +79,6 @@
     return [outPutStr uppercaseString];
 }
 
-
-
-
 + (NSDictionary *)getSystemInfo
 {
     NSMutableDictionary *infoDic = [[NSMutableDictionary alloc] init];
@@ -188,4 +185,56 @@
     }
 }
 
+/**
+ *      登录工号
+ */
++ (void)setUsername:(NSString *)username
+{
+    [[NSUserDefaults standardUserDefaults] setObject:username forKey:@"username"];
+}
++ (NSString *)getUsername
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
+}
+/**
+*      登录密码
+*/
++ (void)setPassword:(NSString *)password
+{
+    [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
+}
++ (NSString *)getPassword
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
+}
+/**
+ *  获取本地已经缓存的下载信息
+ */
++ (NSMutableDictionary *)getDownloadFileMessage
+{
+//    NSString * plistPath = [NSString stringWithFormat:@"%@/downloadFile.plist",CACHEPATH];
+    NSMutableDictionary * dictionary = [[NSMutableDictionary alloc]initWithContentsOfFile:DOWNLOADFILEPATH];
+    return dictionary;
+}
+
++(void)writeImageMessageToFile:(NSDictionary *)dic
+{
+    NSMutableArray * mutableArr = [NSMutableArray arrayWithArray:[[self getDownloadFileMessage] objectForKey:@"image"]];
+    [mutableArr addObject:dic];
+    NSMutableDictionary * resultDic = [NSMutableDictionary dictionary];
+    [resultDic setObject:[[ZEUtil getDownloadFileMessage] objectForKey:@"video"] forKey:@"video"];
+    [resultDic setObject:mutableArr forKey:@"image"];
+    [resultDic writeToFile:DOWNLOADFILEPATH atomically:YES];
+    
+}
++(void)writeVideoMessageToFile:(NSDictionary *)dic
+{
+    NSMutableArray * mutableArr = [NSMutableArray arrayWithArray:[[self getDownloadFileMessage] objectForKey:@"video"]];
+    [mutableArr addObject:dic];
+    NSMutableDictionary * resultDic = [NSMutableDictionary dictionary];
+    [resultDic setObject:[[ZEUtil getDownloadFileMessage] objectForKey:@"image"] forKey:@"image"];
+    [resultDic setObject:mutableArr forKey:@"video"];
+    [resultDic writeToFile:DOWNLOADFILEPATH atomically:YES];
+    
+}
 @end

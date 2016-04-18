@@ -45,10 +45,14 @@ static ZEDownloadCaches * downloadCaches = nil;
 
 #pragma mark - 添加下载任务
 
--(void)setCurrentDownloadTasks:(NSString *)filePath loadView:(ZEProgressView *)progressView
+-(void)setCurrentDownloadTasks:(NSString *)fileName loadView:(ZEProgressView *)progressView
 {
-    NSDictionary * dic = @{@"filePath":filePath,@"progress":progressView};
+    NSDictionary * dic = @{@"fileName":fileName,@"progress":progressView};
     [self.downloadTask addObject:dic];
+}
+-(NSArray *)getCurrentDownloadTasks
+{
+    return self.downloadTask;
 }
 
 @end

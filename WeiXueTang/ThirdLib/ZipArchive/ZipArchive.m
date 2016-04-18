@@ -160,6 +160,7 @@
 		if( unzGetGlobalInfo(_unzFile, &globalInfo )==UNZ_OK )
 		{
 			NSLog(@"%@",[NSString stringWithFormat:@"%lu entries in the zip file",globalInfo.number_entry] );
+            [[NSNotificationCenter defaultCenter]postNotificationName:@"number" object:[NSString stringWithFormat:@"%lu",globalInfo.number_entry]];
 		}
 	}
 	return _unzFile!=NULL;

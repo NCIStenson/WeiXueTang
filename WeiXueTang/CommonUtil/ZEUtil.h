@@ -36,6 +36,23 @@
  *     点赞表图片名
  */
 + (NSString *)getDianZanTypeImageName:(DIANZAN_TYPE)type;
+/**
+ *      登录工号
+ */
++ (void)setUsername:(NSString *)username;
++ (NSString *)getUsername;
+/**
+ *      登录密码
+ */
++ (void)setPassword:(NSString *)password;
++ (NSString *)getPassword;
 
+/**
+ *  获取本地已经缓存的下载信息
+ */
+
++ (NSMutableDictionary *)getDownloadFileMessage;
++(void)writeImageMessageToFile:(NSDictionary *)dic;
++(void)writeVideoMessageToFile:(NSDictionary *)dic;
 
 @end

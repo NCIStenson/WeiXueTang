@@ -15,7 +15,7 @@
 /**
  *  进入评分标准页面
  */
--(void)enterDetailProject:(ZEExpertAssModel * )expertAssM;
+-(void)enterDetailProject:(ZEExpertAssModel * )expertAssM index:(NSInteger)row;
 
 @end
 
@@ -25,4 +25,9 @@
 
 -(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)model withType:(EXPERTASSESSMENT_TYPE)enterType;
 
+#pragma mark - PublicMethod 
+
+-(void)reloadView;
+
 @end
+

@@ -14,19 +14,20 @@
 static ZEExpertAssModel * expertAssM = nil;
 + (ZEExpertAssModel *)getDetailModelWithDic:(NSDictionary *)dic
 {
-    expertAssM            = [[ZEExpertAssModel alloc]init];
+    expertAssM                    = [[ZEExpertAssModel alloc]init];
 
-    expertAssM.ORGCODE    = [dic objectForKey:@"ORGCODE"];
-    expertAssM.ORGNAME    = [dic objectForKey:@"ORGNAME"];
-    expertAssM.POINTS     = [dic objectForKey:@"POINTS"];
-    expertAssM.POSCODE    = [dic objectForKey:@"POSCODE"];
-    expertAssM.PSNNAME    = [dic objectForKey:@"PSNNAME"];
-    expertAssM.SKILLID    = [dic objectForKey:@"SKILLID"];
-    expertAssM.SKILL_NAME = [dic objectForKey:@"SKILL_NAME"];
-    expertAssM.STATE      = [dic objectForKey:@"STATE"];
-    
-    expertAssM.detailarray = [[dic objectForKey:@"detailarray"] objectForKey:@"data"];
-    
+    expertAssM.ORGCODE            = [dic objectForKey:@"ORGCODE"];
+    expertAssM.ORGNAME            = [dic objectForKey:@"ORGNAME"];
+    expertAssM.POINTS             = [dic objectForKey:@"POINTS"];
+    expertAssM.POSCODE            = [dic objectForKey:@"POSCODE"];
+    expertAssM.PSNNAME            = [dic objectForKey:@"PSNNAME"];
+    expertAssM.SKILLID            = [dic objectForKey:@"SKILLID"];
+    expertAssM.SKILL_NAME         = [dic objectForKey:@"SKILL_NAME"];
+    expertAssM.STATE              = [dic objectForKey:@"STATE"];
+    expertAssM.UPDATEDATE         = [dic objectForKey:@"UPDATEDATE"];
+
+    expertAssM.detailarray        = [[dic objectForKey:@"detailarray"] objectForKey:@"data"];
+
     expertAssM.detail_ITEMS       = [dic objectForKey:@"ITEMS"];
     expertAssM.detail_MARKS       = [dic objectForKey:@"MARKS"];
     expertAssM.detail_EXPERTSCORE = [dic objectForKey:@"EXPERTSCORE"];
@@ -34,6 +35,7 @@ static ZEExpertAssModel * expertAssM = nil;
     expertAssM.detail_PROJECTNAME = [dic objectForKey:@"PROJECTNAME"];
     expertAssM.detail_ITEMS       = [dic objectForKey:@"ITEMS"];
     expertAssM.detail_BENCHMARK   = [dic objectForKey:@"BENCHMARK"];
+    expertAssM.detail_SEQKEY      = [dic objectForKey:@"SEQKEY"];
 
     
     return expertAssM;

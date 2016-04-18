@@ -100,8 +100,6 @@
     static NSString * CellIdentifier = @"cell";
     UICollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSLog(@">>>  %@",cell.contentView.subviews);
-    
     for (id subView in cell.contentView.subviews) {
         [subView removeFromSuperview];
     }
@@ -184,9 +182,7 @@
 
 // 处理拖拉手势
 - (void) panView:(UIPanGestureRecognizer *)panGestureRecognizer
-{
-    NSLog(@">>>  %@",NSStringFromCGRect(panGestureRecognizer.view.frame));
-    
+{    
     UIView *view = panGestureRecognizer.view;
     if (panGestureRecognizer.state == UIGestureRecognizerStateBegan || panGestureRecognizer.state == UIGestureRecognizerStateChanged) {
         CGPoint translation = [panGestureRecognizer translationInView:view.superview];

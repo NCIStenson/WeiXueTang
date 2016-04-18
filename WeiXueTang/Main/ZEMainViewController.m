@@ -11,7 +11,7 @@
 #import "ZEToolKitViewController.h"
 #import "ZEDianZanViewController.h"
 #import "ZEExpertAssessmentVC.h"
-
+#import "ZEPersonalSkillVC.h"
 #include <ifaddrs.h>
 #include <arpa/inet.h>
 
@@ -39,7 +39,6 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
-    self.tabBarController.tabBar.hidden = YES;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -53,20 +52,29 @@
 
 -(void)goToolKitView
 {
+    self.tabBarController.tabBar.hidden = YES;
     ZEToolKitViewController * toolKitVC = [[ZEToolKitViewController alloc]init];
     [self.navigationController pushViewController:toolKitVC animated:YES];
 }
 
 -(void)goDianZanView
 {
+    self.tabBarController.tabBar.hidden = YES;
     ZEDianZanViewController * dianZanVC = [[ZEDianZanViewController alloc]init];
     [self.navigationController pushViewController:dianZanVC animated:YES];
 }
 
 -(void)gozhuanjiaAssessmentView
 {
+    self.tabBarController.tabBar.hidden = YES;
     ZEExpertAssessmentVC * expertAssVC = [[ZEExpertAssessmentVC alloc]init];
     [self.navigationController pushViewController:expertAssVC animated:YES];
+}
+-(void)goPersonalSkillView
+{
+    self.tabBarController.tabBar.hidden = YES;
+    ZEPersonalSkillVC * perSkillVC = [[ZEPersonalSkillVC alloc]init];
+    [self.navigationController pushViewController:perSkillVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

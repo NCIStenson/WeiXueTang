@@ -8,7 +8,7 @@
 
 #import "ZEAppDelegate.h"
 #import "ZEMainViewController.h"
-//#import ""
+#import "ZEDownloadVC.h"
 #import "AFNetworkReachabilityManager.h"
 
 @interface ZEAppDelegate ()
@@ -24,12 +24,17 @@
     application.applicationSupportsShakeToEdit = YES;
 
     
+//    NSURL* nsUrl = [NSURL URLWithString:[NSString stringWithFormat:@"itms-services:///?action=download-manifest&url=https://120.27.152.63:8443/scanlogin_test/apk/x5.plist"]];
+//    //要用真机器
+//    [[UIApplication  sharedApplication]openURL:nsUrl];
+    
+    
     ZEMainViewController * mainVC = [[ZEMainViewController alloc]init];
     mainVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
     mainVC.tabBarItem.title = @"首页";
     UINavigationController * mainNav = [[UINavigationController alloc]initWithRootViewController:mainVC];
     
-    ZEMainViewController * downloadVC = [[ZEMainViewController alloc]init];
+    ZEDownloadVC * downloadVC = [[ZEDownloadVC alloc]init];
     downloadVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
     downloadVC.tabBarItem.title = @"下载";
     UINavigationController * downloadNav = [[UINavigationController alloc]initWithRootViewController:downloadVC];
@@ -42,6 +47,9 @@
     UITabBarController * tabBarVC = [[UITabBarController alloc]init];
     tabBarVC.viewControllers = @[mainNav,downloadNav,settingNav];
     
+    [ZEUtil setUsername:@"33002858"];
+    [ZEUtil setPassword:@"CFCD208495D565EF66E7DFF9F98764DA"];
+    
 //    NSDictionary * userDataDic = [ZESetLocalData getUserData];
 //    if (userDataDic.allKeys > 0) {
         self.window.rootViewController = tabBarVC;
@@ -51,12 +59,30 @@
 //    self.window.rootViewController = tabBarVC;
 //    self.window.rootViewController = loginVC;
     
+    [self createPlistFile];
     NSLog(@"%@",Zenith_Server);
     NSLog(@"%@",NSHomeDirectory());
 
     [self _checkNet];
     
     return YES;
+}
+
+-(void)createPlistFile
+{
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSString * filePath = [CACHEPATH stringByAppendingPathComponent:@"downloadFile.plist"];
+    NSLog(@">>  %@",filePath);
+    if (![fileManager fileExistsAtPath:CACHEPATH]) {
+        [fileManager createDirectoryAtPath:CACHEPATH withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    if (![fileManager fileExistsAtPath:filePath]) {
+        [fileManager createFileAtPath:filePath contents:nil attributes:nil];        
+        NSDictionary * dic =  @{@"video":@[],
+                                @"image":@[]};
+        [dic writeToFile:filePath atomically:YES];
+    }
+    
 }
 
 - (void) _checkNet{

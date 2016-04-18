@@ -15,6 +15,7 @@
 /**
  *  添加下载任务缓存
  */
--(void)setCurrentDownloadTasks:(NSString *)filePath loadView:(ZEProgressView *)progressView;
+-(void)setCurrentDownloadTasks:(NSString *)fileName loadView:(ZEProgressView *)progressView;
+-(NSArray *)getCurrentDownloadTasks;
 
 @end

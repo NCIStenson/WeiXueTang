@@ -26,6 +26,11 @@
  */
 -(void)gozhuanjiaAssessmentView;
 
+/**
+ *  进入个能技能库
+ */
+-(void)goPersonalSkillView;
+
 @end
 
 

@@ -14,7 +14,7 @@
 #import "ZESkillView.h"
 #import "Masonry.h"
 #import "ZEToolKitModel.h"
-
+#import "ZEDownloadCaches.h"
 @interface ZESkillView()
 {
     UITableView * _contentView;
@@ -105,6 +105,20 @@
         [downLoadBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
     
+    NSArray * downloadCachesArr = [[ZEDownloadCaches instance] getCurrentDownloadTasks];
+    NSLog(@">>>   %@",downloadCachesArr);
+    for (NSDictionary * dic in downloadCachesArr) {
+        if ([[dic objectForKey:@"fileName"] isEqualToString:toolKitM.filename]) {
+            NSLog(@"<<<   正在下载");
+            downLoadBtn.hidden = YES;
+            ZEProgressView *waiting = [dic objectForKey:@"progress"];
+            [cell.contentView addSubview:waiting];
+            
+            break;
+        }
+    }
+    
+    
     return cell;
 }
 #pragma mark - UITableViewDelegate
@@ -129,6 +143,11 @@
 -(void)downloadFiles:(UIButton *)button
 {
     ZEToolKitModel * toolKitM = [ZEToolKitModel getDetailWithDic:self.toolKitListArr[button.tag]];
+    NSLog(@">filepath>  %@",toolKitM.filepath);
+    
+    NSString * noSuffixFileName = [toolKitM.filename componentsSeparatedByString:@"."][0];
+    NSLog(@">filename>  %@",noSuffixFileName);
+
     NSArray * arr= [toolKitM.filepath componentsSeparatedByString:@"."];
     NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,arr[0]];
     
@@ -142,11 +161,13 @@
     [button.superview addSubview:waiting];
 
     if([ZEUtil isStrNotEmpty:toolKitM.pngtype]){
-        if ([self.delegate respondsToSelector:@selector(downloadImagesWithUrlPath:cachePath:progressView:)]) {
-            [self.delegate downloadImagesWithUrlPath:filePath cachePath:arr[0] progressView:waiting];
+        [[ZEDownloadCaches instance] setCurrentDownloadTasks:toolKitM.filename loadView:waiting];
+        if ([self.delegate respondsToSelector:@selector(downloadImagesWithFileName:urlPath:cachePath:progressView:)]) {
+            [self.delegate downloadImagesWithFileName:noSuffixFileName urlPath:filePath cachePath:arr[0] progressView:waiting];
         }
     }else{
         if ([self.delegate respondsToSelector:@selector(downloadVideosWithUrlPath:cachePath:fileName:progressView:)]) {
+            [[ZEDownloadCaches instance] setCurrentDownloadTasks:toolKitM.filename loadView:waiting];
             [self.delegate downloadVideosWithUrlPath:filePath cachePath:arr[0] fileName:toolKitM.filename progressView:waiting];
         }
     }

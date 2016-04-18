@@ -19,25 +19,25 @@
 
 #import "ZEDetailProjectView.h"
 #import "Masonry.h"
-
+#import "ZEExpertAssessmentCache.h"
 @interface ZEDetailProjectView ()<UITextViewDelegate,UITextFieldDelegate,UIScrollViewDelegate>
 {
     ZEExpertAssModel * _detailExpertAssM;
     UIScrollView * _scrollView;
     
     EXPERTASSESSMENT_TYPE _expertAssType;//是否评估过状态
-    
-    UITextField * contentField;
-    UITextView * textView;
 }
+@property (nonatomic,assign) NSInteger indexRow;
+
 @end
 
 @implementation ZEDetailProjectView
 
--(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)expert withType:(EXPERTASSESSMENT_TYPE)type;
+-(id)initWithFrame:(CGRect)frame withModel:(ZEExpertAssModel *)expert withType:(EXPERTASSESSMENT_TYPE)type withIndex:(NSInteger)index
 {
     self = [super initWithFrame:frame];
     if (self) {
+        _indexRow = index;
         _expertAssType = type;
         _detailExpertAssM = expert;
         [self initProjectNameView];
@@ -221,27 +221,30 @@
         make.size.mas_equalTo(CGSizeMake(kContentNameLabelWidth, kContentNameLabelHeight));
     }];
     
-    contentField                    = [[UITextField alloc]init];
-    contentField.keyboardType       = UIKeyboardTypePhonePad;
-    contentField.delegate           = self;
-    contentField.placeholder        = _detailExpertAssM.detail_EXPERTSCORE;
-    contentField.font               = [UIFont systemFontOfSize:13];
-    contentField.textColor          = [UIColor blackColor];
-    [expertScoreView addSubview:contentField];
-    contentField.clipsToBounds      = YES;
-    contentField.layer.cornerRadius = 5;
-    contentField.backgroundColor    = MAIN_LINE_COLOR;
-    contentField.leftView           = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)];
-    contentField.leftViewMode       = UITextFieldViewModeAlways;
-    [contentField mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.contentField                    = [[UITextField alloc]init];
+    _contentField.keyboardType       = UIKeyboardTypePhonePad;
+    _contentField.delegate           = self;
+    _contentField.placeholder        = _detailExpertAssM.detail_EXPERTSCORE;
+    _contentField.font               = [UIFont systemFontOfSize:13];
+    _contentField.textColor          = [UIColor blackColor];
+    [expertScoreView addSubview:_contentField];
+    _contentField.clipsToBounds      = YES;
+    _contentField.layer.cornerRadius = 5;
+    _contentField.backgroundColor    = MAIN_LINE_COLOR;
+    _contentField.leftView           = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 8, 0)];
+    _contentField.leftViewMode       = UITextFieldViewModeAlways;
+    if ([[[ZEExpertAssessmentCache instance]getScoreWithIndex:_indexRow] integerValue] != 0) {
+        _contentField.text = [[ZEExpertAssessmentCache instance]getScoreWithIndex:_indexRow];
+    }
+    [_contentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kContentLabelMarginLeft);
         make.top.mas_equalTo(2);
         make.size.mas_equalTo(CGSizeMake(kContentLabelWidth, 36));
     }];
-    [contentField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [_contentField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     
     if (_expertAssType == EXPERTASSESSMENT_TYPE_DONE) {
-        contentField.enabled = NO;
+        _contentField.enabled = NO;
     }
     
     [self initExpertRemark:YOffset + 40];
@@ -267,21 +270,25 @@
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 20, kContentNameLabelHeight));
     }];
     
-    textView = [[UITextView alloc]init];
-    textView.backgroundColor = MAIN_LINE_COLOR;
-    [expertRemarkView addSubview:textView];
-    textView.textContainerInset = UIEdgeInsetsMake(10, 10, 0, 10);//设置页边距
-    textView.clipsToBounds = YES;
-    textView.delegate = self;
-    textView.layer.cornerRadius = 5;
-    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _remarkTextView = [[UITextView alloc]init];
+    _remarkTextView.backgroundColor = MAIN_LINE_COLOR;
+    [expertRemarkView addSubview:_remarkTextView];
+    _remarkTextView.textContainerInset = UIEdgeInsetsMake(10, 10, 0, 10);//设置页边距
+    _remarkTextView.clipsToBounds = YES;
+    _remarkTextView.delegate = self;
+    _remarkTextView.layer.cornerRadius = 5;
+    [_remarkTextView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kContentNameLableMarginLeft);
         make.top.mas_equalTo(30);
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 20, 70));
 
     }];
+
+    if (![[[ZEExpertAssessmentCache instance]getRemarkWithIndex:_indexRow] isEqualToString:@""]) {
+        _remarkTextView.text = [[ZEExpertAssessmentCache instance]getRemarkWithIndex:_indexRow];
+    }
     if (_expertAssType == EXPERTASSESSMENT_TYPE_DONE) {
-        textView.editable = NO;
+        _remarkTextView.editable = NO;
     }
     
     _scrollView.contentSize = CGSizeMake(SCREEN_WIDTH, YOffset + 100);
@@ -318,6 +325,10 @@
     
     return YES;
 }
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+
+}
 
 #pragma mark - UITextViewDelegate
 
@@ -334,7 +345,9 @@
     }];
 }
 
-
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+}
 
 
 #pragma mark - downTheKeyBoard
