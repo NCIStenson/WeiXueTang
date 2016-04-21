@@ -167,12 +167,12 @@ static ZEServerEngine *serverEngine = nil;
             if (NO == ret){
                 NSLog(@"失败了");
             }else{
-                NSString * imageCachePath = [NSString stringWithFormat:@"%@/%@",finaPath,noSuffixFileName];
+                NSString * imageCachePath = [NSString stringWithFormat:@"Documents/%@/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],desPath,noSuffixFileName];
                 NSFileManager * fileManager = [NSFileManager defaultManager];
-                NSArray * allFileNameArr = [fileManager contentsOfDirectoryAtPath:imageCachePath error:nil];
-
+                NSArray * allFileNameArr = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),imageCachePath] error:nil];
+                //  因每次启动 NSHomeDirectory() 路径会产生变化 所以只缓存文件名之后的路径 加载时 动态获取 NSHomeDirectory()路径 解决问题
                 NSMutableDictionary * dic = [NSMutableDictionary dictionary];
-                
+
                 [dic setObject:allFileNameArr forKey:kImageCacheArr];
                 [dic setObject:noSuffixFileName forKey:kImageCacheName];
                 [dic setObject:imageCachePath forKey:kImageCachePath];
@@ -210,7 +210,7 @@ static ZEServerEngine *serverEngine = nil;
                  completion:(void (^)(NSURL *filePath))completionBlock
                     onError:(void (^)(NSError *error))errorBlock;
 {
-    NSString * plistPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/downloadFile.plist"];
+//    NSString * plistPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/downloadFile.plist"];
     
     //  @"Documents\e.g.\e.g." 目标路径转换成 @"/Documents/e.g./e.g."格式
     NSString * newCachesPath = [cachePath stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
@@ -239,10 +239,7 @@ static ZEServerEngine *serverEngine = nil;
     //Start the download
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
         //Getting the path of the document directory
-        
-        NSLog(@">>  %@",[ZEUtil getDownloadFileMessage]);
-        
-//        判断文件夹路径是否存在 不存在就创建文件夹路径
+        //        判断文件夹路径是否存在 不存在就创建文件夹路径
         NSString * filePath = [NSString stringWithFormat:@"%@/%@",CACHEPATH,newCachesPath];
         NSFileManager * fileManager = [[NSFileManager alloc]init];
         if (![fileManager fileExistsAtPath:filePath]) {
@@ -250,19 +247,13 @@ static ZEServerEngine *serverEngine = nil;
         }
 //        获取文件缓存路径目标文件夹 同时把视频文件命名为filename
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
-        NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",[ZEUtil getUsername],newCachesPath,fileName]];
+        NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],newCachesPath,fileName]];
         
-        
-        NSString * videoCachePath = fullURL.path;
-        
+        NSString * videoCachePath = [NSString stringWithFormat:@"Documents/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],newCachesPath,fileName];
         NSMutableDictionary * dic = [NSMutableDictionary dictionary];
-        
         [dic setObject:fileName forKey:kVideoCacheName];
-//        [dic setObject:noSuffixFileName forKey:kImageCacheName];
         [dic setObject:videoCachePath forKey:kVideoCachePath];
-        
         [ZEUtil writeVideoMessageToFile:dic];
-
 
         return fullURL;
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {

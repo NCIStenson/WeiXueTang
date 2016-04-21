@@ -1,104 +1,103 @@
 //
-//  ZESkillViewController.m
+//  ZEChildTeamFileVC.m
 //  WeiXueTang
 //
-//  Created by Stenson on 16/3/7.
-//  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
+//  Created by Stenson on 16/4/19.
+//  Copyright © 2016年 Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZESkillViewController.h"
-#import "JRPlayerViewController.h"
+#import "ZEChildTeamFileVC.h"
 #import "ZEUserServer.h"
-#import "ZEDownloadCaches.h"
-#import "ZEImageViewController.h"
-
-@interface ZESkillViewController ()
+#import "MBProgressHUD.h"
+#import "JRPlayerViewController.h"
+@interface ZEChildTeamFileVC ()
 {
-    ZESkillView * _skillView;
+    ZEChildTeamFileView * childTeamView;
 }
-
 @property (nonatomic,retain) NSMutableArray * photosArr;
+
 @end
 
-@implementation ZESkillViewController
+@implementation ZEChildTeamFileVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    self.title = @"课件";
-    if(_enterType == ENTER_FILELIST_TYPE_TOOLKIT){
-        [self sendToolKitRequest];
-    }else{
-        [self sendSelfSkillRequest];
-    }
+    self.view.userInteractionEnabled = YES;
     [self initView];
-}
-
--(void)initView
-{
-    _skillView          = [[ZESkillView alloc]initWithFrame:CGRectMake(0, 64.0f, SCREEN_WIDTH, SCREEN_HEIGHT - 64.0f)];
-    [self.view addSubview:_skillView];
-    _skillView.delegate = self;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kUnzipSuccess) name:KDOWNLOADSUCCESS object:nil];
+    if (_enterType == DOWNLOADFILE_TYPE_DEFAULT) {
+        self.title = _fatherFileName;
+        [self sendChildTeamFileVCRequest];
+    }else{
+        [self sendSearchCourseRequest];
+        self.title = @"搜索记录";
+    }
 }
-
 -(void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:KDOWNLOADSUCCESS object:nil];
+    self.photosArr = nil;
+    childTeamView = nil;
+    NSLog( @">>>   释放了" );
+}
+-(void)initView
+{
+    childTeamView = [[ZEChildTeamFileView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT)];
+    childTeamView.delegate = self;
+    [self.view addSubview:childTeamView];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)sendChildTeamFileVCRequest
 {
-    [super viewWillAppear:YES];
-}
--(void)sendToolKitRequest
-{
-    [self progressBegin:nil];
-    [ZEUserServer getCoursewareList:_skillID success:^(id data) {
-        if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
-            [_skillView contentViewReloadData:[data objectForKey:@"data"]];
-        }
-        [self progressEnd:nil];
-    } fail:^(NSError *errorCode) {
-        [self progressEnd:nil];
+    [MBProgressHUD showHUDAddedTo:childTeamView animated:YES];
+    [ZEUserServer getteamfilechild:_childFilePath
+                           success:^(id data) {
+                               NSLog(@" getteamfilechild >>>  %@ ",data);
+                               [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
+                               if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
+                                   [childTeamView contentViewReloadData:[data objectForKey:@"data"]];
+                               }
+    }
+                              fail:^(NSError *errorCode) {
+                                  [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
     }];
 }
--(void)sendSelfSkillRequest
-{
-    [self progressBegin:nil];
-    [ZEUserServer getteamfilechild:_filePath success:^(id data) {
-        if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
-            [_skillView contentViewReloadData:[data objectForKey:@"data"]];
-        }
-        [self progressEnd:nil];
-    } fail:^(NSError *errorCode) {
-        [self progressEnd:nil];
-    }];
-}
-#pragma mark - 解压成功
--(void)kUnzipSuccess
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [[ZEDownloadCaches instance] clearDownloadTasks];
-        [_skillView contentViewReload];
-    });
+
+-(void)sendSearchCourseRequest{
+    [MBProgressHUD showHUDAddedTo:childTeamView animated:YES];
+    [ZEUserServer findcourseWithStr:_searchStr
+                           success:^(id data) {
+                               NSLog(@" getteamfilechild >>>  %@ ",data);
+                               [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
+                               if ([ZEUtil isNotNull:[data objectForKey:@"data"]] &&  [[data objectForKey:@"data"] count] > 0) {
+                                   [childTeamView contentViewReloadData:[data objectForKey:@"data"]];
+                               }else{
+                                   UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"没有该字符搜索结果" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                   [alertView show];
+                               }
+                           }
+                              fail:^(NSError *errorCode) {
+                                  [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
+                              }];
 }
 
-#pragma mark - ZESkillViewDelegate
-
+#pragma mark - ZEChildTeamFileViewDelegate
+-(void)goChildTeamWithPath:(NSString *)filePath withFileName:(NSString *)fileName
+{
+    ZEChildTeamFileVC * fileVC = [[ZEChildTeamFileVC alloc]init];
+    fileVC.childFilePath = filePath;
+    fileVC.fatherFileName = fileName;
+    [self.navigationController pushViewController:fileVC animated:YES];
+}
 -(void)playCourswareVideo:(NSString *)filepath
 {
     NSString *str = [filepath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL * urlStr = [NSURL URLWithString:str];
     JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithHTTPLiveStreamingMediaURL:urlStr];
     [self presentViewController:playView animated:YES completion:^{
-                [playView play:nil];
+        [playView play:nil];
     }];
-
+    
 }
 -(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
 {
@@ -121,7 +120,7 @@
                      progressView:(ZEProgressView *)progressView
 {
     NSString *str = [[NSString stringWithFormat:@"%@.zip",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
+    
     [ZEServerEngine downloadImageZipFromURL:str
                            noSuffixFileName:fileName
                                   cachePath:cachePath
@@ -143,7 +142,6 @@
                     progressView:(ZEProgressView *)progressView
 {
     NSString *str = [[NSString stringWithFormat:@"%@.mp4",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@" str   》》》   %@",str);
     [ZEServerEngine downloadVideoFromURL:str
                                 fileName:fileName
                                cachePath:cachePath
@@ -151,7 +149,7 @@
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     [progressView setProgress:progress];
                                     if (progress == 1) {
-                                        [_skillView contentViewReload];
+                                        [childTeamView contentViewReloadData:nil];
                                     }
                                 });
                             } completion:^(NSURL *filePath) {
@@ -179,12 +177,5 @@
 }
 
 
-#pragma mark - SuperMethod
-
--(void)leftBtnClick
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
 @end
+

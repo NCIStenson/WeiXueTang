@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZELocalFileView.h"
-@interface ZELocalFileVC : UIViewController
+@interface ZELocalFileVC : UIViewController<ZELocalFileViewDelegate>
+
 
 @end

@@ -16,6 +16,8 @@
 #import "ZEDianZanView.h"
 #import "Masonry.h"
 #import "ZEDianZanModel.h"
+#import "ZEToolKitModel.h"
+
 @interface ZEDianZanView ()
 {
     UITableView * _contentTable;
@@ -218,14 +220,19 @@
     ZEDianZanModel * dianZanM = [ZEDianZanModel getDetailWithDic:self.skillListArr[indexPath.row]];
     float cellH = [ZEUtil heightForString:dianZanM.skill_name font:[UIFont systemFontOfSize:(IPHONE6_MORE ? 10.0f : 8.0f)] andWidth:44.0f] + 20.0f;
 
-    UILabel * skillNameLabel       = [[UILabel alloc]initWithFrame:CGRectMake(3.0, 0.0f, 44.0f,cellH)];
-    skillNameLabel.backgroundColor = [UIColor clearColor];
-    [skillNameLabel setTextColor:MAIN_COLOR];
-    [skillNameLabel setFont:[UIFont systemFontOfSize:(IPHONE6_MORE ? 10.0f : 8.0f)]];
-    skillNameLabel.numberOfLines   = 0;
-    skillNameLabel.textAlignment   = NSTextAlignmentCenter;
-    skillNameLabel.text            = dianZanM.skill_name;
-    [cell.contentView addSubview:skillNameLabel];
+    UIButton * skillNameBtn               = [UIButton buttonWithType:UIButtonTypeSystem];
+    skillNameBtn.frame                    = CGRectMake(3.0, 0.0f, 44.0f,cellH);
+    skillNameBtn.backgroundColor          = [UIColor clearColor];
+    [skillNameBtn setTitleColor:MAIN_COLOR forState:UIControlStateNormal];
+    [skillNameBtn setTitleColor:MAIN_COLOR forState:UIControlStateHighlighted];
+    skillNameBtn.titleLabel.font =[UIFont systemFontOfSize:(IPHONE6_MORE ? 10.0f : 8.0f)];
+    skillNameBtn.titleLabel.numberOfLines = 0;
+    skillNameBtn.tag                      = indexPath.row;
+    skillNameBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [skillNameBtn setTitle:dianZanM.skill_name forState:UIControlStateNormal];
+    [cell.contentView addSubview:skillNameBtn];
+    [skillNameBtn addTarget:self action:@selector(goToolKitVC:) forControlEvents:UIControlEventTouchUpInside];
+    
 
     float staffImageBackViewWidth = (SCREEN_WIDTH - 80) / 5;
     /**
@@ -249,23 +256,26 @@
         for (int j = 0; j < model.list.count; j ++) {
             ZEDianZanModel * staffSkillModel = [ZEDianZanModel getDetailWithDic:model.list[j]];
             if ([staffSkillModel.skill_name isEqualToString:dianZanM.skill_name]) {
-                UIImageView * staffImage      = [[UIImageView alloc]initWithFrame:CGRectMake(50.0f + staffImageBackViewWidth * i, 0.0f,staffImageBackViewWidth,cellH)];
+                UIButton * staffImage      = [UIButton buttonWithType:UIButtonTypeCustom];
+                staffImage.frame = CGRectMake(50.0f + staffImageBackViewWidth * i, 0.0f,staffImageBackViewWidth,cellH);
                 staffImage.backgroundColor    = [UIColor clearColor];
                 [cell.contentView addSubview:staffImage];
+                staffImage.tag = i * 100 + indexPath.row;
+                [staffImage addTarget:self action:@selector(staffImageClick:) forControlEvents:UIControlEventTouchUpInside];
                 staffImage.contentMode        = UIViewContentModeCenter;
                 
                 switch ([staffSkillModel.skill_state integerValue]) {
                     case 0:
-                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_NO]]];
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_NO]] forState:UIControlStateNormal];
                         break;
                     case 1:
-                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]]];
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]] forState:UIControlStateNormal];
                         break;
                     case 60:
-                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]]];
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]] forState:UIControlStateNormal];
                         break;
                     default:
-                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DOING]]];
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DOING]] forState:UIControlStateNormal];
                         break;
                 }
                 break;
@@ -281,9 +291,33 @@
 }
 
 
-#pragma mark - UITableViewDelegate
+-(void)goToolKitVC:(UIButton *)button
+{
+    NSLog(@"去技能库  >>>  %d",button.tag);
+    ZEDianZanModel * model = [ZEDianZanModel getDetailWithDic:self.skillListArr[button.tag]];
+    if ([self.delegate respondsToSelector:@selector(goSkillDetail:)]) {
+        [self.delegate goSkillDetail:model.skill_seqkey];
+    }
+}
 
 
+-(void)staffImageClick:(UIButton *)button
+{
+    ZEDianZanModel * model = [ZEDianZanModel getDetailWithDic:self.staffListArr[button.tag / 100]];
+    ZEDianZanModel * staffSkillModel = [ZEDianZanModel getDetailWithDic:model.list[button.tag % 100]];
+    
+    NSArray * arr = [model.psnname componentsSeparatedByString:@"\n"];
+    NSLog(@">>>   %@",arr);
+
+    
+    
+    if([self.delegate respondsToSelector:@selector(goSkillExpertAss:withSkillName:withOrgName:withStaffName:)]){
+        [self.delegate goSkillExpertAss:staffSkillModel.instance_key
+                          withSkillName:staffSkillModel.skill_name
+                            withOrgName:[arr lastObject]
+                          withStaffName:model.psnname];
+    }
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

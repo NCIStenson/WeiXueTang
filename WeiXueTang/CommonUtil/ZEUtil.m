@@ -208,6 +208,20 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
 }
 /**
+ *      登录信息
+ */
++ (void)setLoginUserInfo:(NSDictionary *)dic
+{
+    [[NSUserDefaults standardUserDefaults] setObject:dic forKey:@"userInfo"];
+}
+/**
+ *  部门名称
+ */
++ (NSString *)getOrgname
+{
+    return [[[NSUserDefaults standardUserDefaults] objectForKey:@"userInfo"] objectForKey:@"ORGNAME"];
+}
+/**
  *  获取本地已经缓存的下载信息
  */
 + (NSMutableDictionary *)getDownloadFileMessage

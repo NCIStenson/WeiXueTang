@@ -21,6 +21,10 @@
  */
 -(void)beginSearch:(NSString *)inputStr;
 
+//
+
+-(void)goChildTeamWithPath:(NSString *)filePath withFileName:(NSString *)fileName;
+
 @end
 
 @interface ZEDownloadSearchView : UIView<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
@@ -28,5 +32,6 @@
 @property (nonatomic,weak) id <ZEDownloadSearchViewDelegate> delegate;
 -(id)initWithFrame:(CGRect)frame;
 
+-(void)contentViewReloadData:(NSArray *)arr;
 
 @end

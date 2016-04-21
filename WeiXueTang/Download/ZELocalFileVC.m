@@ -7,9 +7,11 @@
 //
 
 #import "ZELocalFileVC.h"
-
+#import "ZELocalVideoImageVC.h"
 @interface ZELocalFileVC ()
-
+{
+    ZELocalFileView * localFileView;
+}
 @end
 
 @implementation ZELocalFileVC
@@ -17,18 +19,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.userInteractionEnabled = NO;
+    self.view.userInteractionEnabled = YES;
     
     [self initView];
 }
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [localFileView reloadView];
+}
+
 -(void)initView
 {
-    ZELocalFileView * localFileView = [[ZELocalFileView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT + 40.0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT - 49.0f - 40.0)];
-//    localFileView.delegate = self;
+    localFileView = [[ZELocalFileView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT + 40.0, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT - 49.0f - 40.0)];
+    localFileView.delegate = self;
     [self.view addSubview:localFileView];
 }
 
-
+-(void)goVideoOrImageView:(LOCALFILE_TYPE)fileType
+{
+    self.tabBarController.tabBar.hidden = YES;
+    ZELocalVideoImageVC * videoImageVC = [[ZELocalVideoImageVC alloc]init];
+    videoImageVC.fileType = fileType;
+    [self.navigationController pushViewController:videoImageVC animated:YES];
+}
 
 
 - (void)didReceiveMemoryWarning {

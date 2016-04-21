@@ -36,6 +36,7 @@ static ZEExpertAssModel * expertAssM = nil;
     expertAssM.detail_ITEMS       = [dic objectForKey:@"ITEMS"];
     expertAssM.detail_BENCHMARK   = [dic objectForKey:@"BENCHMARK"];
     expertAssM.detail_SEQKEY      = [dic objectForKey:@"SEQKEY"];
+    expertAssM.STAFFPOST          = [dic objectForKey:@"staffPost"];
 
     
     return expertAssM;

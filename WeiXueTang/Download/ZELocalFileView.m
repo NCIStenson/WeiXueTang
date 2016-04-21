@@ -21,17 +21,25 @@
 
 -(void)initView
 {
+    NSDictionary * dic = [ZEUtil getDownloadFileMessage];
+    
+    NSArray * downloadImageArr = [dic objectForKey:@"image"];
+    int localDownLoadImageCount = 0;
+
+    for (int i = 0; i < downloadImageArr.count; i ++) {
+        NSDictionary * imageMessageDic = downloadImageArr [i];
+        localDownLoadImageCount += [[imageMessageDic objectForKey:kImageCacheArr] count];
+    }
+    
     for (int i = 0 ; i < 2  ; i ++) {
         for ( int j = 0; j < 2;  j ++) {
             UIButton * localDiffTypeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             localDiffTypeBtn.frame = CGRectMake(0 + SCREEN_WIDTH / 2 * j, 0 + 150 * i , SCREEN_WIDTH / 2, 150);
-//            [localDiffTypeBtn setTitle:@"视频" forState:UIControlStateNormal];
             [localDiffTypeBtn setTitleEdgeInsets:UIEdgeInsetsMake(50, 0, 0, 0)];
             localDiffTypeBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;//设置button的内容横向居中。。设置content是title和image一起变化
             localDiffTypeBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;//设置button的内容横向居中。。设置content是title和image一起变化
 
             localDiffTypeBtn.titleLabel.numberOfLines = 0;
-//            localDiffTypeBtn.backgroundColor = MAIN_ARM_COLOR;
             [self addSubview:localDiffTypeBtn];
             
             UIImageView * iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH / 2, 40)];
@@ -41,10 +49,12 @@
             [localDiffTypeBtn addSubview:iconImage];
             
             if (i == 0) {
+                localDiffTypeBtn.tag = j + 100;
+                [localDiffTypeBtn addTarget:self action:@selector(goSubView:) forControlEvents:UIControlEventTouchUpInside];
                 if (j == 0) {
-                    [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:@"视频\n共220项"] forState:UIControlStateNormal];
+                    [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:[NSString stringWithFormat:@"视频\n共%d项",[[dic objectForKey:@"video"] count]]] forState:UIControlStateNormal];
                 }else{
-                    [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:@"图片\n共0项"] forState:UIControlStateNormal];
+                    [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:[NSString stringWithFormat:@"图片\n共%d项",localDownLoadImageCount]] forState:UIControlStateNormal];
                 }
             }else{
                 if (j == 0) {
@@ -67,8 +77,27 @@
     hLineLayer.frame = CGRectMake(SCREEN_WIDTH / 2  , 0, 0.5f, 300.0f);
     hLineLayer.backgroundColor = [MAIN_LINE_COLOR CGColor];
     [self.layer addSublayer:hLineLayer];
+}
 
+#pragma mark - Publick Method
+
+-(void)reloadView{
     
+    NSDictionary * dic = [ZEUtil getDownloadFileMessage];
+    NSArray * downloadImageArr = [dic objectForKey:@"image"];
+    int localDownLoadImageCount = 0;
+    
+    for (int i = 0; i < downloadImageArr.count; i ++) {
+        NSDictionary * imageMessageDic = downloadImageArr [i];
+        localDownLoadImageCount += [[imageMessageDic objectForKey:kImageCacheArr] count];
+    }
+    
+    UIButton * localVideoBtn = (UIButton *)[self viewWithTag:LOCALFILE_TYPE_VIDEO];
+    NSAttributedString * videoString = [self getAttrStrWithStr:[NSString stringWithFormat:@"视频\n共%d项",[[dic objectForKey:@"video"] count]]];
+    [localVideoBtn setAttributedTitle:videoString forState:UIControlStateNormal];
+    
+    UIButton * localImageBtn = (UIButton *)[self viewWithTag:LOCALFILE_TYPE_IMAGE];
+    [localImageBtn setAttributedTitle:[self getAttrStrWithStr:[NSString stringWithFormat:@"图片\n共%d项",localDownLoadImageCount]] forState:UIControlStateNormal];
 }
 
 -(NSMutableAttributedString *)getAttrStrWithStr:(NSString *)str
@@ -80,6 +109,15 @@
     
     return attrStr;
 }
+
+-(void)goSubView:(UIButton *)button
+{
+    if ([self.delegate respondsToSelector:@selector(goVideoOrImageView:)]) {
+        [self.delegate goVideoOrImageView:button.tag];
+    }
+}
+
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

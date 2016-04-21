@@ -46,7 +46,11 @@
  */
 + (void)setPassword:(NSString *)password;
 + (NSString *)getPassword;
-
++ (void)setLoginUserInfo:(NSDictionary *)dic;
+/**
+ *  班组名称
+ */
++ (NSString *)getOrgname;
 /**
  *  获取本地已经缓存的下载信息
  */

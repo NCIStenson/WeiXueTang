@@ -23,18 +23,19 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBarHidden = YES;
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"下载/本地";
     [self disableLeftBtn];
-    [self initView];
     
     ZEDownloadSearchVC * downloadSearchVC = [[ZEDownloadSearchVC alloc]init];
     [self addChildViewController:downloadSearchVC];
     
     ZELocalFileVC * localFileVC = [[ZELocalFileVC alloc]init];
     [self addChildViewController:localFileVC];
-    
     [self.view addSubview:downloadSearchVC.view];
+//    [self.view sendSubviewToBack:downloadSearchVC.view];
+    
+    [self initView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -65,7 +66,6 @@
     backgroundLayer.backgroundColor = [MAIN_LINE_COLOR CGColor];
     [self.view.layer addSublayer:backgroundLayer];
 
-    
     lineLayer = [CALayer layer];
     lineLayer.frame = CGRectMake(0, NAV_HEIGHT + 38.0f, SCREEN_WIDTH / 2, 2.0f);
     lineLayer.backgroundColor = [MAIN_COLOR CGColor];
@@ -79,11 +79,15 @@
         [self transitionFromViewController:self.childViewControllers[1] toViewController:self.childViewControllers[0] duration:0.29 options:UIViewAnimationOptionCurveLinear animations:^{
         } completion:^(BOOL finished) {
             NSLog(@"transitionFromViewController");
+            UIViewController * viewCont = self.childViewControllers[0];
+            [self.view sendSubviewToBack:viewCont.view];
         }];
     }else{
         [self transitionFromViewController:self.childViewControllers[0] toViewController:self.childViewControllers[1] duration:0.29 options:UIViewAnimationOptionCurveLinear animations:^{
         } completion:^(BOOL finished) {
             NSLog(@"transitionFromViewController");
+            UIViewController * viewCont = self.childViewControllers[1];
+            [self.view sendSubviewToBack:viewCont.view];
         }];
     }
 }

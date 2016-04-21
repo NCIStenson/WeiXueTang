@@ -17,5 +17,6 @@
  */
 -(void)setCurrentDownloadTasks:(NSString *)fileName loadView:(ZEProgressView *)progressView;
 -(NSArray *)getCurrentDownloadTasks;
+-(void)clearDownloadTasks;
 
 @end

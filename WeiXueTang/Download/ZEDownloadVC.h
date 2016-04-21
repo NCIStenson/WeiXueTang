@@ -9,6 +9,6 @@
 #import "ZESettingRootVC.h"
 #import "ZEDownloadSearchView.h"
 
-@interface ZEDownloadVC : ZESettingRootVC<ZEDownloadSearchViewDelegate>
+@interface ZEDownloadVC : ZESettingRootVC
 
 @end

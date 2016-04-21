@@ -12,14 +12,18 @@
 #define kGetteamfile    @"getteamfile"      //  获取技能课件列表
 #define kSkillSelfView  @"skillSelfView"    //  获取点赞表详情
 
-#define kGetExpertAssessmentList    @"ExpertLogin"
-#define kGetPersonalCourse          @"getPersonalCourse"
-#define kGetSkillSelfView           @"skillSelfView"
+#define kGetExpertAssessmentList    @"ExpertLogin"   //  评估就是登陆接口
+#define kGetPersonalCourse          @"getPersonalCourse" // 获取个人技能库
+#define kGetSkillSelfView           @"skillSelfView"   // 自我评估
 
-#define kSkillSelf                  @"skillSelf"
-#define kGetteamfilechild           @"getteamfilechild"
-#define kPostExpertAssessmentMessage @"ExpertCommit"
+#define kSkillSelf                  @"skillSelf"    // 自我点赞
+#define kGetteamfilechild           @"getteamfilechild"     //  获取子文件目录列表
+#define kPostExpertAssessmentMessage @"ExpertCommit"       //  评估提交
 
+#define kGetAllCourse               @"getallcourse"        //  获取所有的技能
+
+#define kFindCourse                 @"findcourse"           // 搜索下载文件
+#define kClickGoodDetail            @"clickGoodDetail"      // 点赞表详情
 #import "ZEUserServer.h"
 //#import "AFHTTPRequestOperation.h"
 
@@ -155,13 +159,70 @@
                 success:(ServerResponseSuccessBlock)successBlock
                    fail:(ServerResponseFailBlock)failBlock
 {
+    NSLog(@" filePath >>>  %@", filePath);
     [[ZEServerEngine sharedInstance] requestWithServerMethod:nil
                                                       params:@{@"type":kGetteamfilechild,
-                                                               @"data":filePath} httpMethod:HTTPMETHOD_POST success:^(id data) {
+                                                               @"data":filePath}
+                                                  httpMethod:HTTPMETHOD_POST
+                                                     success:^(id data) {
                                                                    successBlock(data);
-                                                               } fail:^(NSError *errorCode) {
+                                                               }
+                                                        fail:^(NSError *errorCode) {
                                                                    failBlock(errorCode);
                                                                }];
 }
+
+/*
+ *  获取课件下载列表
+ */
++(void)getAllCourseSuccess:(ServerResponseSuccessBlock)successBlock
+                      fail:(ServerResponseFailBlock)failBlock
+{
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kGetAllCourse}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+
+/**
+ *  课件下载搜索
+ */
++(void)findcourseWithStr:(NSString *)searchStr
+                 success:(ServerResponseSuccessBlock)successBlock
+                    fail:(ServerResponseFailBlock)failBlock
+{
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kFindCourse,
+                                                              @"data":searchStr}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+
+/**
+ *  点赞表详情页面
+ */
++(void)clickGoodDetail:(NSString *)key
+               success:(ServerResponseSuccessBlock)successBlock
+                  fail:(ServerResponseFailBlock)failBlock
+{
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kClickGoodDetail,
+                                                              @"data":key}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+
 
 @end

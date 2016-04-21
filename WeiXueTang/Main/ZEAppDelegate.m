@@ -47,7 +47,7 @@
     UITabBarController * tabBarVC = [[UITabBarController alloc]init];
     tabBarVC.viewControllers = @[mainNav,downloadNav,settingNav];
     
-    [ZEUtil setUsername:@"33002858"];
+    [ZEUtil setUsername:@"33002810"];
     [ZEUtil setPassword:@"CFCD208495D565EF66E7DFF9F98764DA"];
     
 //    NSDictionary * userDataDic = [ZESetLocalData getUserData];
@@ -67,7 +67,6 @@
     
     return YES;
 }
-
 -(void)createPlistFile
 {
     NSFileManager * fileManager = [NSFileManager defaultManager];

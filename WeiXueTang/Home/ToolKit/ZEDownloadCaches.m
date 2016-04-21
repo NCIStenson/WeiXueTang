@@ -54,5 +54,9 @@ static ZEDownloadCaches * downloadCaches = nil;
 {
     return self.downloadTask;
 }
+-(void)clearDownloadTasks
+{
+    self.downloadTask = [NSMutableArray array];
+}
 
 @end

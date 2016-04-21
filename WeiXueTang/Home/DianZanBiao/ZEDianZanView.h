@@ -22,6 +22,18 @@
  */
 -(void)nextPage;
 
+/**
+ *  进入技能详情列表
+ */
+-(void)goSkillDetail:(NSString *)skillID;
+/**
+ *  进入技能评估详情
+ */
+-(void)goSkillExpertAss:(NSString *)seqkey
+          withSkillName:(NSString *)skillName
+            withOrgName:(NSString * )orgname
+          withStaffName:(NSString *)staffName;
+
 @end
 
 @interface ZEDianZanView : UIView<UITableViewDelegate,UITableViewDataSource>

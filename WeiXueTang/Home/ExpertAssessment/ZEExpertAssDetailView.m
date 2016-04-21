@@ -102,6 +102,9 @@
                 break;
             case 1:
                 listLabel.text = [NSString stringWithFormat:@"班组：%@",_expertAssM.ORGNAME];
+                if (_enterType == EXPERTASSESSMENT_TYPE_DIANZAN) {
+                    listLabel.text = [NSString stringWithFormat:@"职位：%@",_expertAssM.ORGNAME];
+                }
                 break;
             case 2:
                 listLabel.text = [NSString stringWithFormat:@"姓名：%@",_expertAssM.PSNNAME];

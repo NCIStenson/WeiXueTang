@@ -9,6 +9,9 @@
 #import "ZEDianZanViewController.h"
 #import "ZEUserServer.h"
 #import "ZEDianZanModel.h"
+#import "ZESkillViewController.h"
+#import "ZEExpertAssDetailVC.h"
+#import "ZEExpertAssModel.h"
 @interface ZEDianZanViewController ()
 {
     ZEDianZanView * _dianZanView;
@@ -17,7 +20,7 @@
     BOOL _haveNextPage; // 是否有下一页
 }
 @property (nonatomic,assign) NSInteger currentPage;
-
+@property (nonatomic,retain) NSMutableArray * evaluatedArr;
 @end
 
 @implementation ZEDianZanViewController
@@ -34,7 +37,6 @@
 {
     [MBProgressHUD showHUDAddedTo:_dianZanView animated:YES];
     [ZEUserServer getSkillSelfViewWithPage:pageNum success:^(id data) {
-        
         [MBProgressHUD hideAllHUDsForView:_dianZanView animated:YES];
         if ([ZEUtil isNotNull:data]) {
             ZEDianZanModel  *dianZanM = [ZEDianZanModel getDetailWithDic:data];
@@ -88,6 +90,57 @@
     self.currentPage ++ ;
 
 }
+
+-(void)goSkillDetail:(NSString *)skillID
+{
+    ZESkillViewController * skillVC = [[ZESkillViewController alloc]init];
+    skillVC.skillID = skillID;
+    skillVC.enterType = ENTER_FILELIST_TYPE_TOOLKIT;
+    [self.navigationController pushViewController:skillVC animated:YES];
+}
+
+-(void)goSkillExpertAss:(NSString *)seqkey
+          withSkillName:(NSString *)skillName
+            withOrgName:(NSString *)orgname
+          withStaffName:(NSString *)staffName
+{
+    NSLog(@">>>  %@   %@   %@   <%@>",seqkey,skillName,orgname,staffName);
+    
+    [MBProgressHUD showHUDAddedTo:_dianZanView animated:YES];
+    [ZEUserServer clickGoodDetail:seqkey
+                          success:^(id data) {
+                              [MBProgressHUD hideAllHUDsForView:_dianZanView animated:YES];
+                              NSLog(@">>>  %@",data);
+                              
+                              if ([ZEUtil isNotNull:data]) {
+                                  [self goExperAssessmentVC:[data objectForKey:@"data"]
+                                              withSkillName:skillName
+                                                withOrgName:orgname
+                                              withStaffName:staffName];
+                              }
+                          } fail:^(NSError *errorCode) {
+                              [MBProgressHUD hideAllHUDsForView:_dianZanView animated:YES];
+                              
+                          }];
+}
+
+
+-(void)goExperAssessmentVC:(NSDictionary *)dic
+             withSkillName:(NSString *)skillName
+               withOrgName:(NSString *)orgname
+             withStaffName:(NSString *)staffName
+{
+    ZEExpertAssModel * expertM = [ZEExpertAssModel getDetailModelWithDic:@{@"detailarray":@{@"data":dic}}];
+    expertM.ORGNAME = orgname;
+    expertM.SKILL_NAME = skillName;
+    expertM.PSNNAME = staffName;
+    ZEExpertAssDetailVC * detailVC = [[ZEExpertAssDetailVC alloc]init];
+    detailVC.experAssType = EXPERTASSESSMENT_TYPE_DIANZAN;
+    detailVC.expertAssM = expertM;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
+
+
 -(void)showAlertView:(NSString * )messageStr
 {
     if (IS_IOS8) {
@@ -108,6 +161,7 @@
     }
 
 }
+
 
 
 - (void)didReceiveMemoryWarning {

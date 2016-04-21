@@ -29,6 +29,9 @@
 /**************** 技能状态 ****************/
 @property (nonatomic,copy) NSString * UPDATEDATE;
 
+/**************** 人员职位 ****************/
+@property (nonatomic,copy) NSString * STAFFPOST;
+
 
 
 ///**************** 评估详情 ****************/

@@ -96,8 +96,9 @@
     NSArray * arr= [toolKitM.filepath componentsSeparatedByString:@"."];
 //    NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,toolKitM.filepath];
     NSLog(@">>>  %@",[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),arr[0]]);
-    NSString * fileStr = [NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),arr[0]];
+    NSString * fileStr = [NSString stringWithFormat:@"%@/%@",CACHEPATH,arr[0]];
     NSString * filePathStr = [fileStr stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
+    NSLog(@" >>  %@  ",filePathStr);
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePathStr]) {
         downLoadBtn.enabled = NO;
         [downLoadBtn setTitle:@"已下载" forState:UIControlStateNormal];
@@ -143,10 +144,7 @@
 -(void)downloadFiles:(UIButton *)button
 {
     ZEToolKitModel * toolKitM = [ZEToolKitModel getDetailWithDic:self.toolKitListArr[button.tag]];
-    NSLog(@">filepath>  %@",toolKitM.filepath);
-    
     NSString * noSuffixFileName = [toolKitM.filename componentsSeparatedByString:@"."][0];
-    NSLog(@">filename>  %@",noSuffixFileName);
 
     NSArray * arr= [toolKitM.filepath componentsSeparatedByString:@"."];
     NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,arr[0]];

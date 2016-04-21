@@ -104,5 +104,21 @@
 +(void)getteamfilechild:(NSString *)filePath
                 success:(ServerResponseSuccessBlock)successBlock
                    fail:(ServerResponseFailBlock)failBlock;
-
+/*
+ *  获取课件下载列表
+ */
++(void)getAllCourseSuccess:(ServerResponseSuccessBlock)successBlock
+                      fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  课件下载搜索
+ */
++(void)findcourseWithStr:(NSString *)searchStr
+                 success:(ServerResponseSuccessBlock)successBlock
+                    fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  点赞表详情页面
+ */
++(void)clickGoodDetail:(NSString *)key
+               success:(ServerResponseSuccessBlock)successBlock
+                  fail:(ServerResponseFailBlock)failBlock;
 @end

@@ -52,24 +52,26 @@
 -(void)sendRequest
 {
     [MBProgressHUD showHUDAddedTo:_assessView animated:YES];
-    [ZEUserServer getExpertAssessmentList:@"33002858" password:[ZEUtil getmd5WithString:@"0"] success:^(id data) {
-        [MBProgressHUD hideHUDForView:_assessView animated:YES];
-        
-        if(![data objectForKey:@"USER_INVALID_PWD"]){
-            NSLog(@"账号不存在");
-            return;
-        }
-        if ([data objectForKey:@"USER_INVALID_PWD"]) {
-            if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
-                [self handleData:[data objectForKey:@"data"]];
-            }
-        }else{
-            NSLog(@"密码错误");
-        }
-    } fail:^(NSError *errorCode) {
-        [MBProgressHUD hideHUDForView:_assessView animated:YES];
-        
-    }];
+    [ZEUserServer getExpertAssessmentList:[ZEUtil getUsername]
+                                 password:[ZEUtil getPassword]
+                                  success:^(id data) {
+                                      [MBProgressHUD hideHUDForView:_assessView animated:YES];
+                                      NSLog(@">>>>   %@",data);
+                                      if(![data objectForKey:@"USER_INVALID_PWD"]){
+                                          NSLog(@"账号不存在");
+                                          return;
+                                      }
+                                      if ([data objectForKey:@"USER_INVALID_PWD"]) {
+                                          if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
+                                              [ZEUtil setLoginUserInfo:[data objectForKey:@"data"]];
+                                              [self handleData:[data objectForKey:@"data"]];
+                                          }
+                                      }else{
+                                          NSLog(@"密码错误");
+                                      }
+                                  } fail:^(NSError *errorCode) {
+                                      [MBProgressHUD hideHUDForView:_assessView animated:YES];
+                                  }];
 }
 -(void)handleData:(NSArray *)arr
 {
