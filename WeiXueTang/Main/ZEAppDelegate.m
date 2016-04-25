@@ -9,6 +9,7 @@
 #import "ZEAppDelegate.h"
 #import "ZEMainViewController.h"
 #import "ZEDownloadVC.h"
+#import "ZELoginViewController.h"
 #import "AFNetworkReachabilityManager.h"
 
 @interface ZEAppDelegate ()
@@ -28,6 +29,8 @@
 //    //要用真机器
 //    [[UIApplication  sharedApplication]openURL:nsUrl];
     
+//    [ZEUtil setUsername:@"33002810"];
+//    [ZEUtil setPassword:@"CFCD208495D565EF66E7DFF9F98764DA"];
     
     ZEMainViewController * mainVC = [[ZEMainViewController alloc]init];
     mainVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
@@ -47,19 +50,16 @@
     UITabBarController * tabBarVC = [[UITabBarController alloc]init];
     tabBarVC.viewControllers = @[mainNav,downloadNav,settingNav];
     
-    [ZEUtil setUsername:@"33002810"];
-    [ZEUtil setPassword:@"CFCD208495D565EF66E7DFF9F98764DA"];
-    
-//    NSDictionary * userDataDic = [ZESetLocalData getUserData];
-//    if (userDataDic.allKeys > 0) {
+    NSString * username = [ZEUtil getUsername];
+    if ([ZEUtil isStrNotEmpty:username]) {
+        [self createPlistFile];
         self.window.rootViewController = tabBarVC;
-//        return YES;
-//    }
-//    ZELoginViewController * loginVC = [[ZELoginViewController alloc]init];
-//    self.window.rootViewController = tabBarVC;
-//    self.window.rootViewController = loginVC;
+        return YES;
+    }
+    ZELoginViewController * loginVC = [[ZELoginViewController alloc]init];
+    self.window.rootViewController = tabBarVC;
+    self.window.rootViewController = loginVC;
     
-    [self createPlistFile];
     NSLog(@"%@",Zenith_Server);
     NSLog(@"%@",NSHomeDirectory());
 

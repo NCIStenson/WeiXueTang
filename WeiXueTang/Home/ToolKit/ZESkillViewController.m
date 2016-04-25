@@ -18,6 +18,7 @@
 }
 
 @property (nonatomic,retain) NSMutableArray * photosArr;
+@property (nonatomic,retain) NSMutableArray * downloadImageArr;
 @end
 
 @implementation ZESkillViewController
@@ -98,11 +99,21 @@
     [self presentViewController:playView animated:YES completion:^{
                 [playView play:nil];
     }];
+}
+-(void)playLocalVideoFile:(NSString *)videoPath
+{
+    NSString * escapedUrlString = [videoPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];    
+    NSURL * urlStr  = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",escapedUrlString]];
+    JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithLocalMediaURL:urlStr];
+    [self presentViewController:playView animated:YES completion:^{
+        [playView play:nil];
+    }];
 
 }
 -(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
 {
     self.photosArr = [NSMutableArray array];
+    self.downloadImageArr = [NSMutableArray array];
     for(int i = 0; i < [pageNum integerValue]; i ++){
         NSString *str                = [[NSString stringWithFormat:@"%@/\%ld%@",filepath,(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.photosArr addObject:str];
@@ -111,6 +122,22 @@
     browser.currentImageIndex = 0;
     browser.sourceImagesContainerView = self.view;
     browser.imageCount = self.photosArr.count;
+    browser.delegate = self;
+    [browser show];
+}
+-(void)loadLocalImageFile:(NSString *)imagePath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
+{
+    self.photosArr = [NSMutableArray array];
+    self.downloadImageArr = [NSMutableArray array];
+    for(int i = 0; i < [pageNum integerValue]; i ++){
+        NSString *str                = [[NSString stringWithFormat:@"file://%@/\%ld%@",imagePath,(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self.downloadImageArr addObject:str];
+    }
+    
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    browser.currentImageIndex = 0;
+    browser.sourceImagesContainerView = self.view;
+    browser.imageCount = self.downloadImageArr.count;
     browser.delegate = self;
     [browser show];
 }
@@ -130,7 +157,7 @@
                                        [progressView setProgress:progress];
                                    });
                                } completion:^(NSString *filePath) {
-                                   NSLog(@">>>  %@",filePath);
+
                                } onError:^(NSError *error) {
                                    
                                }];
@@ -143,7 +170,6 @@
                     progressView:(ZEProgressView *)progressView
 {
     NSString *str = [[NSString stringWithFormat:@"%@.mp4",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@" str   》》》   %@",str);
     [ZEServerEngine downloadVideoFromURL:str
                                 fileName:fileName
                                cachePath:cachePath
@@ -155,9 +181,7 @@
                                     }
                                 });
                             } completion:^(NSURL *filePath) {
-                                NSLog(@"下载完成");
                             } onError:^(NSError *error) {
-                                NSLog(@"%@",error);
                             }];
 }
 
@@ -168,14 +192,24 @@
 
 - (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
 {
-    NSString *imageName = self.photosArr[index];
+    NSString *imageName = nil;
+    if(self.photosArr.count == 0){
+        imageName = self.downloadImageArr[index];
+    }else{
+        imageName = self.photosArr[index];
+    }
     NSURL *url = [NSURL URLWithString:imageName];
     return url;
 }
 
 - (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
 {
-    return [UIImage imageNamed:@"timeline_image_loading.png"];
+    if(self.photosArr.count > 0){
+        return [UIImage imageNamed:@"timeline_image_loading.png"];
+    }else{
+        UIImage * image = [UIImage imageWithContentsOfFile:self.downloadImageArr[index]];
+        return image;
+    }
 }
 
 

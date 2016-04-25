@@ -260,7 +260,7 @@
                 staffImage.frame = CGRectMake(50.0f + staffImageBackViewWidth * i, 0.0f,staffImageBackViewWidth,cellH);
                 staffImage.backgroundColor    = [UIColor clearColor];
                 [cell.contentView addSubview:staffImage];
-                staffImage.tag = i * 100 + indexPath.row;
+                staffImage.tag = indexPath.row * 1000 + i * 100 + j;
                 [staffImage addTarget:self action:@selector(staffImageClick:) forControlEvents:UIControlEventTouchUpInside];
                 staffImage.contentMode        = UIViewContentModeCenter;
                 
@@ -293,7 +293,6 @@
 
 -(void)goToolKitVC:(UIButton *)button
 {
-    NSLog(@"去技能库  >>>  %d",button.tag);
     ZEDianZanModel * model = [ZEDianZanModel getDetailWithDic:self.skillListArr[button.tag]];
     if ([self.delegate respondsToSelector:@selector(goSkillDetail:)]) {
         [self.delegate goSkillDetail:model.skill_seqkey];
@@ -303,17 +302,22 @@
 
 -(void)staffImageClick:(UIButton *)button
 {
-    ZEDianZanModel * model = [ZEDianZanModel getDetailWithDic:self.staffListArr[button.tag / 100]];
+    //    button.tag / 1000 是点击第N行的技能
+    //    (button.tag % 1000)/100 是获取点击第N个员工
+    //    button.tag % 100 是获取点击第N个员工的第M个技能
+    
+    ZEDianZanModel * skillModel = [ZEDianZanModel getDetailWithDic:self.skillListArr[button.tag / 1000]];
+    ZEDianZanModel * model = [ZEDianZanModel getDetailWithDic:self.staffListArr[(button.tag % 1000)/100]];
     ZEDianZanModel * staffSkillModel = [ZEDianZanModel getDetailWithDic:model.list[button.tag % 100]];
     
     NSArray * arr = [model.psnname componentsSeparatedByString:@"\n"];
-    NSLog(@">>>   %@",arr);
-
-    
+    if (![ZEUtil isStrNotEmpty:staffSkillModel.instance_key]) {
+        return;
+    }
     
     if([self.delegate respondsToSelector:@selector(goSkillExpertAss:withSkillName:withOrgName:withStaffName:)]){
         [self.delegate goSkillExpertAss:staffSkillModel.instance_key
-                          withSkillName:staffSkillModel.skill_name
+                          withSkillName:skillModel.skill_name
                             withOrgName:[arr lastObject]
                           withStaffName:model.psnname];
     }

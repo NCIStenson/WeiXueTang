@@ -10,11 +10,13 @@
 #import "ZEUserServer.h"
 #import "MBProgressHUD.h"
 #import "JRPlayerViewController.h"
+#import "ZEDownloadCaches.h"
 @interface ZEChildTeamFileVC ()
 {
     ZEChildTeamFileView * childTeamView;
 }
 @property (nonatomic,retain) NSMutableArray * photosArr;
+@property (nonatomic,retain) NSMutableArray * downloadImageArr;
 
 @end
 
@@ -38,21 +40,30 @@
 {
     self.photosArr = nil;
     childTeamView = nil;
-    NSLog( @">>>   释放了" );
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KDOWNLOADSUCCESS object:nil];
 }
 -(void)initView
 {
     childTeamView = [[ZEChildTeamFileView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT)];
     childTeamView.delegate = self;
     [self.view addSubview:childTeamView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kUnzipSuccess) name:KDOWNLOADSUCCESS object:nil];
 }
+#pragma mark - 解压成功
+-(void)kUnzipSuccess
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[ZEDownloadCaches instance] clearDownloadTasks];
+        [childTeamView contentViewReload];
+    });
+}
+
 
 -(void)sendChildTeamFileVCRequest
 {
     [MBProgressHUD showHUDAddedTo:childTeamView animated:YES];
     [ZEUserServer getteamfilechild:_childFilePath
                            success:^(id data) {
-                               NSLog(@" getteamfilechild >>>  %@ ",data);
                                [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
                                if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
                                    [childTeamView contentViewReloadData:[data objectForKey:@"data"]];
@@ -67,7 +78,6 @@
     [MBProgressHUD showHUDAddedTo:childTeamView animated:YES];
     [ZEUserServer findcourseWithStr:_searchStr
                            success:^(id data) {
-                               NSLog(@" getteamfilechild >>>  %@ ",data);
                                [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
                                if ([ZEUtil isNotNull:[data objectForKey:@"data"]] &&  [[data objectForKey:@"data"] count] > 0) {
                                    [childTeamView contentViewReloadData:[data objectForKey:@"data"]];
@@ -99,9 +109,35 @@
     }];
     
 }
+-(void)playLocalVideoFile:(NSString *)videoPath
+{
+    NSString * escapedUrlString = [videoPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL * urlStr  = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",escapedUrlString]];
+    JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithLocalMediaURL:urlStr];
+    [self presentViewController:playView animated:YES completion:^{
+        [playView play:nil];
+    }];
+}
+-(void)loadLocalImageFile:(NSString *)imagePath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
+{
+    self.photosArr = [NSMutableArray array];
+    self.downloadImageArr = [NSMutableArray array];
+    for(int i = 0; i < [pageNum integerValue]; i ++){
+        NSString *str                = [[NSString stringWithFormat:@"file://%@/\%ld%@",imagePath,(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        [self.downloadImageArr addObject:str];
+    }
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    browser.currentImageIndex = 0;
+    browser.sourceImagesContainerView = self.view;
+    browser.imageCount = self.downloadImageArr.count;
+    browser.delegate = self;
+    [browser show];
+}
+
 -(void)playCourswareImagePath:(NSString *)filepath withType:(NSString *)pngType withPageNum:(NSString *)pageNum
 {
     self.photosArr = [NSMutableArray array];
+    self.downloadImageArr = [NSMutableArray array];
     for(int i = 0; i < [pageNum integerValue]; i ++){
         NSString *str                = [[NSString stringWithFormat:@"%@/\%ld%@",filepath,(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.photosArr addObject:str];
@@ -129,7 +165,7 @@
                                        [progressView setProgress:progress];
                                    });
                                } completion:^(NSString *filePath) {
-                                   NSLog(@">>>  %@",filePath);
+
                                } onError:^(NSError *error) {
                                    
                                }];
@@ -166,14 +202,24 @@
 
 - (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
 {
-    NSString *imageName = self.photosArr[index];
+    NSString *imageName = nil;
+    if(self.photosArr.count == 0){
+        imageName = self.downloadImageArr[index];
+    }else{
+        imageName = self.photosArr[index];
+    }
     NSURL *url = [NSURL URLWithString:imageName];
     return url;
 }
 
 - (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
 {
-    return [UIImage imageNamed:@"timeline_image_loading.png"];
+    if(self.photosArr.count > 0){
+        return [UIImage imageNamed:@"timeline_image_loading.png"];
+    }else{
+        UIImage * image = [UIImage imageWithContentsOfFile:self.downloadImageArr[index]];
+        return image;
+    }
 }
 
 

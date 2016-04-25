@@ -8,7 +8,7 @@
 
 #import "ZESettingRootVC.h"
 #import "ZELocalVideoImageView.h"
-@interface ZELocalVideoImageVC : ZESettingRootVC
+@interface ZELocalVideoImageVC : ZESettingRootVC<ZELocalVideoImageViewDelegate>
 
 @property (nonatomic,assign) LOCALFILE_TYPE fileType;
 

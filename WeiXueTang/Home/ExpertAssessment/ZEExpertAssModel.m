@@ -18,6 +18,7 @@ static ZEExpertAssModel * expertAssM = nil;
 
     expertAssM.ORGCODE            = [dic objectForKey:@"ORGCODE"];
     expertAssM.ORGNAME            = [dic objectForKey:@"ORGNAME"];
+    expertAssM.LINKKEY            = [dic objectForKey:@"LINKKEY"];
     expertAssM.POINTS             = [dic objectForKey:@"POINTS"];
     expertAssM.POSCODE            = [dic objectForKey:@"POSCODE"];
     expertAssM.PSNNAME            = [dic objectForKey:@"PSNNAME"];

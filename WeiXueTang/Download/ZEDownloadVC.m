@@ -78,14 +78,12 @@
     if (button.tag == 0) {
         [self transitionFromViewController:self.childViewControllers[1] toViewController:self.childViewControllers[0] duration:0.29 options:UIViewAnimationOptionCurveLinear animations:^{
         } completion:^(BOOL finished) {
-            NSLog(@"transitionFromViewController");
             UIViewController * viewCont = self.childViewControllers[0];
             [self.view sendSubviewToBack:viewCont.view];
         }];
     }else{
         [self transitionFromViewController:self.childViewControllers[0] toViewController:self.childViewControllers[1] duration:0.29 options:UIViewAnimationOptionCurveLinear animations:^{
         } completion:^(BOOL finished) {
-            NSLog(@"transitionFromViewController");
             UIViewController * viewCont = self.childViewControllers[1];
             [self.view sendSubviewToBack:viewCont.view];
         }];
@@ -95,7 +93,7 @@
 #pragma mark - ZEDownloadViewDelegate
 -(void)beginSearch:(NSString *)inputStr
 {
-    NSLog(@">>>>>   %@",inputStr);
+
 }
 
 - (void)didReceiveMemoryWarning {

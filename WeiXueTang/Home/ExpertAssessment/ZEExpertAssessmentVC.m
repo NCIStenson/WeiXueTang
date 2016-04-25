@@ -46,6 +46,11 @@
     [self initChildVC];
     [self initView];
     [self sendRequest];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sendRequest) name:KEXPERTSUCCESS object:nil];
+}
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:KEXPERTSUCCESS object:nil];
 }
 #pragma mark - 网络请求
 
@@ -56,9 +61,7 @@
                                  password:[ZEUtil getPassword]
                                   success:^(id data) {
                                       [MBProgressHUD hideHUDForView:_assessView animated:YES];
-                                      NSLog(@">>>>   %@",data);
                                       if(![data objectForKey:@"USER_INVALID_PWD"]){
-                                          NSLog(@"账号不存在");
                                           return;
                                       }
                                       if ([data objectForKey:@"USER_INVALID_PWD"]) {
@@ -67,7 +70,6 @@
                                               [self handleData:[data objectForKey:@"data"]];
                                           }
                                       }else{
-                                          NSLog(@"密码错误");
                                       }
                                   } fail:^(NSError *errorCode) {
                                       [MBProgressHUD hideHUDForView:_assessView animated:YES];
@@ -191,7 +193,6 @@
 {
     ZEExpertAssDetailVC * detailVC = [[ZEExpertAssDetailVC alloc]init];
     if ([_currentBtn isEqual:evaluatedBtn]) {
-        NSLog(@"已审核列表");
         detailVC.experAssType = EXPERTASSESSMENT_TYPE_DONE;
         detailVC.expertAssM = self.evaluatedArr[row];
     }else{

@@ -50,6 +50,23 @@
  */
 -(void)downloadImagesWithFileName:(NSString*)fileName urlPath:(NSString *)urlPath cachePath:(NSString *)cachePath progressView:(ZEProgressView *)progressView;
 
+/**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-04-22 14:04:03
+ *
+ *  播放本地视频文件
+ *
+ *  @param videoPath 文件路径
+ */
+-(void)playLocalVideoFile:(NSString *)videoPath;
+
+/**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-04-22 16:04:17
+ *
+ *  加载本地图片文件
+ *
+ *  @param imagePath 图片路径
+ */
+-(void)loadLocalImageFile:(NSString *)imagePath withType:(NSString *)pngType withPageNum:(NSString *)pageNum;
 @end
 
 

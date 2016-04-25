@@ -127,7 +127,6 @@
         playVideoLabel.layer.cornerRadius = 5;
         playVideoLabel.layer.borderColor = [MAIN_COLOR CGColor];
         playVideoLabel.layer.borderWidth = 1;
-
     }else if (_fileType == LOCALFILE_TYPE_IMAGE){
         NSDictionary * videoMessageDic = [_downloadMessageDic objectForKey:@"image"][indexPath.section];
         
@@ -145,8 +144,18 @@
         imageView.image = [UIImage imageWithContentsOfFile:imageCachePath];
         
     }
-    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_fileType == LOCALFILE_TYPE_VIDEO) {
+        if ([self.delegate respondsToSelector:@selector(playLocalVideoWithPath:)]) {
+            NSDictionary * videoMessageDic = [_downloadMessageDic objectForKey:@"video"][indexPath.row];
+            NSString * videoCachePath = [NSString stringWithFormat:@"%@/%@/%@",NSHomeDirectory(),[videoMessageDic objectForKey:kVideoCachePath],[videoMessageDic objectForKey:kVideoCacheName]];
+            [self.delegate playLocalVideoWithPath:videoCachePath];
+        }
+    }
 }
 
 

@@ -7,7 +7,7 @@
 //
 
 #import "ZELocalVideoImageVC.h"
-
+#import "JRPlayerViewController.h"
 @interface ZELocalVideoImageVC ()
 
 @end
@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@">>>  %d",_fileType);
     self.view.backgroundColor = [UIColor whiteColor];
     if (_fileType == LOCALFILE_TYPE_VIDEO) {
         self.title = @"本地视频";
@@ -31,7 +30,21 @@
 -(void)initView
 {
     ZELocalVideoImageView * localVideoView = [[ZELocalVideoImageView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT) withFileType:_fileType];
+    localVideoView.delegate = self;
     [self.view addSubview:localVideoView];
+}
+
+#pragma mark - localVideoViewDelegate
+
+-(void)playLocalVideoWithPath:(NSString *)videoPath
+{
+    NSLog(@">>  %@",videoPath);
+    NSString * escapedUrlString = [videoPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL * urlStr  = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",escapedUrlString]];
+    JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithLocalMediaURL:urlStr];
+    [self presentViewController:playView animated:YES completion:^{
+        [playView play:nil];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

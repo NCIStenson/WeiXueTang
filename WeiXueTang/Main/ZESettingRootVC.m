@@ -141,7 +141,7 @@
 
 - (void)rightBtnClick
 {
-//    NSLog(@"parent right btn click!!");
+
 }
 
 #pragma mark - Data event

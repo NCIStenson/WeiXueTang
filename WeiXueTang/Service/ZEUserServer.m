@@ -159,7 +159,6 @@
                 success:(ServerResponseSuccessBlock)successBlock
                    fail:(ServerResponseFailBlock)failBlock
 {
-    NSLog(@" filePath >>>  %@", filePath);
     [[ZEServerEngine sharedInstance] requestWithServerMethod:nil
                                                       params:@{@"type":kGetteamfilechild,
                                                                @"data":filePath}

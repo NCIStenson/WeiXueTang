@@ -30,6 +30,8 @@
 #define HTTPMETHOD_GET @"GET"
 #define HTTPMETHOD_POST @"POST"
 
+/************ 评估成功通知 **************/
+#define KEXPERTSUCCESS  @"keyExpertAssessmentSuccess"
 /************ 下载成功通知 **************/
 #define KDOWNLOADSUCCESS  @"keyDownloadSuccess"
 /************ 修改专家评估分数成功通知 **************/

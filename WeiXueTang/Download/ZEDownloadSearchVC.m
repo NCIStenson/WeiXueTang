@@ -32,7 +32,6 @@
 {
     [MBProgressHUD showHUDAddedTo:downloadSearchView animated:YES];
     [ZEUserServer getAllCourseSuccess:^(id data) {
-        NSLog(@">>>   %@",data);
         [MBProgressHUD hideHUDForView:downloadSearchView animated:YES];
         if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
             [downloadSearchView contentViewReloadData:[data objectForKey:@"data"]];
@@ -52,8 +51,6 @@
 #pragma mark - ZEDownloadSearchViewDelegate
 -(void)beginSearch:(NSString *)inputStr
 {
-    NSLog(@" inputStr >>>  %@",inputStr);
-
     if(![ZEUtil isStrNotEmpty:inputStr]){
         UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"请输入关键搜索字符" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];

@@ -153,7 +153,6 @@
 
 -(void)beginSearchFile
 {
-    NSLog(@"beginSearchFile");
     [_textField resignFirstResponder];
     if([self.delegate respondsToSelector:@selector(beginSearch:)]){
         [self.delegate beginSearch:_textField.text];

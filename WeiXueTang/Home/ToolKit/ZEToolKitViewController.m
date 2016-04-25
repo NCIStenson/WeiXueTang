@@ -49,7 +49,6 @@
         }
         [self progressEnd:nil];
     } fail:^(NSError *errorCode) {
-        NSLog(@"%@",errorCode);
         [self progressEnd:nil];
     }];
 }

@@ -12,6 +12,8 @@
 
 /**************** 部门编码 ****************/
 @property (nonatomic,copy) NSString * ORGCODE;
+/**************** 主键 ****************/
+@property (nonatomic,copy) NSString * LINKKEY;
 /**************** 部门名称 ****************/
 @property (nonatomic,copy) NSString * ORGNAME;
 /**************** 分值  ****************/

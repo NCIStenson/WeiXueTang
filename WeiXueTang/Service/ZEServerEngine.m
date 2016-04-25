@@ -75,16 +75,15 @@ static ZEServerEngine *serverEngine = nil;
                   parameters:params
                     progress:nil
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
                          if (![ZEUtil isNotNull:responseObject]) {
                              [self showNetErrorAlertView];
                          }
                          NSDictionary * responseDic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-                         if ([responseDic isKindOfClass:[NSDictionary class]] && [ZEUtil isNotNull:responseDic]) {
+//                         if ([ZEUtil isNotNull:responseDic]) {
                              if (successBlock != nil) {
                                  successBlock(responseDic);
                              }
-                         }
+//                         }
                      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                          [self showNetErrorAlertView];
                          failBlock(error);
@@ -127,19 +126,19 @@ static ZEServerEngine *serverEngine = nil;
         progressBlock(percentageCompleted);
     }];
     
+    
     //Start the download
     NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
         //Getting the path of the document directory
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
         NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.zip",[pathNameArr lastObject]]];
 
-        [self unZipFileOrgPath:fullURL.path desPath:finalCachesPath withFileName:noSuffixFileName];
+        [ZEServerEngine unZipFileOrgPath:fullURL.path desPath:finalCachesPath withFileName:noSuffixFileName];
         //If we already have a video file saved, remove it from the phone
         return fullURL;
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         if (!error) {
             //If there's no error, return the completion block
-            NSLog(@">>>  %@",cachePath);
             completionBlock(cachePath);
         } else {
             //Otherwise return the error block
@@ -154,18 +153,16 @@ static ZEServerEngine *serverEngine = nil;
 
 +(void)unZipFileOrgPath:(NSString *)orgPath desPath:(NSString *)desPath withFileName:(NSString *)noSuffixFileName
 {
-    NSLog(@" desPath   >>>   %@",desPath);
     dispatch_queue_t concurrentQueue = dispatch_queue_create("my.concurrent.queue", DISPATCH_QUEUE_CONCURRENT);
     dispatch_async(concurrentQueue, ^{
         NSString * finaPath = [NSString stringWithFormat:@"%@/%@",CACHEPATH,desPath];
-        NSLog(@" finaPath >>>  %@",finaPath);
         ZipArchive *za = [[ZipArchive alloc] init];
         // 1. 在内存中解压缩文件
         if ([za UnzipOpenFile: orgPath]) {
             // 2. 将解压缩的内容写到缓存目录中
             BOOL ret = [za UnzipFileTo:finaPath  overWrite:YES];
             if (NO == ret){
-                NSLog(@"失败了");
+//                NSLog(@"失败了");
             }else{
                 NSString * imageCachePath = [NSString stringWithFormat:@"Documents/%@/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],desPath,noSuffixFileName];
                 NSFileManager * fileManager = [NSFileManager defaultManager];
@@ -178,13 +175,13 @@ static ZEServerEngine *serverEngine = nil;
                 [dic setObject:imageCachePath forKey:kImageCachePath];
                 
                 [ZEUtil writeImageMessageToFile:dic];
-                
+            
                 [[NSNotificationCenter defaultCenter] postNotificationName:KDOWNLOADSUCCESS object:nil];
                 [self removeVideoAtPath:orgPath];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [za UnzipCloseFile];
+                });
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [za UnzipCloseFile];
-            });
         }else{
             [self unZipFileOrgPath:orgPath desPath:desPath withFileName:noSuffixFileName];
         }
@@ -216,11 +213,9 @@ static ZEServerEngine *serverEngine = nil;
     NSString * newCachesPath = [cachePath stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
     
     NSString * serverAdress = URL;
-    NSLog(@"%@",newCachesPath);
     //Configuring the session manager
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSLog(@"operationQueue >>>>  %@",manager.operationQueue.name);
     manager.operationQueue.maxConcurrentOperationCount = 5;
     //Most URLs I come across are in string format so to convert them into an NSURL and then instantiate the actual request
     NSURL *formattedURL = [NSURL URLWithString:serverAdress];

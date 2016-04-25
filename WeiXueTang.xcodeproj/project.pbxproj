@@ -23,6 +23,8 @@
 		9820D5C71CC62309009D65FC /* ico_list_txt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9820D5BB1CC62309009D65FC /* ico_list_txt@3x.png */; };
 		9820D5C81CC62309009D65FC /* ico_list_mp4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9820D5BC1CC62309009D65FC /* ico_list_mp4@2x.png */; };
 		9820D5C91CC62309009D65FC /* ico_list_mp4@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9820D5BD1CC62309009D65FC /* ico_list_mp4@3x.png */; };
+		9820D5D01CC87179009D65FC /* ZELoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9820D5CD1CC87179009D65FC /* ZELoginView.m */; };
+		9820D5D11CC87179009D65FC /* ZELoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9820D5CF1CC87179009D65FC /* ZELoginViewController.m */; };
 		9821C7701C4E10FF00FE9080 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9821C76F1C4E10FF00FE9080 /* Images.xcassets */; };
 		982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 982F0C691C4E2D4600593946 /* ZEServerEngine.m */; };
 		984BFDF41C9274AA00A117FD /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDEA1C9274AA00A117FD /* ioapi.c */; };
@@ -168,6 +170,10 @@
 		9820D5BB1CC62309009D65FC /* ico_list_txt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ico_list_txt@3x.png"; path = "Image/ico_list_txt@3x.png"; sourceTree = "<group>"; };
 		9820D5BC1CC62309009D65FC /* ico_list_mp4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ico_list_mp4@2x.png"; path = "Image/ico_list_mp4@2x.png"; sourceTree = "<group>"; };
 		9820D5BD1CC62309009D65FC /* ico_list_mp4@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ico_list_mp4@3x.png"; path = "Image/ico_list_mp4@3x.png"; sourceTree = "<group>"; };
+		9820D5CC1CC87179009D65FC /* ZELoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZELoginView.h; sourceTree = "<group>"; };
+		9820D5CD1CC87179009D65FC /* ZELoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZELoginView.m; sourceTree = "<group>"; };
+		9820D5CE1CC87179009D65FC /* ZELoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZELoginViewController.h; sourceTree = "<group>"; };
+		9820D5CF1CC87179009D65FC /* ZELoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZELoginViewController.m; sourceTree = "<group>"; };
 		9821C76F1C4E10FF00FE9080 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		982F0C681C4E2D4600593946 /* ZEServerEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEServerEngine.h; path = Service/ZEServerEngine.h; sourceTree = "<group>"; };
 		982F0C691C4E2D4600593946 /* ZEServerEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEServerEngine.m; path = Service/ZEServerEngine.m; sourceTree = "<group>"; };
@@ -366,6 +372,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9820D5CB1CC87179009D65FC /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9820D5CC1CC87179009D65FC /* ZELoginView.h */,
+				9820D5CD1CC87179009D65FC /* ZELoginView.m */,
+				9820D5CE1CC87179009D65FC /* ZELoginViewController.h */,
+				9820D5CF1CC87179009D65FC /* ZELoginViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		982F0C671C4E2C5F00593946 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,6 +528,7 @@
 				98BA5C5F1C8D25DF005649AC /* ZEMainViewController.m */,
 				98BA5C631C8D25E7005649AC /* ZESettingRootVC.h */,
 				98BA5C641C8D25E7005649AC /* ZESettingRootVC.m */,
+				9820D5CB1CC87179009D65FC /* Login */,
 				985EF3C61CB3CC1B000929CD /* Home */,
 				985EF40C1CB3CC7D000929CD /* Download */,
 				98DB7C4A1C4F4F360046D405 /* CommonUtil */,
@@ -813,7 +831,7 @@
 				TargetAttributes = {
 					989B2C421C4DE7AA00F14EFA = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = S2548HAYNX;
+						DevelopmentTeam = CJ8CND7Y24;
 					};
 					989B2C5B1C4DE7AA00F14EFA = {
 						CreatedOnToolsVersion = 7.2;
@@ -1002,12 +1020,14 @@
 				985EF4121CB3CCDF000929CD /* ZEDownloadSearchView.m in Sources */,
 				985EF4181CB64030000929CD /* ZELocalFileView.m in Sources */,
 				985EF3DC1CB3CC3C000929CD /* ZEProgressView.m in Sources */,
+				9820D5D01CC87179009D65FC /* ZELoginView.m in Sources */,
 				98BA5C621C8D25DF005649AC /* ZEMainViewController.m in Sources */,
 				98BA5C611C8D25DF005649AC /* ZEMainView.m in Sources */,
 				984BFDF81C9274AA00A117FD /* ZipArchive.m in Sources */,
 				985EF40A1CB3CC72000929CD /* ZEDianZanView.m in Sources */,
 				985EF4091CB3CC72000929CD /* ZEDianZanModel.m in Sources */,
 				985EF3DD1CB3CC3C000929CD /* ZESkillView.m in Sources */,
+				9820D5D11CC87179009D65FC /* ZELoginViewController.m in Sources */,
 				985EF3D91CB3CC3C000929CD /* ZEDownloadCaches.m in Sources */,
 				982F0C6A1C4E2D4600593946 /* ZEServerEngine.m in Sources */,
 				9820D5A91CC487FA009D65FC /* ZELocalVideoImageView.m in Sources */,
@@ -1170,7 +1190,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ripeng Zhao (8BJ5KF4673)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ripeng Zhao (8BJ5KF4673)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1199,7 +1219,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ripeng Zhao (8BJ5KF4673)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ripeng Zhao (8BJ5KF4673)";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

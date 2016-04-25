@@ -165,10 +165,8 @@
     for (int i = 0 ; i < self.toolKitListArr.count; i ++) {
         ZEToolKitModel * toolKitM = [ZEToolKitModel getDetailWithDic:self.toolKitListArr[i]];
         if([toolKitM.SKILL_NAME rangeOfString:textField.text].location !=NSNotFound){
-            NSLog(@"yes");
             [self.searchArr addObject:self.toolKitListArr[i]];
         }else{
-            NSLog(@"no");
         }
     }
     [_contentView reloadData];

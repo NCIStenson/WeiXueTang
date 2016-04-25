@@ -103,14 +103,11 @@
           withSkillName:(NSString *)skillName
             withOrgName:(NSString *)orgname
           withStaffName:(NSString *)staffName
-{
-    NSLog(@">>>  %@   %@   %@   <%@>",seqkey,skillName,orgname,staffName);
-    
+{    
     [MBProgressHUD showHUDAddedTo:_dianZanView animated:YES];
     [ZEUserServer clickGoodDetail:seqkey
                           success:^(id data) {
                               [MBProgressHUD hideAllHUDsForView:_dianZanView animated:YES];
-                              NSLog(@">>>  %@",data);
                               
                               if ([ZEUtil isNotNull:data]) {
                                   [self goExperAssessmentVC:[data objectForKey:@"data"]

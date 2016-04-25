@@ -78,7 +78,9 @@
     [dataDic setObject:[ZEUtil getUsername] forKey:@"expert"];
     [dataDic setObject:_expertAssM.SKILL_NAME forKey:@"skillname"];
     [dataDic setObject:_expertAssM.PSNNAME forKey:@"name"];
-    [dataDic setObject:_expertAssM.UPDATEDATE forKey:@"time"];
+
+    NSArray * dateArr = [_expertAssM.UPDATEDATE componentsSeparatedByString:@"-"];
+    [dataDic setObject:[dateArr firstObject] forKey:@"time"];
     
     NSMutableArray * detailExpertScoreArr = [NSMutableArray array];
     for (int i = 0; i < _expertAssM.detailarray.count ; i ++) {
@@ -98,14 +100,48 @@
     }
     
     [dataDic setObject:detailExpertScoreArr forKey:@"p_list"];
+    [dataDic setObject:_expertAssM.LINKKEY forKey:@"LINKKEY"];
 
-    [ZEUserServer postExpertAssessmentMessage:@"1" assessmentData:dataDic files:nil success:^(id data) {
-
-    } fail:^(NSError *errorCode) {
-
+    __block ZEExpertAssDetailVC * safeSelf  = self;
+    [MBProgressHUD showHUDAddedTo:_detailView animated:YES];
+    [ZEUserServer postExpertAssessmentMessage:@"1"
+                               assessmentData:dataDic
+                                        files:nil
+                                      success:^(id data) {
+                                          [MBProgressHUD hideAllHUDsForView:_detailView animated:YES];
+                                          NSLog(@"postExpertAssessmentMessage >>>   %@",data);
+                                          if ([ZEUtil isNotNull:data]) {
+                                              [safeSelf showAlertView:@"提交失败，请稍后重试"];
+                                          }else{
+                                              [safeSelf showAlertView:@"提交成功"];
+                                              [[NSNotificationCenter defaultCenter] postNotificationName:KEXPERTSUCCESS object:nil];
+                                          }
+    }
+                                         fail:^(NSError *errorCode) {
+                                             [MBProgressHUD hideAllHUDsForView:_detailView animated:YES];
     }];
     
     
+}
+
+-(void)showAlertView:(NSString *)message
+{
+    if (IS_IOS8) {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:message
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction            = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
+        [alertController addAction:okAction];
+        //        [self presentViewController:alertController animated:YES completion:nil];
+        
+    }else{
+        UIAlertView * alertView            = [[UIAlertView alloc]initWithTitle:message
+                                                                       message:nil
+                                                                      delegate:nil
+                                                             cancelButtonTitle:@"好的"
+                                                             otherButtonTitles:nil, nil];
+        [alertView show];
+    }
 }
 
 /*

@@ -53,7 +53,9 @@
     }
     [_contentTableView reloadData];
 }
-
+-(void)contentViewReload{
+    [_contentTableView reloadData];
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -106,23 +108,17 @@
         downLoadBtn.tag = indexPath.row;
         [downLoadBtn addTarget:self action:@selector(downloadFiles:) forControlEvents:UIControlEventTouchUpInside];
         NSArray * arr= [downloadfileM.filepath componentsSeparatedByString:@"."];
-        //    NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,toolKitM.filepath];
-        NSLog(@">>>  %@",[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),arr[0]]);
         NSString * fileStr = [NSString stringWithFormat:@"%@/%@",CACHEPATH,arr[0]];
         NSString * filePathStr = [fileStr stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
-        NSLog(@" >>  %@  ",filePathStr);
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePathStr]) {
             downLoadBtn.enabled = NO;
             [downLoadBtn setTitle:@"已下载" forState:UIControlStateNormal];
             downLoadBtn.titleLabel.font = [UIFont systemFontOfSize:12];
             [downLoadBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         }
-        
         NSArray * downloadCachesArr = [[ZEDownloadCaches instance] getCurrentDownloadTasks];
-        NSLog(@">>>   %@",downloadCachesArr);
         for (NSDictionary * dic in downloadCachesArr) {
             if ([[dic objectForKey:@"fileName"] isEqualToString:downloadfileM.filename]) {
-                NSLog(@"<<<   正在下载");
                 downLoadBtn.hidden = YES;
                 ZEProgressView *waiting = [dic objectForKey:@"progress"];
                 [cell.contentView addSubview:waiting];
@@ -137,16 +133,43 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    
     ZEDownloadFileModel * downloadfileM = [ZEDownloadFileModel getDetailWithDic:self.childTeamFileArr[indexPath.row]];
-    
     if ([downloadfileM.filetype isEqualToString:@"folder"]) {
-        NSArray * pathArr = [downloadfileM.filepath componentsSeparatedByString:@"\\"];
-        NSString * filePath = [downloadfileM.filepath stringByReplacingOccurrencesOfString:pathArr[0] withString:@""];
-        if ([self.delegate respondsToSelector:@selector(goChildTeamWithPath:withFileName:)]) {
-            [self.delegate goChildTeamWithPath:filePath withFileName:downloadfileM.filename];
+        [self loadNextFolder:downloadfileM];
+    }else{
+        [self loadFile:downloadfileM];
+    }
+}
+/******************  加载下层文件夹  ***************/
+-(void)loadNextFolder:(ZEDownloadFileModel *)downloadfileM
+{
+    NSArray * pathArr = [downloadfileM.filepath componentsSeparatedByString:@"\\"];
+    NSString * filePath = [downloadfileM.filepath stringByReplacingOccurrencesOfString:pathArr[0] withString:@""];
+    if ([self.delegate respondsToSelector:@selector(goChildTeamWithPath:withFileName:)]) {
+        [self.delegate goChildTeamWithPath:filePath withFileName:downloadfileM.filename];
+    }
+}
+/******************  加载文件  ***************/
+
+-(void)loadFile:(ZEDownloadFileModel *)downloadfileM
+{
+    NSArray * arr= [downloadfileM.filepath componentsSeparatedByString:@"."];
+    NSString * fileStr = [NSString stringWithFormat:@"%@/%@",CACHEPATH,arr[0]];
+    NSString * filePathStr = [fileStr stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:filePathStr]) {
+        if([ZEUtil isStrNotEmpty:downloadfileM.pngtype]){
+            if ([self.delegate respondsToSelector:@selector(loadLocalImageFile:withType:withPageNum:)]) {
+                NSLog(@">>>  %@",filePathStr);
+                [self.delegate loadLocalImageFile:filePathStr withType:downloadfileM.pngtype withPageNum:downloadfileM.pngnum];
+            }
+        }else{
+            if ([self.delegate respondsToSelector:@selector(playLocalVideoFile:)]) {
+                NSString * videoPathStr = [NSString stringWithFormat:@"%@/%@",filePathStr,downloadfileM.filename];
+                [self.delegate playLocalVideoFile:videoPathStr];
+            }
         }
     }else{
         if([ZEUtil isStrNotEmpty:downloadfileM.pngtype]){
@@ -163,16 +186,17 @@
         }
     }
 }
-
 -(void)downloadFiles:(UIButton *)button
 {
-    ZEDownloadFileModel * toolKitM = [ZEDownloadFileModel getDetailWithDic:self.childTeamFileArr[button.tag]];
-    NSLog(@">filepath>  %@",toolKitM.filepath);
+    NSArray * downloadCaches = [[ZEDownloadCaches instance] getCurrentDownloadTasks];
+    if (downloadCaches.count > 0) {
+        [self showAlertView];
+        return;
+    }
     
-    NSString * noSuffixFileName = [toolKitM.filename componentsSeparatedByString:@"."][0];
-    NSLog(@">filename>  %@",noSuffixFileName);
-    
-    NSArray * arr= [toolKitM.filepath componentsSeparatedByString:@"."];
+    ZEDownloadFileModel * downloadfileM = [ZEDownloadFileModel getDetailWithDic:self.childTeamFileArr[button.tag]];
+    NSString * noSuffixFileName = [downloadfileM.filename componentsSeparatedByString:@"."][0];
+    NSArray * arr= [downloadfileM.filepath componentsSeparatedByString:@"."];
     NSString * filePath = [NSString stringWithFormat:@"%@/file/%@",Zenith_Server,arr[0]];
     
     button.hidden = YES;
@@ -184,18 +208,22 @@
     waiting.center = button.center;
     [button.superview addSubview:waiting];
     
-    if([ZEUtil isStrNotEmpty:toolKitM.pngtype]){
-        [[ZEDownloadCaches instance] setCurrentDownloadTasks:toolKitM.filename loadView:waiting];
+    if([ZEUtil isStrNotEmpty:downloadfileM.pngtype]){
+        [[ZEDownloadCaches instance] setCurrentDownloadTasks:downloadfileM.filename loadView:waiting];
         if ([self.delegate respondsToSelector:@selector(downloadImagesWithFileName:urlPath:cachePath:progressView:)]) {
             [self.delegate downloadImagesWithFileName:noSuffixFileName urlPath:filePath cachePath:arr[0] progressView:waiting];
         }
     }else{
         if ([self.delegate respondsToSelector:@selector(downloadVideosWithUrlPath:cachePath:fileName:progressView:)]) {
-            [[ZEDownloadCaches instance] setCurrentDownloadTasks:toolKitM.filename loadView:waiting];
-            [self.delegate downloadVideosWithUrlPath:filePath cachePath:arr[0] fileName:toolKitM.filename progressView:waiting];
+            [[ZEDownloadCaches instance] setCurrentDownloadTasks:downloadfileM.filename loadView:waiting];
+            [self.delegate downloadVideosWithUrlPath:filePath cachePath:arr[0] fileName:downloadfileM.filename progressView:waiting];
         }
     }
 }
 
-
+-(void)showAlertView
+{
+    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"当前有正在进行的下载任务，请下载完成后再进行下载" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alertView show];
+}
 @end
