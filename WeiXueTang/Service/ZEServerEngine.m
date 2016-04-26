@@ -167,10 +167,16 @@ static ZEServerEngine *serverEngine = nil;
                 NSString * imageCachePath = [NSString stringWithFormat:@"Documents/%@/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],desPath,noSuffixFileName];
                 NSFileManager * fileManager = [NSFileManager defaultManager];
                 NSArray * allFileNameArr = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),imageCachePath] error:nil];
+//                获取图片文件类型
+                NSString * fielType = [[[allFileNameArr firstObject] componentsSeparatedByString:@"."] lastObject];
+                NSMutableArray * orderlyArr = [NSMutableArray arrayWithCapacity:allFileNameArr.count ];
+                for (int i = 0; i < allFileNameArr.count; i ++) {
+                    [orderlyArr addObject:[NSString stringWithFormat:@"%d.%@",i+1,fielType]];
+                }
                 //  因每次启动 NSHomeDirectory() 路径会产生变化 所以只缓存文件名之后的路径 加载时 动态获取 NSHomeDirectory()路径 解决问题
                 NSMutableDictionary * dic = [NSMutableDictionary dictionary];
 
-                [dic setObject:allFileNameArr forKey:kImageCacheArr];
+                [dic setObject:orderlyArr forKey:kImageCacheArr];
                 [dic setObject:noSuffixFileName forKey:kImageCacheName];
                 [dic setObject:imageCachePath forKey:kImageCachePath];
                 

@@ -18,7 +18,7 @@
  *
  *  @param videoPath 视频文件路径
  */
--(void)playLocalVideoWithPath:(NSString *)videoPath;
+-(void)playLocalVideoWithPath:(NSString *)videoPath ;
 
 
 /**
@@ -28,7 +28,7 @@
  *
  *  @param imagePath 图片文件路径
  */
--(void)loadLocalImageWithPath:(NSString *)imagePath;
+-(void)loadLocalImageWithPath:(NSString *)imagePath withIndex:(NSInteger)index withImagePathArr:(NSArray *)imagePathArr;
 
 @end
 

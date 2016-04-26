@@ -162,7 +162,6 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:filePathStr]) {
         if([ZEUtil isStrNotEmpty:downloadfileM.pngtype]){
             if ([self.delegate respondsToSelector:@selector(loadLocalImageFile:withType:withPageNum:)]) {
-                NSLog(@">>>  %@",filePathStr);
                 [self.delegate loadLocalImageFile:filePathStr withType:downloadfileM.pngtype withPageNum:downloadfileM.pngnum];
             }
         }else{

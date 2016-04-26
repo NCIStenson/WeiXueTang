@@ -227,9 +227,7 @@
 
 - (void)showFirstImage
 {
-    
-    
-    UIView *sourceView = self.sourceImagesContainerView.subviews[self.currentImageIndex];
+    UIView *sourceView = self.sourceImagesContainerView.subviews[0];
     CGRect rect = [self.sourceImagesContainerView convertRect:sourceView.frame toView:self];
     
     UIImageView *tempView = [[UIImageView alloc] init];

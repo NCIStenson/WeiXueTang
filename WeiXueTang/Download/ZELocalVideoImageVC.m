@@ -8,7 +8,10 @@
 
 #import "ZELocalVideoImageVC.h"
 #import "JRPlayerViewController.h"
-@interface ZELocalVideoImageVC ()
+#import "SDPhotoBrowser.h"
+@interface ZELocalVideoImageVC ()<SDPhotoBrowserDelegate>
+
+@property (nonatomic,strong) NSMutableArray * downloadImageArr;
 
 @end
 
@@ -38,7 +41,6 @@
 
 -(void)playLocalVideoWithPath:(NSString *)videoPath
 {
-    NSLog(@">>  %@",videoPath);
     NSString * escapedUrlString = [videoPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL * urlStr  = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",escapedUrlString]];
     JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithLocalMediaURL:urlStr];
@@ -46,6 +48,37 @@
         [playView play:nil];
     }];
 }
+
+-(void)loadLocalImageWithPath:(NSString *)imagePath withIndex:(NSInteger)index withImagePathArr:(NSArray *)imagePathArr
+{
+    self.downloadImageArr = [NSMutableArray arrayWithCapacity:imagePathArr.count];
+
+    for (int i = 0; i < imagePathArr.count; i ++){
+        NSString * str = [imagePath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%d.",index] withString:[NSString stringWithFormat:@"%d.",i+1]];
+        [self.downloadImageArr addObject:str];
+    }
+    
+    SDPhotoBrowser *browser           = [[SDPhotoBrowser alloc] init];
+    browser.delegate                  = self;
+    browser.sourceImagesContainerView = self.view;
+    browser.imageCount                = self.downloadImageArr.count;
+    browser.currentImageIndex         = index;
+    [browser show];
+}
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index
+{
+    NSString *imageName = nil;
+    imageName           = self.downloadImageArr[index];
+    NSURL *url          = [NSURL URLWithString:imageName];
+    return url;
+}
+
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index
+{
+    UIImage * image = [UIImage imageWithContentsOfFile:self.downloadImageArr[index]];
+    return image;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

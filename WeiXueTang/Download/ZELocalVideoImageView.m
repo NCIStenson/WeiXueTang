@@ -128,10 +128,11 @@
         playVideoLabel.layer.borderColor = [MAIN_COLOR CGColor];
         playVideoLabel.layer.borderWidth = 1;
     }else if (_fileType == LOCALFILE_TYPE_IMAGE){
-        NSDictionary * videoMessageDic = [_downloadMessageDic objectForKey:@"image"][indexPath.section];
+        NSDictionary * imageMessageDic = [_downloadMessageDic objectForKey:@"image"][indexPath.section];
         
         UILabel * imageNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(150, 0.0f, 170, kImageCellHeight)];
-        imageNameLabel.text = [videoMessageDic objectForKey:kImageCacheArr][indexPath.row];
+        imageNameLabel.text = [NSString stringWithFormat:@"%d.png",indexPath.row + 1];
+        imageNameLabel.text = [imageMessageDic objectForKey:kImageCacheArr][indexPath.row];
         imageNameLabel.textAlignment = NSTextAlignmentLeft;
         [cell.contentView addSubview:imageNameLabel];
         
@@ -140,7 +141,7 @@
         UIImageView * imageView        = [[UIImageView alloc]initWithFrame:CGRectMake(30, 5, 80, 110)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [cell.contentView addSubview:imageView];
-        NSString * imageCachePath = [NSString stringWithFormat:@"%@/%@/%@",NSHomeDirectory(),[videoMessageDic objectForKey:kImageCachePath],imageNameLabel.text];
+        NSString * imageCachePath = [NSString stringWithFormat:@"%@/%@/%@",NSHomeDirectory(),[imageMessageDic objectForKey:kImageCachePath],imageNameLabel.text];
         imageView.image = [UIImage imageWithContentsOfFile:imageCachePath];
         
     }
@@ -154,6 +155,12 @@
             NSDictionary * videoMessageDic = [_downloadMessageDic objectForKey:@"video"][indexPath.row];
             NSString * videoCachePath = [NSString stringWithFormat:@"%@/%@/%@",NSHomeDirectory(),[videoMessageDic objectForKey:kVideoCachePath],[videoMessageDic objectForKey:kVideoCacheName]];
             [self.delegate playLocalVideoWithPath:videoCachePath];
+        }
+    }else{
+        if ([self.delegate respondsToSelector:@selector(loadLocalImageWithPath:withIndex:withImagePathArr:)]) {
+            NSDictionary * imageMessageDic = [_downloadMessageDic objectForKey:@"image"][indexPath.section];
+            NSString * imageCachePath = [NSString stringWithFormat:@"%@/%@/%@",NSHomeDirectory(),[imageMessageDic objectForKey:kImageCachePath],[imageMessageDic objectForKey:kImageCacheArr][indexPath.row]];
+            [self.delegate loadLocalImageWithPath:imageCachePath withIndex:indexPath.row withImagePathArr:[imageMessageDic objectForKey:kImageCacheArr]];
         }
     }
 }
