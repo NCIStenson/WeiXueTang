@@ -196,6 +196,12 @@
 {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"username"];
 }
++(void)clearUserInfo
+{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"username"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"password"];
+}
+
 /**
 *      登录密码
 */

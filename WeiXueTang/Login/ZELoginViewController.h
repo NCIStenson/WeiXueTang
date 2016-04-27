@@ -6,8 +6,8 @@
 //  Copyright © 2016年 Zenith Electronic. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ZESettingRootVC.h"
 
-@interface ZELoginViewController : UIViewController
+@interface ZELoginViewController : ZESettingRootVC
 
 @end

@@ -165,6 +165,8 @@ static ZEServerEngine *serverEngine = nil;
 //                NSLog(@"失败了");
             }else{
                 NSString * imageCachePath = [NSString stringWithFormat:@"Documents/%@/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],desPath,noSuffixFileName];
+                NSString * finallyPath = [imageCachePath stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+
                 NSFileManager * fileManager = [NSFileManager defaultManager];
                 NSArray * allFileNameArr = [fileManager contentsOfDirectoryAtPath:[NSString stringWithFormat:@"%@/%@",NSHomeDirectory(),imageCachePath] error:nil];
 //                获取图片文件类型
@@ -178,7 +180,7 @@ static ZEServerEngine *serverEngine = nil;
 
                 [dic setObject:orderlyArr forKey:kImageCacheArr];
                 [dic setObject:noSuffixFileName forKey:kImageCacheName];
-                [dic setObject:imageCachePath forKey:kImageCachePath];
+                [dic setObject:finallyPath forKey:kImageCachePath];
                 
                 [ZEUtil writeImageMessageToFile:dic];
             

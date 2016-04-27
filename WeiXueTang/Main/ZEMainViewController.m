@@ -12,9 +12,7 @@
 #import "ZEDianZanViewController.h"
 #import "ZEExpertAssessmentVC.h"
 #import "ZEPersonalSkillVC.h"
-#include <ifaddrs.h>
-#include <arpa/inet.h>
-
+#import "ZELoginViewController.h"
 @interface ZEMainViewController ()
 {
 
@@ -75,6 +73,14 @@
     self.tabBarController.tabBar.hidden = YES;
     ZEPersonalSkillVC * perSkillVC = [[ZEPersonalSkillVC alloc]init];
     [self.navigationController pushViewController:perSkillVC animated:YES];
+}
+-(void)logout{
+    
+    [ZEUtil clearUserInfo];
+    
+    UIWindow * window = [UIApplication sharedApplication].keyWindow;
+    ZELoginViewController * loginVC =[[ZELoginViewController alloc]init];
+    window.rootViewController = loginVC;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

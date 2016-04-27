@@ -30,6 +30,10 @@
  *  进入个能技能库
  */
 -(void)goPersonalSkillView;
+/**
+ *  退出登录
+ */
+-(void)logout;
 
 @end
 

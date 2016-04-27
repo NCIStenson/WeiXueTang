@@ -14,7 +14,7 @@
 
 #import "ZEMainViewController.h"
 #import "ZEDownloadVC.h"
-
+#import "ZESettingVC.h"
 
 @interface ZELoginViewController ()<ZELoginViewDelegate>
 
@@ -25,7 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    self.title  = @"用户登录";
+    [self disableLeftBtn];
     [self initView];
 }
 -(void)viewWillAppear:(BOOL)animated
@@ -39,7 +40,7 @@
 
 -(void)initView
 {
-    ZELoginView * loginView = [[ZELoginView alloc]initWithFrame:self.view.frame];
+    ZELoginView * loginView = [[ZELoginView alloc]initWithFrame:CGRectMake(0, NAV_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAV_HEIGHT)];
     loginView.delegate = self;
     [self.view addSubview:loginView];
 }
@@ -151,11 +152,11 @@
     UINavigationController * mainNav = [[UINavigationController alloc]initWithRootViewController:mainVC];
     
     ZEDownloadVC * downloadVC = [[ZEDownloadVC alloc]init];
-    downloadVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
+    downloadVC.tabBarItem.image = [UIImage imageNamed:@"tab_download_normal"];
     downloadVC.tabBarItem.title = @"下载";
     UINavigationController * downloadNav = [[UINavigationController alloc]initWithRootViewController:downloadVC];
     
-    ZEMainViewController * settingVC = [[ZEMainViewController alloc]init];
+    ZESettingVC * settingVC = [[ZESettingVC alloc]init];
     settingVC.tabBarItem.image = [UIImage imageNamed:@"tab_setting_normal"];
     settingVC.tabBarItem.title = @"设置";
     UINavigationController * settingNav = [[UINavigationController alloc]initWithRootViewController:settingVC];

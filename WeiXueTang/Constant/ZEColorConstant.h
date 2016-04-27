@@ -9,6 +9,8 @@
 #ifndef ZEColorConstant_h
 #define ZEColorConstant_h
 
+#define RGBA(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 #define MAIN_COLOR [UIColor colorWithRed:28/255.0 green:157/255.0 blue:209/255.0 alpha:1]
 #define MAIN_LINE_COLOR [UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:1]
 

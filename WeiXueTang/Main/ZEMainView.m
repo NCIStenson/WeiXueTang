@@ -86,7 +86,7 @@
     bannerImageView.image         = bannerImg;
     [self addSubview:bannerImageView];
     
-    for(int i = 0 ; i < 4 ; i ++){
+    for(int i = 0 ; i < 5 ; i ++){
         UIButton * enterBtn     = [UIButton buttonWithType:UIButtonTypeCustom];
         enterBtn.frame          = CGRectMake(0 + SCREEN_WIDTH / 3 * i, (bannerImageView.frame.origin.y + bannerImageView.frame.size.height) , SCREEN_WIDTH / 3, (IPHONE4S_LESS ? 100 : 120));
         [enterBtn setImage:[UIImage imageNamed:@"home_toolkit"] forState:UIControlStateNormal];
@@ -122,7 +122,16 @@
                 tipsLabel.frame = CGRectMake(enterBtn.frame.origin.x,enterBtn.frame.origin.y + ( IPHONE4S_LESS ? 85 : 120), SCREEN_WIDTH/3,30);
                 tipsLabel.text  = @"点赞表";
                 [enterBtn addTarget:self action:@selector(goDianZanView) forControlEvents:UIControlEventTouchUpInside];
+                [enterBtn setImage:[UIImage imageNamed:@"tab_dianzan"] forState:UIControlStateNormal];
+                break;
+            case 4:
+            {
+                enterBtn.frame  = CGRectMake(SCREEN_WIDTH / 3 * (i - 3) , (bannerImageView.frame.origin.y + bannerImageView.frame.size.height) + ( IPHONE4S_LESS ? 100 : 150) , SCREEN_WIDTH / 3, (IPHONE4S_LESS ? 100 : 120));
+                tipsLabel.frame = CGRectMake(enterBtn.frame.origin.x,enterBtn.frame.origin.y + ( IPHONE4S_LESS ? 85 : 120), SCREEN_WIDTH/3,30);
+                tipsLabel.text  = @"退出登录";
+                [enterBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
                 [enterBtn setImage:[UIImage imageNamed:@"home_download"] forState:UIControlStateNormal];
+            }
                 break;
 
             default:
@@ -160,6 +169,11 @@
 {
     if ([self.delegate respondsToSelector:@selector(goPersonalSkillView)]) {
         [self.delegate goPersonalSkillView];
+    }
+}
+-(void)logout{
+    if ([self.delegate respondsToSelector:@selector(logout)]) {
+        [self.delegate logout];
     }
 }
 

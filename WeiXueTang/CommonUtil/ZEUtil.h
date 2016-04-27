@@ -47,6 +47,11 @@
 + (void)setPassword:(NSString *)password;
 + (NSString *)getPassword;
 + (void)setLoginUserInfo:(NSDictionary *)dic;
+
+/**
+ *  清楚用户登录信息
+ */
++(void)clearUserInfo;
 /**
  *  班组名称
  */
