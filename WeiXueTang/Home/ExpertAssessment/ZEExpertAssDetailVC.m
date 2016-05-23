@@ -109,7 +109,6 @@
                                         files:nil
                                       success:^(id data) {
                                           [MBProgressHUD hideAllHUDsForView:_detailView animated:YES];
-                                          NSLog(@"postExpertAssessmentMessage >>>   %@",data);
                                           if ([ZEUtil isNotNull:data]) {
                                               [safeSelf showAlertView:@"提交失败，请稍后重试"];
                                           }else{

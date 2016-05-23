@@ -43,7 +43,7 @@
             [self addSubview:localDiffTypeBtn];
             
             UIImageView * iconImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH / 2, 40)];
-            iconImage.image = [UIImage imageNamed:@"good_not"];
+            iconImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"ico_list_mp4"]];
             iconImage.userInteractionEnabled = NO;
             iconImage.contentMode = UIViewContentModeScaleAspectFit;
             [localDiffTypeBtn addSubview:iconImage];
@@ -55,12 +55,15 @@
                     [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:[NSString stringWithFormat:@"视频\n共%d项",[[dic objectForKey:@"video"] count]]] forState:UIControlStateNormal];
                 }else{
                     [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:[NSString stringWithFormat:@"图片\n共%d项",localDownLoadImageCount]] forState:UIControlStateNormal];
+                    iconImage.image = [UIImage imageNamed:@"timeline_image_loading"];
                 }
             }else{
                 if (j == 0) {
                     [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:@"文档\n共0项"] forState:UIControlStateNormal];
+                    iconImage.image = [UIImage imageNamed:@"ico_list_doc"];
                 }else{
                     [localDiffTypeBtn setAttributedTitle:[self getAttrStrWithStr:@"其他\n共0项"] forState:UIControlStateNormal];
+                    iconImage.image = [UIImage imageNamed:@"ico_list_pdf"];
                 }
             }
             

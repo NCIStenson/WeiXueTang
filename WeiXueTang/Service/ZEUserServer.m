@@ -6,35 +6,56 @@
 //  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
-#define orgCode @"50172656"
+#define kGetToolKitList              @"getteamskill"     //  获取工具包列表
+#define kGetteamfile                 @"getteamfile"      //  获取技能课件列表
+#define kSkillSelfView               @"skillSelfView"    //  获取点赞表详情
+#define kLeaderAssessment            @"awaitAssessList"  //  获取班组长评估列表
+#define kTeamAssess                  @"teamAssess"       //  班组长审核
+#define kGetTeamMember               @"getTeamMember"     //  获取小组成员
 
-#define kGetToolKitList @"getteamskill"     //  获取工具包列表
-#define kGetteamfile    @"getteamfile"      //  获取技能课件列表
-#define kSkillSelfView  @"skillSelfView"    //  获取点赞表详情
+#define kGetExpertAssessmentList     @"ExpertLogin"      //  评估就是登陆接口
+#define kGetPersonalCourse           @"getPersonalCourse"//  获取个人技能库
+#define kGetSkillSelfView            @"skillSelfView"    //  自我评估
 
-#define kGetExpertAssessmentList    @"ExpertLogin"   //  评估就是登陆接口
-#define kGetPersonalCourse          @"getPersonalCourse" // 获取个人技能库
-#define kGetSkillSelfView           @"skillSelfView"   // 自我评估
+#define kSkillSelf                   @"skillSelf"        //  自我点赞
+#define kGetteamfilechild            @"getteamfilechild" //  获取子文件目录列表
+#define kPostExpertAssessmentMessage @"ExpertCommit"     //  评估提交
 
-#define kSkillSelf                  @"skillSelf"    // 自我点赞
-#define kGetteamfilechild           @"getteamfilechild"     //  获取子文件目录列表
-#define kPostExpertAssessmentMessage @"ExpertCommit"       //  评估提交
+#define kGetAllCourse                @"getallcourse"     //  获取所有的技能
 
-#define kGetAllCourse               @"getallcourse"        //  获取所有的技能
+#define kFindCourse                  @"findcourse"       //  搜索下载文件
+#define kClickGoodDetail             @"clickGoodDetail"  //  点赞表详情
+#define kUserInformation             @"userInformation"  //  个人用户详情
 
-#define kFindCourse                 @"findcourse"           // 搜索下载文件
-#define kClickGoodDetail            @"clickGoodDetail"      // 点赞表详情
+#define kGetTelLogin                 @"getTelLogin"      //  登录
 #import "ZEUserServer.h"
 //#import "AFHTTPRequestOperation.h"
 
 @implementation ZEUserServer
+
++(void)loginServerWithUsername:(NSString *)username
+                      password:(NSString *)password
+                        sucess:(ServerResponseSuccessBlock)successBlock
+                          fail:(ServerResponseFailBlock)failBlock
+{
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kGetTelLogin,
+                                                              @"data":[NSString stringWithFormat:@"%@#%@",username,password]}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    }
+                                                       fail:^(NSError *errorCode) {
+                                                           failBlock(errorCode);
+                                                       }];
+}
 
 + (void)getToolKitListSuccess:(ServerResponseSuccessBlock)successBlock
                          fail:(ServerResponseFailBlock)failBlock
 {
     [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
                                                      params:@{@"type":kGetToolKitList,
-                                                              @"data":orgCode}
+                                                              @"data":[ZESetLocalData getOrgcode]}
                                                  httpMethod:HTTPMETHOD_POST
                                                     success:^(id data) {
                                                         successBlock(data);
@@ -65,7 +86,7 @@
 {
     [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
                                                      params:@{@"type":kSkillSelfView,
-                                                              @"data":[NSString stringWithFormat:@"%@#%@",orgCode,pageNum]}
+                                                              @"data":[NSString stringWithFormat:@"%@#%@",[ZESetLocalData getOrgcode],pageNum]}
                                                  httpMethod:HTTPMETHOD_POST
                                                     success:^(id data) {
                                                         successBlock(data);
@@ -222,6 +243,88 @@
                                                         failBlock(errorCode);
                                                     }];
 }
+/**
+ *  个人用户信息
+ */
++(void)getUserInformationMessageSuccess:(ServerResponseSuccessBlock)successBlock
+                                   fail:(ServerResponseFailBlock)failBlock
+{
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kUserInformation,
+                                                              @"data":[ZEUtil getUsername]}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+/**
+ *  班组长评估列表
+ */
++(void)getLeaderAssessmentMessageSuccess:(ServerResponseSuccessBlock)successBlock
+                                    fail:(ServerResponseFailBlock)failBlock
+{
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:@{@"loginaccout":[ZEUtil getUsername],
+                                                                  @"loginpsw":[ZEUtil getPassword]} options:NSJSONWritingPrettyPrinted error:nil];
+    NSString * jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kLeaderAssessment,
+                                                              @"data":jsonString}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+
++(void)leaderAssessmentWithSeqkey:(NSString *)seqKey
+                       withStatus:(NSString *)status
+                          success:(ServerResponseSuccessBlock)successBlock
+                             fail:(ServerResponseFailBlock)failBlock
+{
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:@{@"seqkey":seqKey,
+                                                                  @"status":status}
+                                                        options:NSJSONWritingPrettyPrinted
+                                                          error:nil];
+    NSString * jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kTeamAssess,
+                                                              @"data":jsonString}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+
++(void)getTeamAssessmentMemberSuccess:(ServerResponseSuccessBlock)successBlock
+                                 fail:(ServerResponseFailBlock)failBlock
+{
+    NSData * jsonData = [NSJSONSerialization dataWithJSONObject:@{@"loginaccout":[ZEUtil getUsername],
+                                                                  @"loginpsw":[ZEUtil getPassword]}
+                                                        options:NSJSONWritingPrettyPrinted
+                                                          error:nil];
+    NSString * jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    
+    [[ZEServerEngine sharedInstance]requestWithServerMethod:nil
+                                                     params:@{@"type":kGetTeamMember,
+                                                              @"data":jsonString}
+                                                 httpMethod:HTTPMETHOD_POST
+                                                    success:^(id data) {
+                                                        successBlock(data);
+                                                    } fail:^(NSError *errorCode) {
+                                                        failBlock(errorCode);
+                                                    }];
+}
+
 
 
 @end

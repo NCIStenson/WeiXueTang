@@ -31,9 +31,10 @@
  */
 -(void)goPersonalSkillView;
 /**
- *  退出登录
+ *  班组长评估
  */
--(void)logout;
+-(void)goLeaderAssessmentVC;
+
 
 @end
 

@@ -84,7 +84,13 @@
     }
     
     ZEToolKitModel * toolKitM = [ZEToolKitModel getDetailWithDic:self.toolKitListArr[indexPath.row]];
-    cell.textLabel.text = toolKitM.filename;
+//    cell.textLabel.text = toolKitM.filename;
+//    cell.textLabel.frame = CGRectMake(0, 0, SCREEN_WIDTH - 100, 44.0f);
+    
+    UILabel * fileNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 75, 44.0f)];
+    fileNameLabel.text = toolKitM.filename;
+    [cell.contentView addSubview:fileNameLabel];
+    
         
     UIButton * downLoadBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     downLoadBtn.frame = CGRectMake(SCREEN_WIDTH - 65, 2, 40, 40);

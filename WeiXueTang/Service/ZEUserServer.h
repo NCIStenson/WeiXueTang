@@ -12,6 +12,21 @@
 @interface ZEUserServer : NSObject
 
 /**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-05-10 10:05:08
+ *
+ *  登录
+ *
+ *  @param username     用户名
+ *  @param password     密码
+ *  @param successBlock <#successBlock description#>
+ *  @param failBlock    <#failBlock description#>
+ */
++(void)loginServerWithUsername:(NSString *)username
+                      password:(NSString *)password
+                        sucess:(ServerResponseSuccessBlock)successBlock
+                          fail:(ServerResponseFailBlock)failBlock;
+
+/**
  *  @author Stenson, 16-03-07 15:03:12
  *
  *  获取工具包列表
@@ -121,4 +136,34 @@
 +(void)clickGoodDetail:(NSString *)key
                success:(ServerResponseSuccessBlock)successBlock
                   fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  个人用户信息
+ */
++(void)getUserInformationMessageSuccess:(ServerResponseSuccessBlock)successBlock
+                                   fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  班组长评估列表
+ */
++(void)getLeaderAssessmentMessageSuccess:(ServerResponseSuccessBlock)successBlock
+                                    fail:(ServerResponseFailBlock)failBlock;
+/**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-05-20 10:05:14
+ *
+ *  班组长审核
+ *
+ *  @param seqKey       审核主键
+ *  @param status       通过或者驳回
+ *  @param successBlock <#successBlock description#>
+ *  @param failBlock    <#failBlock description#>
+ */
++(void)leaderAssessmentWithSeqkey:(NSString *)seqKey
+                       withStatus:(NSString *)status
+                          success:(ServerResponseSuccessBlock)successBlock
+                             fail:(ServerResponseFailBlock)failBlock;
+
+/**
+ *      获取小组列表成员
+ */
++(void)getTeamAssessmentMemberSuccess:(ServerResponseSuccessBlock)successBlock
+                                 fail:(ServerResponseFailBlock)failBlock;
 @end

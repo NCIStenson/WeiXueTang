@@ -86,25 +86,25 @@
     }
     __block ZELoginViewController * safeSelf = self;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [ZEUserServer getExpertAssessmentList:username
+    
+    [ZEUserServer loginServerWithUsername:username
                                  password:[ZEUtil getmd5WithString:pwd]
-                                  success:^(id data) {
-                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                      if([[data objectForKey:@"USER_EXISTED"] isEqualToString:@"false"]){
-                                          [safeSelf showAlertView:@"账号不存在"];
-                                      }else{
-                                          if ([[data objectForKey:@"USER_INVALID_PWD"] isEqualToString:@"true"]) {
-                                              [ZEUtil setUsername:username];
-                                              [ZEUtil setPassword:[ZEUtil getmd5WithString:pwd]];
-                                              [safeSelf createPlistFile];
-                                              [safeSelf goHome];
-                                          }else{
-                                              [safeSelf showAlertView:@"密码错误"];
-                                          }
-                                      }
-                                  } fail:^(NSError *errorCode) {
-                                      [MBProgressHUD hideHUDForView:self.view animated:YES];
-                                  }];
+                                   sucess:^(id data) {
+                                       NSLog(@">>  %@",data);
+                                       [MBProgressHUD hideHUDForView:safeSelf.view animated:YES];
+                                       if ([[data objectForKey:@"upwd"] boolValue]) {
+                                           [ZEUtil setUsername:username];
+                                           [ZEUtil setPassword:[ZEUtil getmd5WithString:pwd]];
+                                           [ZESetLocalData setLocalUserData:data];
+                                           [safeSelf createPlistFile];
+                                           [safeSelf goHome];
+                                       }else{
+                                           [safeSelf showAlertView:@"账号密码不匹配"];
+                                       }
+                                   }
+                                     fail:^(NSError *errorCode) {
+                                         [MBProgressHUD hideHUDForView:safeSelf.view animated:YES];
+                                     }];
 }
 
 -(void)createPlistFile

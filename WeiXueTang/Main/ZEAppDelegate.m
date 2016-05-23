@@ -33,6 +33,7 @@
 //    [ZEUtil setUsername:@"33002810"];
 //    [ZEUtil setPassword:@"CFCD208495D565EF66E7DFF9F98764DA"];
     
+    
     ZEMainViewController * mainVC = [[ZEMainViewController alloc]init];
     mainVC.tabBarItem.image = [UIImage imageNamed:@"tab_homepage_normal"];
     mainVC.tabBarItem.title = @"首页";
@@ -42,7 +43,7 @@
     downloadVC.tabBarItem.image = [UIImage imageNamed:@"tab_download_normal"];
     downloadVC.tabBarItem.title = @"下载";
     UINavigationController * downloadNav = [[UINavigationController alloc]initWithRootViewController:downloadVC];
-    
+
     ZESettingVC * settingVC = [[ZESettingVC alloc]init];
     settingVC.tabBarItem.image = [UIImage imageNamed:@"tab_setting_normal"];
     settingVC.tabBarItem.title = @"设置";

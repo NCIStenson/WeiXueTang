@@ -54,7 +54,7 @@
     self.downloadImageArr = [NSMutableArray arrayWithCapacity:imagePathArr.count];
 
     for (int i = 0; i < imagePathArr.count; i ++){
-        NSString * str = [imagePath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%d.",index] withString:[NSString stringWithFormat:@"%d.",i+1]];
+        NSString * str = [imagePath stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%d.",index + 1] withString:[NSString stringWithFormat:@"%d.",i+1]];
         [self.downloadImageArr addObject:str];
     }
     
