@@ -64,4 +64,9 @@
 +(void)writeImageMessageToFile:(NSDictionary *)dic;
 +(void)writeVideoMessageToFile:(NSDictionary *)dic;
 
+/**
+ *  改变  “\\” === >  "/"
+ */
++(NSString *)changeURLStrFormat:(NSString *)str;
+
 @end

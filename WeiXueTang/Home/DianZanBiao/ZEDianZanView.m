@@ -271,6 +271,9 @@
                     case 1:
                         [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]] forState:UIControlStateNormal];
                         break;
+                    case 2:
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DOING]] forState:UIControlStateNormal];
+                        break;
                     case 60:
                         [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]] forState:UIControlStateNormal];
                         break;

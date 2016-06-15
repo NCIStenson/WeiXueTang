@@ -64,6 +64,7 @@
     [MBProgressHUD showHUDAddedTo:childTeamView animated:YES];
     [ZEUserServer getteamfilechild:_childFilePath
                            success:^(id data) {
+                               NSLog(@">>  %@",data);
                                [MBProgressHUD hideAllHUDsForView:childTeamView animated:YES];
                                if ([ZEUtil isNotNull:[data objectForKey:@"data"]]) {
                                    [childTeamView contentViewReloadData:[data objectForKey:@"data"]];
@@ -101,7 +102,7 @@
 }
 -(void)playCourswareVideo:(NSString *)filepath
 {
-    NSString *str = [filepath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str = [[ZEUtil changeURLStrFormat:filepath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL * urlStr = [NSURL URLWithString:str];
     JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithHTTPLiveStreamingMediaURL:urlStr];
     [self presentViewController:playView animated:YES completion:^{
@@ -111,7 +112,7 @@
 }
 -(void)playLocalVideoFile:(NSString *)videoPath
 {
-    NSString * escapedUrlString = [videoPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString * escapedUrlString = [[ZEUtil changeURLStrFormat:videoPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURL * urlStr  = [NSURL URLWithString:[NSString stringWithFormat:@"file://%@",escapedUrlString]];
     JRPlayerViewController * playView = [[JRPlayerViewController alloc]initWithLocalMediaURL:urlStr];
     [self presentViewController:playView animated:YES completion:^{
@@ -123,7 +124,7 @@
     self.photosArr = [NSMutableArray array];
     self.downloadImageArr = [NSMutableArray array];
     for(int i = 0; i < [pageNum integerValue]; i ++){
-        NSString *str                = [[NSString stringWithFormat:@"file://%@/\%ld%@",imagePath,(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *str                = [[NSString stringWithFormat:@"file://%@/\%ld%@",[ZEUtil changeURLStrFormat:imagePath],(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.downloadImageArr addObject:str];
     }
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
@@ -139,7 +140,7 @@
     self.photosArr = [NSMutableArray array];
     self.downloadImageArr = [NSMutableArray array];
     for(int i = 0; i < [pageNum integerValue]; i ++){
-        NSString *str                = [[NSString stringWithFormat:@"%@/\%ld%@",filepath,(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *str                = [[NSString stringWithFormat:@"%@/\%ld%@",[ZEUtil changeURLStrFormat:filepath],(long)i + 1,pngType] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [self.photosArr addObject:str];
     }
     SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
@@ -155,7 +156,7 @@
                         cachePath:(NSString *)cachePath
                      progressView:(ZEProgressView *)progressView
 {
-    NSString *str = [[NSString stringWithFormat:@"%@.zip",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str = [[NSString stringWithFormat:@"%@.zip",[ZEUtil changeURLStrFormat:urlPath]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     [ZEServerEngine downloadImageZipFromURL:str
                            noSuffixFileName:fileName
@@ -177,7 +178,7 @@
                         fileName:(NSString *)fileName
                     progressView:(ZEProgressView *)progressView
 {
-    NSString *str = [[NSString stringWithFormat:@"%@.mp4",urlPath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *str = [[NSString stringWithFormat:@"%@.mp4",[ZEUtil changeURLStrFormat:urlPath]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [ZEServerEngine downloadVideoFromURL:str
                                 fileName:fileName
                                cachePath:cachePath
@@ -192,6 +193,9 @@
                                 NSLog(@"下载完成");
                             } onError:^(NSError *error) {
                                 NSLog(@"%@",error);
+                                [self showTips:@"下载失败，请重试。"];
+                                [[ZEDownloadCaches instance] clearDownloadTasks];
+                                [childTeamView contentViewReload];
                             }];
 }
 

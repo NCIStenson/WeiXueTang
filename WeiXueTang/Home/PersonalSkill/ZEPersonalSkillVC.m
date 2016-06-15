@@ -35,12 +35,14 @@
 }
 -(void)sendRequest
 {
+    __block ZEPersonalSkillVC * safeSelf = self;
     [self progressBegin:nil];
     [ZEUserServer getPersonalCourseSuccess:^(id data) {
+        NSLog(@">>>  %@",data);
         [_perSkillView contentViewReloadData:[data objectForKey:@"data"]];
-        [self progressEnd:nil];
+        [safeSelf progressEnd:nil];
     } fail:^(NSError *errorCode) {
-        [self progressEnd:nil];
+        [safeSelf progressEnd:nil];
     }];
 }
 
@@ -48,11 +50,14 @@
 
 -(void)skillSelf:(ZEPersonalSkillView *)skillView withID:(NSString *)skillID
 {
+    __block ZEPersonalSkillVC * safeSelf = self;
     [self progressBegin:nil];
     [ZEUserServer skillSelfSkillID:skillID success:^(id data) {
-        [self progressEnd:nil];
+        NSLog(@">>  %@",data);
+        [safeSelf progressEnd:nil];
+        [safeSelf sendRequest];
     } fail:^(NSError *errorCode) {
-        [self progressEnd:nil];
+        [safeSelf progressEnd:nil];
     }];
 }
 

@@ -544,12 +544,12 @@
 		9880F7971CAA639D0086CED5 /* PersonalSkill */ = {
 			isa = PBXGroup;
 			children = (
-				985EF3E21CB3CC4D000929CD /* ZEPersonalSkillModel.h */,
-				985EF3E31CB3CC4D000929CD /* ZEPersonalSkillModel.m */,
 				985EF3E41CB3CC4D000929CD /* ZEPersonalSkillVC.h */,
 				985EF3E51CB3CC4D000929CD /* ZEPersonalSkillVC.m */,
 				985EF3E61CB3CC4D000929CD /* ZEPersonalSkillView.h */,
 				985EF3E71CB3CC4D000929CD /* ZEPersonalSkillView.m */,
+				985EF3E21CB3CC4D000929CD /* ZEPersonalSkillModel.h */,
+				985EF3E31CB3CC4D000929CD /* ZEPersonalSkillModel.m */,
 			);
 			name = PersonalSkill;
 			sourceTree = "<group>";
@@ -926,12 +926,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = ZE;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Zenith Electronic Technology Co., Ltd.";
 				TargetAttributes = {
 					989B2C421C4DE7AA00F14EFA = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = S2548HAYNX;
+						DevelopmentTeam = CJ8CND7Y24;
+						ProvisioningStyle = Automatic;
 					};
 					989B2C5B1C4DE7AA00F14EFA = {
 						CreatedOnToolsVersion = 7.2;
@@ -1221,6 +1222,98 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		983DBFB71D0FAA62001CEFDB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		983DBFB81D0FAA62001CEFDB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63FC90F96158DCD8066473CD /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/WeiXueTang/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "$(ZENITH_BUNDLEID)";
+				PRODUCT_NAME = WeiXueTang;
+				PROVISIONING_PROFILE = "";
+				SHARED_PRECOMPS_DIR = "";
+				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "";
+				WARNING_CFLAGS = (
+					"-Wno-missing-prototypes",
+					"-Wno-format",
+					"-Wno-shorten-64-to-32",
+				);
+				ZENITH_BUNDLEID = "com.zenithElec.app-Distribution";
+				ZENITH_SERVER = "http://120.27.152.63:8080/nbsj";
+			};
+			name = Distribution;
+		};
+		983DBFB91D0FAA62001CEFDB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = NewCenturyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.newCentury.NewCenturyTests;
+				PRODUCT_NAME = WeiXueTang;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WeiXueTang.app/WeiXueTang";
+			};
+			name = Distribution;
+		};
+		983DBFBA1D0FAA62001CEFDB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NewCenturyUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.newCentury.NewCenturyUITests;
+				PRODUCT_NAME = WeiXueTang;
+				TEST_TARGET_NAME = NewCentury;
+				USES_XCTRUNNER = YES;
+			};
+			name = Distribution;
+		};
 		989B2C6E1C4DE7AA00F14EFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1257,7 +1350,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1295,7 +1388,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1317,9 +1410,9 @@
 				INFOPLIST_FILE = "$(SRCROOT)/WeiXueTang/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wuxin.ladengTest;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(ZENITH_BUNDLEID)";
 				PRODUCT_NAME = WeiXueTang;
-				PROVISIONING_PROFILE = "9a0f5069-f936-4be0-9464-779652e6d827";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1328,7 +1421,7 @@
 					"-Wno-format",
 					"-Wno-shorten-64-to-32",
 				);
-				ZENITH_BUNDLEID = "com.zenith.app-Debug";
+				ZENITH_BUNDLEID = "com.zenithElec.app-Debug";
 				ZENITH_SERVER = "http://117.149.2.229:8090/nbsj_test";
 			};
 			name = Debug;
@@ -1339,17 +1432,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Wu Xin Technology Co. Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Wu Xin Technology Co. Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/WeiXueTang/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wuxin.ladengTest;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(ZENITH_BUNDLEID)";
 				PRODUCT_NAME = WeiXueTang;
-				PROVISIONING_PROFILE = "9a0f5069-f936-4be0-9464-779652e6d827";
+				PROVISIONING_PROFILE = "";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1358,8 +1451,8 @@
 					"-Wno-format",
 					"-Wno-shorten-64-to-32",
 				);
-				ZENITH_BUNDLEID = "com.zenith.app-Release";
-				ZENITH_SERVER = "http://117.149.2.229:8090/nbsj_test";
+				ZENITH_BUNDLEID = "com.zenithElec.app-Release";
+				ZENITH_SERVER = "http://120.27.152.63:8080/nbsj";
 			};
 			name = Release;
 		};
@@ -1419,6 +1512,7 @@
 			buildConfigurations = (
 				989B2C6E1C4DE7AA00F14EFA /* Debug */,
 				989B2C6F1C4DE7AA00F14EFA /* Release */,
+				983DBFB71D0FAA62001CEFDB /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1428,6 +1522,7 @@
 			buildConfigurations = (
 				989B2C711C4DE7AA00F14EFA /* Debug */,
 				989B2C721C4DE7AA00F14EFA /* Release */,
+				983DBFB81D0FAA62001CEFDB /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1437,6 +1532,7 @@
 			buildConfigurations = (
 				989B2C741C4DE7AA00F14EFA /* Debug */,
 				989B2C751C4DE7AA00F14EFA /* Release */,
+				983DBFB91D0FAA62001CEFDB /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1446,6 +1542,7 @@
 			buildConfigurations = (
 				989B2C771C4DE7AA00F14EFA /* Debug */,
 				989B2C781C4DE7AA00F14EFA /* Release */,
+				983DBFBA1D0FAA62001CEFDB /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

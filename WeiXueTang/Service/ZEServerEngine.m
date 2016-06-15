@@ -251,12 +251,6 @@ static ZEServerEngine *serverEngine = nil;
 //        获取文件缓存路径目标文件夹 同时把视频文件命名为filename
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
         NSURL *fullURL = [documentsDirectoryURL URLByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],newCachesPath,fileName]];
-        
-        NSString * videoCachePath = [NSString stringWithFormat:@"Documents/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],newCachesPath,fileName];
-        NSMutableDictionary * dic = [NSMutableDictionary dictionary];
-        [dic setObject:fileName forKey:kVideoCacheName];
-        [dic setObject:videoCachePath forKey:kVideoCachePath];
-        [ZEUtil writeVideoMessageToFile:dic];
 
         return fullURL;
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -264,11 +258,20 @@ static ZEServerEngine *serverEngine = nil;
             //If there's no error, return the completion block
             [[NSNotificationCenter defaultCenter] postNotificationName:KDOWNLOADSUCCESS object:nil];
             
-//            NSMutableDictionary * dic = [];
+            NSString * videoCachePath = [NSString stringWithFormat:@"Documents/%@/%@",[ZEUtil getmd5WithString:[ZEUtil getUsername]],newCachesPath,fileName];
+            NSMutableDictionary * dic = [NSMutableDictionary dictionary];
+            [dic setObject:fileName forKey:kVideoCacheName];
+            [dic setObject:videoCachePath forKey:kVideoCachePath];
+            [ZEUtil writeVideoMessageToFile:dic];
             
             completionBlock(filePath);
         } else {
             //Otherwise return the error block
+            NSString * filePath = [NSString stringWithFormat:@"%@/%@",CACHEPATH,newCachesPath];
+            NSFileManager * fileManager = [[NSFileManager alloc]init];
+            if (![fileManager fileExistsAtPath:filePath]) {
+                [fileManager removeItemAtPath:filePath error:nil];
+            }
             errorBlock(error);
         }
         

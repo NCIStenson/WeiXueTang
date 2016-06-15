@@ -397,6 +397,14 @@
     [resultDic setObject:[[ZEUtil getDownloadFileMessage] objectForKey:@"image"] forKey:@"image"];
     [resultDic setObject:mutableArr forKey:@"video"];
     [resultDic writeToFile:DOWNLOADFILEPATH atomically:YES];
-    
 }
+
+/**
+ *  改变  “\\” === >  "/"
+ */
++(NSString *)changeURLStrFormat:(NSString *)str
+{
+    return [str stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
+}
+
 @end

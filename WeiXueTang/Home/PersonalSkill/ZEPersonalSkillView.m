@@ -148,6 +148,8 @@
     dianzanBtn.tag = indexPath.row;
     if ([skillM.state integerValue] == 60) {
         [dianzanBtn setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_Master]] forState:UIControlStateNormal];
+    }else if ([skillM.state integerValue] == 2){
+        [dianzanBtn setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DOING]] forState:UIControlStateNormal];
     }else{
         [dianzanBtn setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_NO]] forState:UIControlStateNormal];
         [dianzanBtn addTarget:self action:@selector(dianZanBtnClick:) forControlEvents:UIControlEventTouchUpInside];
