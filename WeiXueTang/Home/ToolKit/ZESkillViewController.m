@@ -10,7 +10,6 @@
 #import "JRPlayerViewController.h"
 #import "ZEUserServer.h"
 #import "ZEDownloadCaches.h"
-#import "ZEImageViewController.h"
 
 @interface ZESkillViewController ()
 {

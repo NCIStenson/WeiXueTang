@@ -41,7 +41,6 @@
     [[ZEExpertAssessmentCache instance] setExpertAssessmentRemark:_projectView.remarkTextView.text index:_indexRow];
     [[ZEExpertAssessmentCache instance] setExpertAssessmentScore:_projectView.contentField.text index:_indexRow];
     [[NSNotificationCenter defaultCenter] postNotificationName:KCHANGEEXPERTASSESSMENTSCORESUCCESS object:[NSString stringWithFormat:@"%d",_indexRow]];
-
 }
 
 

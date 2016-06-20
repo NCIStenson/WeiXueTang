@@ -37,7 +37,6 @@
 {
     [MBProgressHUD showHUDAddedTo:_dianZanView animated:YES];
     [ZEUserServer getSkillSelfViewWithPage:pageNum success:^(id data) {
-        NSLog(@">>>>>>>>>>  %@",data);
         [MBProgressHUD hideAllHUDsForView:_dianZanView animated:YES];
         if ([ZEUtil isNotNull:data]) {
             ZEDianZanModel  *dianZanM = [ZEDianZanModel getDetailWithDic:data];

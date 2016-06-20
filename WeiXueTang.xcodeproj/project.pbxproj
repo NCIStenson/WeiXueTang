@@ -34,8 +34,6 @@
 		984BFDF71C9274AA00A117FD /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDF01C9274AA00A117FD /* zip.c */; };
 		984BFDF81C9274AA00A117FD /* ZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 984BFDF31C9274AA00A117FD /* ZipArchive.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		985EF3D91CB3CC3C000929CD /* ZEDownloadCaches.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3C81CB3CC3C000929CD /* ZEDownloadCaches.m */; };
-		985EF3DA1CB3CC3C000929CD /* ZEImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3CA1CB3CC3C000929CD /* ZEImageView.m */; };
-		985EF3DB1CB3CC3C000929CD /* ZEImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3CC1CB3CC3C000929CD /* ZEImageViewController.m */; };
 		985EF3DC1CB3CC3C000929CD /* ZEProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3CE1CB3CC3C000929CD /* ZEProgressView.m */; };
 		985EF3DD1CB3CC3C000929CD /* ZESkillView.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D01CB3CC3C000929CD /* ZESkillView.m */; };
 		985EF3DE1CB3CC3C000929CD /* ZESkillViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 985EF3D21CB3CC3C000929CD /* ZESkillViewController.m */; };
@@ -211,10 +209,6 @@
 		984BFDF31C9274AA00A117FD /* ZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchive.m; sourceTree = "<group>"; };
 		985EF3C71CB3CC3C000929CD /* ZEDownloadCaches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEDownloadCaches.h; path = WeiXueTang/Home/ToolKit/ZEDownloadCaches.h; sourceTree = SOURCE_ROOT; };
 		985EF3C81CB3CC3C000929CD /* ZEDownloadCaches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEDownloadCaches.m; path = WeiXueTang/Home/ToolKit/ZEDownloadCaches.m; sourceTree = SOURCE_ROOT; };
-		985EF3C91CB3CC3C000929CD /* ZEImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEImageView.h; path = WeiXueTang/Home/ToolKit/ZEImageView.h; sourceTree = SOURCE_ROOT; };
-		985EF3CA1CB3CC3C000929CD /* ZEImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEImageView.m; path = WeiXueTang/Home/ToolKit/ZEImageView.m; sourceTree = SOURCE_ROOT; };
-		985EF3CB1CB3CC3C000929CD /* ZEImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEImageViewController.h; path = WeiXueTang/Home/ToolKit/ZEImageViewController.h; sourceTree = SOURCE_ROOT; };
-		985EF3CC1CB3CC3C000929CD /* ZEImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEImageViewController.m; path = WeiXueTang/Home/ToolKit/ZEImageViewController.m; sourceTree = SOURCE_ROOT; };
 		985EF3CD1CB3CC3C000929CD /* ZEProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZEProgressView.h; path = WeiXueTang/Home/ToolKit/ZEProgressView.h; sourceTree = SOURCE_ROOT; };
 		985EF3CE1CB3CC3C000929CD /* ZEProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZEProgressView.m; path = WeiXueTang/Home/ToolKit/ZEProgressView.m; sourceTree = SOURCE_ROOT; };
 		985EF3CF1CB3CC3C000929CD /* ZESkillView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZESkillView.h; path = WeiXueTang/Home/ToolKit/ZESkillView.h; sourceTree = SOURCE_ROOT; };
@@ -759,10 +753,6 @@
 			children = (
 				985EF3C71CB3CC3C000929CD /* ZEDownloadCaches.h */,
 				985EF3C81CB3CC3C000929CD /* ZEDownloadCaches.m */,
-				985EF3C91CB3CC3C000929CD /* ZEImageView.h */,
-				985EF3CA1CB3CC3C000929CD /* ZEImageView.m */,
-				985EF3CB1CB3CC3C000929CD /* ZEImageViewController.h */,
-				985EF3CC1CB3CC3C000929CD /* ZEImageViewController.m */,
 				985EF3CD1CB3CC3C000929CD /* ZEProgressView.h */,
 				985EF3CE1CB3CC3C000929CD /* ZEProgressView.m */,
 				985EF3CF1CB3CC3C000929CD /* ZESkillView.h */,
@@ -1122,7 +1112,6 @@
 				985EF4011CB3CC60000929CD /* ZEExpertAssessmentView.m in Sources */,
 				989B2C481C4DE7AA00F14EFA /* main.m in Sources */,
 				985EF41B1CB64061000929CD /* ZEDownloadSearchVC.m in Sources */,
-				985EF3DA1CB3CC3C000929CD /* ZEImageView.m in Sources */,
 				9820D5B21CC612B8009D65FC /* ZEChildTeamFileView.m in Sources */,
 				985EF4021CB3CC60000929CD /* ZEExpertAssModel.m in Sources */,
 				98BA5C601C8D25DF005649AC /* ZEAppDelegate.m in Sources */,
@@ -1162,7 +1151,6 @@
 				98BA5C501C8D13AF005649AC /* JRPlayerView.m in Sources */,
 				9820D5AF1CC61277009D65FC /* ZEChildTeamFileVC.m in Sources */,
 				985EF3E81CB3CC4D000929CD /* ZEPersonalSkillModel.m in Sources */,
-				985EF3DB1CB3CC3C000929CD /* ZEImageViewController.m in Sources */,
 				98DB7C621C4F56470046D405 /* ZEUserServer.m in Sources */,
 				988216081CEDAC6500559C01 /* ZELeaderAssessmentModel.m in Sources */,
 				989FC4101CB641B300576567 /* ZELocalFileVC.m in Sources */,
@@ -1432,8 +1420,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Hangzhou Wu Xin Technology Co. Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Hangzhou Wu Xin Technology Co. Ltd.";
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/WeiXueTang/PrefixHeader.pch";
@@ -1442,7 +1430,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "$(ZENITH_BUNDLEID)";
 				PRODUCT_NAME = WeiXueTang;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9a0f5069-f936-4be0-9464-779652e6d827";
 				SHARED_PRECOMPS_DIR = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1451,8 +1439,8 @@
 					"-Wno-format",
 					"-Wno-shorten-64-to-32",
 				);
-				ZENITH_BUNDLEID = "com.zenithElec.app-Release";
-				ZENITH_SERVER = "http://120.27.152.63:8080/nbsj";
+				ZENITH_BUNDLEID = com.wuxin.ladengTest;
+				ZENITH_SERVER = "http://117.149.2.229:8090/nbsj_test";
 			};
 			name = Release;
 		};

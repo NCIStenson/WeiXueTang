@@ -10,6 +10,16 @@
 #import "ZEServerEngine.h"
 
 @interface ZEUserServer : NSObject
+/**
+ *  @author Zenith Electronic Technology Co., Ltd., 16-06-20 15:06:52
+ *
+ *  检查更新
+ *
+ *  @param successBlock <#successBlock description#>
+ *  @param failBlock    <#failBlock description#>
+ */
++ (void)getVersionUpdateSuccess:(ServerResponseSuccessBlock)successBlock
+                           fail:(ServerResponseFailBlock)failBlock;
 
 /**
  *  @author Zenith Electronic Technology Co., Ltd., 16-05-10 10:05:08

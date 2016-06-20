@@ -35,5 +35,9 @@
  *  部门名称
  */
 +(NSString *)getUnitName;
+/**
+ *  账号权限
+ */
++(NSString *)getRoleFlag;
 
 @end

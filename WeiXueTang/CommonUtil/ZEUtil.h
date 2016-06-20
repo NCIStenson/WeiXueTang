@@ -69,4 +69,6 @@
  */
 +(NSString *)changeURLStrFormat:(NSString *)str;
 
++(NSDictionary *)getSystemInfo;
+
 @end

@@ -86,7 +86,7 @@
     bannerImageView.image         = bannerImg;
     [self addSubview:bannerImageView];
     
-    for(int i = 0 ; i < 5 ; i ++){
+    for(int i = 0 ; i <  5; i ++){
         UIButton * enterBtn     = [UIButton buttonWithType:UIButtonTypeCustom];
         enterBtn.frame          = CGRectMake(0 + SCREEN_WIDTH / 3 * i, (bannerImageView.frame.origin.y + bannerImageView.frame.size.height) , SCREEN_WIDTH / 3, (IPHONE4S_LESS ? 100 : 120));
         [enterBtn setImage:[UIImage imageNamed:@"home_toolkit"] forState:UIControlStateNormal];
@@ -125,19 +125,15 @@
                 [enterBtn setImage:[UIImage imageNamed:@"tab_dianzan"] forState:UIControlStateNormal];
                 break;
             case 4:
+            {
+                if(![[ZESetLocalData getRoleFlag] boolValue]){
+                    break;
+                }
                 [enterBtn setImage:[UIImage imageNamed:@"home_toolkit"] forState:UIControlStateNormal];
                 tipsLabel.text  = @"班组长评估";
                 enterBtn.frame  = CGRectMake(SCREEN_WIDTH / 3 * (i - 3) , (bannerImageView.frame.origin.y + bannerImageView.frame.size.height) + ( IPHONE4S_LESS ? 100 : 150) , SCREEN_WIDTH / 3, (IPHONE4S_LESS ? 100 : 120));
                 tipsLabel.frame = CGRectMake(enterBtn.frame.origin.x,enterBtn.frame.origin.y + ( IPHONE4S_LESS ? 85 : 120), SCREEN_WIDTH/3,30);
                 [enterBtn addTarget:self action:@selector(goLeaderAssessmentVC) forControlEvents:UIControlEventTouchUpInside];
-                break;
-            case 5:
-            {
-                enterBtn.frame  = CGRectMake(SCREEN_WIDTH / 3 * (i - 3) , (bannerImageView.frame.origin.y + bannerImageView.frame.size.height) + ( IPHONE4S_LESS ? 100 : 150) , SCREEN_WIDTH / 3, (IPHONE4S_LESS ? 100 : 120));
-                tipsLabel.frame = CGRectMake(enterBtn.frame.origin.x,enterBtn.frame.origin.y + ( IPHONE4S_LESS ? 85 : 120), SCREEN_WIDTH/3,30);
-                tipsLabel.text  = @"班组长评估";
-//                [enterBtn addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
-                [enterBtn setImage:[UIImage imageNamed:@"home_download"] forState:UIControlStateNormal];
             }
                 break;
 

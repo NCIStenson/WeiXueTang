@@ -57,6 +57,7 @@
         [safeSelf progressEnd:nil];
         [safeSelf sendRequest];
     } fail:^(NSError *errorCode) {
+        NSLog(@"%@",errorCode);
         [safeSelf progressEnd:nil];
     }];
 }

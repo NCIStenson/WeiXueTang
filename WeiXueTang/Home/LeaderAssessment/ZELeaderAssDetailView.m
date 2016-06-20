@@ -7,7 +7,7 @@
 //
 
 #define kMessageLabelMarginLeft    10.0f
-#define kMessageLabelMarginTop     0.0f
+#define kMessageLabelMarginTop     10.0f
 #define kMessageLabelMarginWidth   SCREEN_WIDTH - 20.0f
 #define kMessageLabelMarginHeight  40.0f
 
@@ -62,7 +62,7 @@
     }
     
     
-    UIView * btnBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0,kMessageLabelMarginHeight * 3 , SCREEN_WIDTH, 50)];
+    UIView * btnBackgroundView = [[UIView alloc]initWithFrame:CGRectMake(0,kMessageLabelMarginHeight * 3 + 20 , SCREEN_WIDTH, 50)];
 //    btnBackgroundView.backgroundColor = [UIColor redColor];
     [self addSubview:btnBackgroundView];
     
@@ -72,6 +72,8 @@
         [btnBackgroundView addSubview:chooseBtn];
         [chooseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [chooseBtn setBackgroundColor:MAIN_COLOR];
+        chooseBtn.clipsToBounds = YES;
+        chooseBtn.layer.cornerRadius = 10;
         if (i == 0) {
             [chooseBtn setTitle:@"通过" forState:UIControlStateNormal];
             [chooseBtn addTarget:self action:@selector(passTheAssessment) forControlEvents:UIControlEventTouchUpInside];

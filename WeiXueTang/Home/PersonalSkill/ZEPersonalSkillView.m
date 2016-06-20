@@ -146,6 +146,9 @@
     UIButton * dianzanBtn     = [UIButton buttonWithType:UIButtonTypeCustom];
     dianzanBtn.frame          = CGRectMake(SCREEN_WIDTH - 60,0,60,cellH + 20);
     dianzanBtn.tag = indexPath.row;
+    
+    NSLog(@">>  %@",skillM.state);
+
     if ([skillM.state integerValue] == 60) {
         [dianzanBtn setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_Master]] forState:UIControlStateNormal];
     }else if ([skillM.state integerValue] == 2){

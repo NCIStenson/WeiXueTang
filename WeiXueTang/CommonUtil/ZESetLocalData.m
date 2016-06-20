@@ -99,6 +99,13 @@ static NSString * kUserInformation = @"keyUserInformation";
     NSDictionary * dic = [self getUserData];
     return [dic objectForKey:@"unitName"];
 }
-
+/**
+ *  账号权限
+ */
++(NSString *)getRoleFlag
+{
+    NSDictionary * dic = [self getUserData];
+    return [dic objectForKey:@"RoleFlag"];
+}
 
 @end

@@ -13,6 +13,8 @@
 #import "AFNetworkReachabilityManager.h"
 #import "ZESettingVC.h"
 
+#import "ZEUserServer.h"
+
 @interface ZEAppDelegate ()
 
 @end
@@ -52,6 +54,8 @@
     UITabBarController * tabBarVC = [[UITabBarController alloc]init];
     tabBarVC.viewControllers = @[mainNav,downloadNav,settingNav];
     
+    [self checkUpdate];
+    
     NSString * username = [ZEUtil getUsername];
     if ([ZEUtil isStrNotEmpty:username]) {
         [self createPlistFile];
@@ -64,11 +68,10 @@
     
     NSLog(@"%@",Zenith_Server);
     NSLog(@"%@",NSHomeDirectory());
-
-    [self _checkNet];
     
     return YES;
 }
+
 -(void)createPlistFile
 {
     NSFileManager * fileManager = [NSFileManager defaultManager];
@@ -85,6 +88,26 @@
     }
     
 }
+
+-(void)checkUpdate
+{
+    NSString* localVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    [ZEUserServer getVersionUpdateSuccess:^(id data) {
+        NSLog(@">>>  %@",data);
+        if ([ZEUtil isNotNull:data]) {
+            if([data objectForKey:@"data"]){
+                NSDictionary * dic = [data objectForKey:@"data"];
+                if ([localVersion floatValue] < [[dic objectForKey:@"versionName"] floatValue]) {
+                    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"经检测当前版本不是最新版本，点击确定跳转更新。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+                    [alertView show];
+                }
+            }
+        }
+    } fail:^(NSError *errorCode) {
+        
+    }];
+}
+
 
 - (void) _checkNet{
     //开启网络状态监控

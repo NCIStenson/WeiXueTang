@@ -236,6 +236,9 @@
     if ([[[ZEExpertAssessmentCache instance]getScoreWithIndex:_indexRow] integerValue] != 0) {
         _contentField.text = [[ZEExpertAssessmentCache instance]getScoreWithIndex:_indexRow];
     }
+    if (_expertAssType != EXPERTASSESSMENT_TYPE_NO) {
+        _contentField.enabled = NO;
+    }
     [_contentField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(kContentLabelMarginLeft);
         make.top.mas_equalTo(2);
@@ -283,7 +286,9 @@
         make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH - 20, 70));
 
     }];
-
+    if (_expertAssType != EXPERTASSESSMENT_TYPE_NO) {
+        _remarkTextView.editable = NO;
+    }
     if (![[[ZEExpertAssessmentCache instance]getRemarkWithIndex:_indexRow] isEqualToString:@""]) {
         _remarkTextView.text = [[ZEExpertAssessmentCache instance]getRemarkWithIndex:_indexRow];
     }

@@ -264,6 +264,7 @@
                 [staffImage addTarget:self action:@selector(staffImageClick:) forControlEvents:UIControlEventTouchUpInside];
                 staffImage.contentMode        = UIViewContentModeCenter;
                 
+                NSLog(@">>  %@",staffSkillModel.skill_state);
                 switch ([staffSkillModel.skill_state integerValue]) {
                     case 0:
                         [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_NO]] forState:UIControlStateNormal];
@@ -275,10 +276,10 @@
                         [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DOING]] forState:UIControlStateNormal];
                         break;
                     case 60:
-                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DONE]] forState:UIControlStateNormal];
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_Master]] forState:UIControlStateNormal];
                         break;
                     default:
-                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_DOING]] forState:UIControlStateNormal];
+                        [staffImage setImage:[UIImage imageNamed:[ZEUtil getDianZanTypeImageName:DIANZAN_TYPE_NO]] forState:UIControlStateNormal];
                         break;
                 }
                 break;
