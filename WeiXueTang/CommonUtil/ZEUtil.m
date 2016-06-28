@@ -111,7 +111,9 @@
     NSLocale *locale = [NSLocale currentLocale];
     
     NSString *country = [locale localeIdentifier];
+    NSString *identifierForVendor = [[[UIDevice currentDevice].identifierForVendor UUIDString] stringByReplacingOccurrencesOfString:@"-" withString:@""];
     
+    NSLog(@">>  %@ >>  %d",identifierForVendor,identifierForVendor.length);
     // 手机型号
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
@@ -121,8 +123,9 @@
     free(machine);
     [infoDic setObject:country forKey:@"country"];
     [infoDic setObject:language forKey:@"language"];
+    [infoDic setObject:@"Apple" forKey:@"model"];
     [infoDic setObject:[ZEUtil correspondVersion] forKey:@"brand"];
-    [infoDic setObject:@"" forKey:@"IMEI"];
+    [infoDic setObject:identifierForVendor forKey:@"iMEI"];
     [infoDic setObject:[ZEUtil getIPAddress] forKey:@"ip"];
     [infoDic setObject:@"" forKey:@"telnumber"];
     [infoDic setObject:[ZEUtil macaddress] forKey:@"mac"];
@@ -130,8 +133,10 @@
     [infoDic setObject:systemVersion forKey:@"operatingSystem"];
     [infoDic setObject:device forKey:@"device"];
     [infoDic setObject:deviceModel forKey:@"deviceModel"];
+    [infoDic setObject:appVersion forKey:@"versionName"];
     [infoDic setObject:appVersion forKey:@"versonCode"];
     [infoDic setObject:appBuildVersion forKey:@"appBuildVersion"];
+    [infoDic setObject:@"2" forKey:@"queryConditions"];
     
     return infoDic;
 }

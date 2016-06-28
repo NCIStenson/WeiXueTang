@@ -129,7 +129,7 @@
                 if(![[ZESetLocalData getRoleFlag] boolValue]){
                     break;
                 }
-                [enterBtn setImage:[UIImage imageNamed:@"home_toolkit"] forState:UIControlStateNormal];
+                [enterBtn setImage:[UIImage imageNamed:@"home_foreman"] forState:UIControlStateNormal];
                 tipsLabel.text  = @"班组长评估";
                 enterBtn.frame  = CGRectMake(SCREEN_WIDTH / 3 * (i - 3) , (bannerImageView.frame.origin.y + bannerImageView.frame.size.height) + ( IPHONE4S_LESS ? 100 : 150) , SCREEN_WIDTH / 3, (IPHONE4S_LESS ? 100 : 120));
                 tipsLabel.frame = CGRectMake(enterBtn.frame.origin.x,enterBtn.frame.origin.y + ( IPHONE4S_LESS ? 85 : 120), SCREEN_WIDTH/3,30);

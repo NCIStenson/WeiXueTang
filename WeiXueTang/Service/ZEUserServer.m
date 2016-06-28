@@ -6,7 +6,7 @@
 //  Copyright © 2016年  Zenith Electronic Technology Co., Ltd. All rights reserved.
 //
 
-#define kCheckUpdate                 @"selectVersionCode"//  检查更新
+#define kCheckUpdate                 @"checkIMEI"//  检查更新
 
 #define kGetToolKitList              @"getteamskill"     //  获取工具包列表
 #define kGetteamfile                 @"getteamfile"      //  获取技能课件列表
@@ -42,15 +42,15 @@
 + (void)getVersionUpdateSuccess:(ServerResponseSuccessBlock)successBlock
                            fail:(ServerResponseFailBlock)failBlock
 {
-//    NSData * data = [NSJSONSerialization dataWithJSONObject:[ZEUtil getSystemInfo]
-//                                                    options:NSJSONWritingPrettyPrinted
-//                                                      error:nil];
-//    
-//    NSString * jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+    NSData * data = [NSJSONSerialization dataWithJSONObject:[ZEUtil getSystemInfo]
+                                                    options:NSJSONWritingPrettyPrinted
+                                                      error:nil];
+    
+    NSString * jsonStr = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     
     [[ZEServerEngine sharedInstance] requestWithServerMethod:nil
                                                       params:@{@"type":kCheckUpdate,
-                                                               @"data":@"2"}
+                                                               @"data":jsonStr}
                                                   httpMethod:@"POST"
                                                      success:^(id data) {
                                                          successBlock(data);

@@ -53,9 +53,9 @@
     
     UITabBarController * tabBarVC = [[UITabBarController alloc]init];
     tabBarVC.viewControllers = @[mainNav,downloadNav,settingNav];
-    
+    /******** 检查更新 *********/
     [self checkUpdate];
-    
+        
     NSString * username = [ZEUtil getUsername];
     if ([ZEUtil isStrNotEmpty:username]) {
         [self createPlistFile];
@@ -76,7 +76,6 @@
 {
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSString * filePath = [CACHEPATH stringByAppendingPathComponent:@"downloadFile.plist"];
-    NSLog(@">>  %@",filePath);
     if (![fileManager fileExistsAtPath:CACHEPATH]) {
         [fileManager createDirectoryAtPath:CACHEPATH withIntermediateDirectories:YES attributes:nil error:nil];
     }
@@ -93,21 +92,23 @@
 {
     NSString* localVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     [ZEUserServer getVersionUpdateSuccess:^(id data) {
-        NSLog(@">>>  %@",data);
+        NSLog(@">> %@",data);
         if ([ZEUtil isNotNull:data]) {
-            if([data objectForKey:@"data"]){
-                NSDictionary * dic = [data objectForKey:@"data"];
-                if ([localVersion floatValue] < [[dic objectForKey:@"versionName"] floatValue]) {
-                    UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"经检测当前版本不是最新版本，点击确定跳转更新。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-                    [alertView show];
-                }
+            if ([localVersion floatValue] < [[data objectForKey:@"versionname"] floatValue]) {
+                UIAlertView * alertView = [[UIAlertView alloc]initWithTitle:@"温馨提示" message:@"经检测当前版本不是最新版本，点击确定跳转更新。" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+                [alertView show];
             }
         }
     } fail:^(NSError *errorCode) {
         
     }];
 }
-
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/cn/app/id1126609507?mt=8"]];
+    }
+}
 
 - (void) _checkNet{
     //开启网络状态监控
